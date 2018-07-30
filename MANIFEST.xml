@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project created="1491267374" subpackage="ECOMOD" name="proyecto_ecomod" active="1" package="ECOMOD" version="0.1" type="ecomod">
+ <projectstructure>
+  <file filetype="1" required="1">proyecto_ecomod/README.txt</file>
+  <file filetype="0" required="1">proyecto_ecomod/app</file>
+  <file filetype="0" required="1">proyecto_ecomod/app/app</file>
+  <file filetype="0" required="1">proyecto_ecomod/app/web</file>
+  <file filetype="0" required="1">proyecto_ecomod/app/blog</file>
+  <file filetype="1" required="1">proyecto_ecomod/CHANGELOG.txt</file>
+  <file filetype="1" required="1">proyecto_ecomod/TODO.txt</file>
+  <file filetype="0" required="1">proyecto_ecomod/public</file>
+  <file filetype="0" required="1">proyecto_ecomod/public/errors</file>
+  <file filetype="0" required="1">proyecto_ecomod/public/temp</file>
+  <file filetype="0" required="1">proyecto_ecomod/public/cache</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod/core</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod/core/exceptions</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod/core/abstracts</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod/core/interfaces</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod/core/traits</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod/libs</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod/resources</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod/images</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod/error</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod/api</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod/config</file>
+  <file filetype="0" required="1">proyecto_ecomod/ecomod/doc</file>
+ </projectstructure>
+</project>
