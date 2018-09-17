@@ -1,1 +1,9 @@
+@todo Pendiente por usar u optimizar
+https://www.php-fig.org/psr/psr-4/examples/
+http://www.sgmendez.com/2008/05/20/calcular-el-tiempo-de-carga-de-una-pagina-en-php/
+http://www.danielmayor.com/temporizador-en-php-calcular-cuanto-tiempo-tarda-en-cargar-una-pagina
+
+Para el manejo de errores y excepciones
+http://php.net/manual/es/class.exception.php
+http://php.net/manual/es/class.errorexception.php
  

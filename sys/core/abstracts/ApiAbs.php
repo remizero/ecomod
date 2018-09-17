@@ -1,5 +1,5 @@
 <?php
-namespace sys\core\abstractions;
+namespace sys\core\abstracts;
 
 /**
  *
