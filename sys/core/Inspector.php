@@ -15,6 +15,8 @@ use sys\libs\exceptions\ObjectException;
 use sys\libs\exceptions\PropertyNullException;
 use sys\libs\exceptions\RealException;
 use sys\libs\exceptions\StringException;
+use sys\libs\types\Image;
+use sys\libs\types\Ip;
 
 /**
  * <strong>Inspector</strong>
@@ -332,6 +334,10 @@ class Inspector {
       
     } elseif ( $meta [ "@Image" ] ) {
       
+      if ( !( $property instanceof Image ) ) {
+        
+        throw new ImageException ();
+      }
       if ( !\is_a ( $property, "Image" ) ) {
 
         throw new ImageException ();
@@ -346,9 +352,13 @@ class Inspector {
       
     } elseif ( $meta [ "@Ip" ] ) {
       
+      if ( !( $property instanceof Ip ) ) {
+        
+        throw new IpException ();
+      }
       if ( !\is_a ( $property, "Ip" ) ) {
         
-        throw new ImageException ();
+        throw new IpException ();
       }
     } elseif ( $meta [ "@long" ] ) {
       
@@ -467,7 +477,7 @@ class Inspector {
       
       if ( \is_object ( $argument ) ) {
         
-        if ( \is_a ( $argument, "Image" ) ) {
+        if ( !( $argument instanceof Image ) ) {
           
           $validatedType = $argument;
           
@@ -503,7 +513,7 @@ class Inspector {
       
       if ( \is_object ( $argument ) ) {
         
-        if ( \is_a ( $argument, "Ip" ) ) {
+        if ( !( $argument instanceof Ip ) ) {
           
           $validatedType = $argument;
           

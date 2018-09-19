@@ -104,22 +104,6 @@ class ErrorLog {
    * @return boolean
    */
   public function catchError ( string $code, string $error, string $file = NULL, string $line = NULL, array $context ) {
-    
-    /*function ($err_severity, $err_msg, $err_file, $err_line, array $err_context);
-    function myErrorHandler($code, $error, $file = NULL, $line = NULL) {
-      throw new Exception($error . ' encontrado en '. $file.', línea '.$line);
-    }
-    self::validate ();
-    $filePointer = \fopen ( 'public/errors/error.log', 'a' );
-    \fwrite ( $filePointer, "[" . \date ( DATE_RFC2822 ) . "] ERROR $message" . PHP_EOL );
-    \fclose ( $filePointer );*/
-    
-    
-    // error was suppressed with the @-operator
-    /*if ( 0 === \error_reporting () ) {
-      
-      return false;
-    }*/
 
     switch( $code ) {
       
@@ -144,8 +128,7 @@ class ErrorLog {
         throw new DeprecatedException ( $code, $error, $file, $line, $context );
       
       case E_ERROR:
-        
-        
+
         throw new ErrorException ( $code, $error, $file, $line, $context );
         
       case E_NOTICE:
@@ -205,22 +188,6 @@ class ErrorLog {
       \rename ( "public/errors/error.log", "public/errors/error_" . \date("Y-m-d_H:i:s") . ".log" );
     }
   }
-
-  /**
-   * Metodo que permite guardar la traza de error en un archivo log, para su 
-   * posterior depuracion.
-   * 
-   * @param string $message
-   * 
-   * @return void
-   */
-  public static function error ( string $message ) {
-    
-    self::validate ();
-    $filePointer = \fopen ( 'public/errors/error.log', 'a' );
-    \fwrite ( $filePointer, "[" . \date ( DATE_RFC2822 ) . "] ERROR $message" . PHP_EOL );
-    \fclose ( $filePointer );
-  }
   
   /**
    * Metodo que permite guardar la traza de error de una excepcion en un archivo
@@ -236,6 +203,27 @@ class ErrorLog {
     $filePointer = \fopen ( 'public/errors/error.log', 'a' );
     \fwrite ( $filePointer, "[" . \date ( DATE_RFC2822 ) . "] EXCEPTION " . $exception->__toString () . PHP_EOL );
     \fclose ( $filePointer );
+    $this->sendMail ();
+  }
+  
+  public function sendMail () {
+    
+    $from = "test@ecosoftware.com";
+    $to = "filizaa@gmail.com";
+    $subject = "Checking PHP mail";
+    $message = "PHP mail works just fine";
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+    $headers = "From:" . $from;
+    $respuesta = \mail ( $to, $subject, $message, $headers );
+    if ( $respuesta ) {
+      
+      echo "Si lo envio";
+      
+    } else {
+      
+      echo "No lo envio";
+    }
   }
 }
 

@@ -45,7 +45,7 @@ class ParseException extends ErrorHandlerException {
   public function __construct ( string $code, string $error, string $file = NULL, string $line = NULL ) {
     
     $this->isError = true;
-    parent::__construct ( $code, $error, $file, $line, $context );
+    parent::__construct ( $code, $error, $file, $line );
   }
 
   /**

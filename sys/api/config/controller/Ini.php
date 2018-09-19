@@ -31,9 +31,9 @@ use sys\libs\common\ObjectUtils;
  * @todo <p>En futuras versiones estarán disponibles los métodos para dar
  *       soporte a:</p>
  *       <ul>
- *       <li>.</li>
- *       <li>.</li>
- *       <li>.</li>
+ *       <li>Manejo de comentarios.</li>
+ *       <li>Activación/desactivación de opciones via comentarios.</li>
+ *       <li>Acceso aleatorio a opciones de configuración.</li>
  *       </ul>
  */
 class Ini extends ConfigAbs {

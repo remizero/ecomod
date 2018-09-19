@@ -35,13 +35,16 @@ class ErrorException extends ErrorHandlerException {
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
    *
+   * @param string $code Codigo del error.
+   * @param string $error Mensaje descriptivo del error.
+   * @param string $file Archivo donde se genera el error.
+   * @param string $line Linea donde se genera el error.
+   *
    * @return void
    */
-  public function __construct ( string $code, string $error, string $file = NULL, string $line = NULL, array $context ) {
+  public function __construct ( string $code, string $error, string $file = NULL, string $line = NULL ) {
 
-    \var_dump("esta entrando por ErrorException");
-    //parent::__construct ( "Error Fatal en tiempo de ejecución", 0, null );
-    parent::__construct ( $code, $error, $file, $line, $context );
+    parent::__construct ( $code, $error, $file, $line );
   }
 
   /**
