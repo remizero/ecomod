@@ -31,6 +31,13 @@ namespace sys\libs\exceptions;
  *       </ul>
  */
 class Exception extends \Exception {
+  
+  /**
+   * Permite identificar si la excepcion es de tipo error.
+   * 
+   * @var boolean
+   */
+  protected $isError = false;
 
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
@@ -57,16 +64,53 @@ class Exception extends \Exception {
    * Metodo recursivo que permite reconstruir la traza de excepcion hasta el
    * ultimo nivel de profundidad del error o excepcion.
    *
+   * @param array $trace Traza del error o de la excepcion a reconstruir.
+   *       
+   * @return string
+   */
+  private function parseTrace ( array $trace ) {
+
+    if ( $this->isError ) {
+      
+      return $this->parseTraceError ( $trace );
+      
+    } else {
+      
+      return $this->parseTraceException ( $trace );
+    }
+  }
+  
+  /**
+   * Metodo recursivo que permite reconstruir la traza de excepcion hasta el
+   * ultimo nivel de profundidad del error.
+   *
+   * @param array $trace Traza del error a reconstruir.
+   * @param array $args Argumentos de los metodos involucrados en la traza del
+   *        error. Para ser usados internamente por el metodo.
+   * @param number $traceLevel Define los niveles de profundidad del error.
+   *
+   * @return string
+   */
+  private function parseTraceError ( array $trace, array $args = array (), $traceLevel = 0 ) {
+    
+    \var_dump($this->getTrace ());
+    return "";
+  }
+  
+  /**
+   * Metodo recursivo que permite reconstruir la traza de excepcion hasta el
+   * ultimo nivel de profundidad de la excepcion.
+   *
    * @param array $trace Traza de la excepcion a reconstruir.
    * @param array $args Argumentos de los metodos involucrados en la traza de
    *        excepcion. Para ser usados internamente por el metodo.
    * @param number $traceLevel Define los niveles de profundidad de la
    *        excepcion.
-   *       
+   *
    * @return string
    */
-  private function parseTrace ( array $trace, array $args = array (), $traceLevel = 0 ) {
-
+  private function parseTraceException ( array $trace, array $args = array (), $traceLevel = 0 ) {
+    
     $parsedTrace = "";
     foreach ( $trace as $key => $value ) {
       
@@ -98,12 +142,12 @@ class Exception extends \Exception {
             
             $parsedTrace .= $value . "(";
             break;
-          
+            
           case "line" :
             
             $parsedTrace .= $value . "): ";
             break;
-          
+            
           case "function" :
             
             $arrayKey = \array_keys ( $trace );
@@ -116,17 +160,17 @@ class Exception extends \Exception {
               $args [ "function" ] = $value;
             }
             break;
-          
+            
           case "class" :
             
             $args [ "class" ] = $value;
             break;
-          
+            
           case "type" :
             
             $args [ "type" ] = $value;
             break;
-          
+            
           default :
             
             $parsedTrace .= $value . ", ";

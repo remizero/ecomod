@@ -1,15 +1,10 @@
 <?php
 namespace sys\api\config\core;
 
-//use finfo;
 use sys\core\abstracts\BaseClass;
 use sys\libs\common\FileUtils;
-use sys\libs\exceptions\FileException;
-use sys\libs\exceptions\FileNotFoundException;
-use sys\libs\exceptions\PathException;
 use sys\libs\common\ClassUtils;
 use sys\libs\exceptions\ArgumentException;
-use sys\libs\common\ErrorLog;
 
 /**
  * <strong>ConfigAbs</strong>
@@ -122,33 +117,19 @@ abstract class ConfigAbs extends BaseClass {
    */
   public function read ( string $path ) {
 
-    /*try {*/
-
-      switch ( \strtolower ( FileUtils::getFileExtension ( FileUtils::validate ( $path ) ) ) == \strtolower ( ClassUtils::getClassNameNoNamespace ( \get_class ( $this ) ) ) ) {
+    switch ( \strtolower ( FileUtils::getFileExtension ( FileUtils::validate ( $path ) ) ) == \strtolower ( ClassUtils::getClassNameNoNamespace ( \get_class ( $this ) ) ) ) {
+      
+      case true:
         
-        case true:
-          
-          $this->path = $path;
-          return true;
-          break;
-          
-        default:
-          
-          throw new ArgumentException ();
-          break;
-      }
-    /*} catch ( FileException $fe ) {
-      
-      ErrorLog::exception ( $fe );
-      
-    } catch ( FileNotFoundException $fnfe ) {
-      
-      ErrorLog::exception ( $fnfe );
-      
-    } catch ( PathException $pe ) {
-      
-      ErrorLog::exception ( $pe );
-    }*/
+        $this->path = $path;
+        return true;
+        break;
+        
+      default:
+        
+        throw new ArgumentException ();
+        break;
+    }
   }
   
   /**
