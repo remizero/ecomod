@@ -1,1 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<database>
+	<type>mysql</type>
+	<host>localhost</host>
+	<username>prophpmvc</username>
+	<password>prophpmvc</password>
+	<port>3306</port>
+	<schema>prophpmvc</schema>
+	<charset>utf8</charset>
+	<engine>InnoDB</engine>
+	<verdadero>true</verdadero>
+	<falso>no</falso>
+	<nulo>null</nulo>
+</database>

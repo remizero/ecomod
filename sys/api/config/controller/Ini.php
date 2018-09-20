@@ -59,6 +59,8 @@ class Ini extends ConfigAbs {
 
   /**
    * Método que permite analizar un archivo de configuración INI.
+   * 
+   * @throws SyntaxException
    *
    * @return boolean
    *

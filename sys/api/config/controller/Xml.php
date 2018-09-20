@@ -2,6 +2,9 @@
 namespace sys\api\config\controller;
 
 use sys\api\config\core\ConfigAbs;
+use sys\api\config\exceptions\SyntaxException;
+use sys\libs\common\ArrayUtils;
+use sys\libs\common\XmlUtils;
 
 /**
  * <strong>Xml</strong>
@@ -56,30 +59,21 @@ class Xml extends ConfigAbs {
   
   /**
    * Método que permite analizar un archivo de configuración Xml.
+   * 
+   * @throws SyntaxException
    *
-   * @param string $path Ruta del archivo a analizar.
-   *
-   * @return
+   * @return boolean
    *
    * @see \sys\api\config\core\ConfigAbs::parse()
    */
-  public function parse ( string $path ) {
-    
-    // TODO - Insert your code here
-  }
-  
-  /**
-   * Método que permite leer un archivo de configuración Xml.
-   *
-   * @param string $path Ruta del archivo a leer.
-   *
-   * @return
-   *
-   * @see \sys\api\config\core\ConfigAbs::read()
-   */
-  public function read ( string $path ) {
-    
-    
+  public function parse () {
+
+    $this->parsed = XmlUtils::toArray ( \simplexml_load_file ( $this->path ) );
+    if ( $this->parsed == false ) {
+      
+      throw new SyntaxException ();
+    }
+    return true;
   }
   
   /**
@@ -95,13 +89,31 @@ class Xml extends ConfigAbs {
     
     
   }
-public function toArray () {
-
+  
+  /**
+   * Método que permite obtener la representacion de un archivo de configuracion
+   * en una variable de tipo array.
+   *
+   * @return array
+   *
+   * @see \sys\api\config\core\ConfigAbs::toArray()
+   */
+  public function toArray () {
+    
+    return $this->parsed;
   }
-
-public function toObject () {
-
+  
+  /**
+   * Método que permite obtener la representacion de un archivo de configuracion
+   * en una variable de tipo object.
+   *
+   * @return \stdClass
+   *
+   * @see \sys\api\config\core\ConfigAbs::toObject()
+   */
+  public function toObject () {
+    
+    return ArrayUtils::toObject ( $this->parsed );
   }
-
 }
 
