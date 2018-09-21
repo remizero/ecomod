@@ -8,15 +8,15 @@ use sys\api\config\controller\Toml;
 use sys\api\config\controller\Xml;
 use sys\api\config\controller\Yaml;
 use sys\api\config\core\ConfigAbs;
-use sys\patterns\creational\FactoryMethod;
 use sys\libs\exceptions\ArgumentException;
+use sys\patterns\creational\FactoryMethod;
 
 /**
  * <strong>Config</strong>
  *
- * Archivo creado el 12 de septiembre de 2018 a las 00:04:30 a.m.
- * <p>Clase abstracta que permite crear objetos controladores para manipular 
- * distintos tipos de archivos y estructuras de datos para la configuración del 
+ * Archivo creado el 20 de septiembre de 2018 a las 20:43:00 a.m.
+ * <p>Clase abstracta que permite crear objetos controladores para manipular
+ * distintos tipos de archivos y estructuras de datos para la configuración del
  * sistema ECOMOD.</p>
  *
  * @name Config
@@ -42,92 +42,92 @@ use sys\libs\exceptions\ArgumentException;
  *       <li>.</li>
  *       </ul>
  */
-abstract class Config implements FactoryMethod {
+abstract class ConfigFac implements FactoryMethod {
   
   /**
    * Constante que define el tipo de controlador Ini.
-   * 
+   *
    * @var string
    */
   const INI = 'ini';
   
   /**
    * Constante que define el tipo de controlador Json.
-   * 
+   *
    * @var string
    */
   const JSON = 'json';
   
   /**
    * Constante que define el tipo de controlador Php.
-   * 
+   *
    * @var string
    */
   const PHP = 'php';
   
   /**
    * Constante que define el tipo de controlador Toml.
-   * 
+   *
    * @var string
    */
   const TOML = 'toml';
   
   /**
    * Constante que define el tipo de controlador Xml.
-   * 
+   *
    * @var string
    */
   const XML = 'xml';
   
   /**
    * Constante que define el tipo de controlador Yaml.
-   * 
+   *
    * @var string
    */
   const YAML = 'yaml';
-
+  
   /**
-   * Función que permite crear clases de un tipo, determinado por la 
+   * Función que permite crear clases de un tipo, determinado por la
    * implementación en la clase concreta.
-   * 
+   *
    * @param string $className Nombre de la clase a crear.
-   * 
+   *
    * @throws ArgumentException
-   * 
+   *
    * @return ConfigAbs
    *
    * @see \sys\patterns\creational\FactoryMethod::create()
    */
   public static function create ( string $className ) {
-
+    
     switch ( \strtolower ( $className ) ) {
       
-      case Config::INI:
-
+      case ConfigFac::INI:
+        
         return new Ini ();
         break;
         
-      case Config::JSON:
+      case ConfigFac::JSON:
         
         return new Json ();
         break;
         
-      case Config::PHP:
+      case ConfigFac::PHP:
         
         return new Php ();
         break;
         
-      case Config::TOML:
+      case ConfigFac::TOML:
         
         return new Toml ();
         break;
         
-      case Config::XML:
+      case ConfigFac::XML:
         
         return new Xml ();
         break;
         
-      case Config::YAML:
+      case ConfigFac::YAML:
         
         return new Yaml ();
         break;
@@ -139,4 +139,3 @@ abstract class Config implements FactoryMethod {
     }
   }
 }
-

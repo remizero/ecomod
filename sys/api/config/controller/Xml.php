@@ -5,6 +5,7 @@ use sys\api\config\core\ConfigAbs;
 use sys\api\config\exceptions\SyntaxException;
 use sys\libs\common\ArrayUtils;
 use sys\libs\common\XmlUtils;
+use sys\libs\exceptions\ArgumentException;
 
 /**
  * <strong>Xml</strong>
@@ -77,20 +78,6 @@ class Xml extends ConfigAbs {
   }
   
   /**
-   * Método que permite escribir un archivo de configuración Xml.
-   *
-   * @param string $path Ruta del archivo a escribir.
-   *
-   * @return
-   *
-   * @see \sys\api\config\core\ConfigAbs::write()
-   */
-  public function write ( string $path, $data ) {
-    
-    
-  }
-  
-  /**
    * Método que permite obtener la representacion de un archivo de configuracion
    * en una variable de tipo array.
    *
@@ -114,6 +101,39 @@ class Xml extends ConfigAbs {
   public function toObject () {
     
     return ArrayUtils::toObject ( $this->parsed );
+  }
+  
+  /**
+   * Método que permite escribir un archivo de configuración Xml.
+   *
+   * @param string $path Ruta del archivo a escribir.
+   * @param array|\stdClass|\SimpleXMLElement $data Datos a ser guardados.
+   * 
+   * @throws ArgumentException
+   *
+   * @return boolean
+   *
+   * @see \sys\api\config\core\ConfigAbs::write()
+   */
+  public static function write ( string $path, $data ) {
+    
+    if ( \is_array($data) ) {
+      
+      $simpleXMLElement = XmlUtils::arrayToSimpleXmlElement($data);
+      
+    } elseif ( $data instanceof \stdClass ) {
+      
+      $simpleXMLElement = XmlUtils::stdClassToSimpleXmlElement($data);
+      
+    } elseif ( $data instanceof \SimpleXMLElement ) {
+      
+      $simpleXMLElement = $data;
+      
+    } else {
+      
+      throw new ArgumentException ();
+    }
+    return $simpleXMLElement->asXML ( $path );
   }
 }
 

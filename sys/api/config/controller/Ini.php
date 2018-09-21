@@ -121,7 +121,6 @@ class Ini extends ConfigAbs {
 
       $output = ObjectUtils::toConfigFile ( $data );
     }
-    
     $resource = \fopen ( $path, "r+" );
     if ( $resource !== false ) {
       

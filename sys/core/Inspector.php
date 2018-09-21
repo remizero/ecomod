@@ -312,27 +312,27 @@ class Inspector {
       
       throw new PropertyNullException ();
     }
-    if ( $meta [ "@array" ] ) {
+    if ( isset ( $meta [ "@array" ] ) ) {
       
       $property = ( array ) $property;
       
-    } elseif ( $meta [ "@binary" ] ) {
+    } elseif ( isset ( $meta [ "@binary" ] ) ) {
       
       $property = ( binary ) $property;
       
-    } elseif ( $meta [ "@bool" ] || $meta [ "@boolean" ] ) {
+    } elseif ( isset ( $meta [ "@bool" ] ) || isset ( $meta [ "@boolean" ] ) ) {
       
       $property = ( bool ) $property;
       
-    } elseif ( $meta [ "@double" ] ) {
+    } elseif ( isset ( $meta [ "@double" ] ) ) {
       
       $property = ( double ) $property;
       
-    } elseif ( $meta [ "@float" ] ) {
+    } elseif ( isset ( $meta [ "@float" ] ) ) {
       
       $property = ( float ) $property;
       
-    } elseif ( $meta [ "@Image" ] ) {
+    } elseif ( isset ( $meta [ "@Image" ] ) ) {
       
       if ( !( $property instanceof Image ) ) {
         
@@ -342,15 +342,15 @@ class Inspector {
 
         throw new ImageException ();
       }
-    } elseif ( $meta [ "@int" ] ) {
+    } elseif ( isset ( $meta [ "@int" ] ) ) {
       
       $property = ( int ) $property;
       
-    } elseif ( $meta [ "@integer" ] ) {
+    } elseif ( isset ( $meta [ "@integer" ] ) ) {
       
       $property = ( integer ) $property;
       
-    } elseif ( $meta [ "@Ip" ] ) {
+    } elseif ( isset ( $meta [ "@Ip" ] ) ) {
       
       if ( !( $property instanceof Ip ) ) {
         
@@ -360,19 +360,19 @@ class Inspector {
         
         throw new IpException ();
       }
-    } elseif ( $meta [ "@long" ] ) {
+    } elseif ( isset ( $meta [ "@long" ] ) ) {
       
       $property = ( integer ) $property;
       
-    } elseif ( $meta [ "@object" ] ) {
+    } elseif ( isset ( $meta [ "@object" ] ) ) {
       
       $property = ( object ) $property;
       
-    } elseif ( $meta [ "@real" ] ) {
+    } elseif ( isset ( $meta [ "@real" ] ) ) {
       
       $property = ( real ) $property;
       
-    } elseif ( $meta [ "@string" ] ) {
+    } elseif ( isset ( $meta [ "@string" ] ) ) {
       
       $property = ( string ) $property;
     }
@@ -428,7 +428,7 @@ class Inspector {
      * \is_writeable($filename);
      */
     $validatedType = FALSE;
-    if ( $meta [ "@array" ] ) {
+    if ( isset ( $meta [ "@array" ] ) ) {
       
       if ( \is_​array ( $argument ) ) {
         
@@ -438,12 +438,12 @@ class Inspector {
         
         throw new ArrayException ();
       }
-    } elseif ( $meta [ "@binary" ] ) {
+    } elseif ( isset ( $meta [ "@binary" ] ) ) {
       
       
       $property = ( binary ) $property;
       
-    } elseif ( $meta [ "@bool" ] || $meta [ "@boolean" ] ) {
+    } elseif ( isset ( $meta [ "@bool" ] ) || isset ( $meta [ "@boolean" ] ) ) {
       
       if ( \is_​bool ( $argument ) ) {
         
@@ -453,7 +453,7 @@ class Inspector {
         
         throw new BooleanException ();
       }
-    } elseif ( $meta [ "@double" ] ) {
+    } elseif ( isset ( $meta [ "@double" ] ) ) {
       
       if ( \is_​double ( $argument ) ) {
         
@@ -463,7 +463,7 @@ class Inspector {
         
         throw new DoubleException ();
       }
-    } elseif ( $meta [ "@float" ] ) {
+    } elseif ( isset ( $meta [ "@float" ] ) ) {
       
       if ( \is_​float ( $argument ) ) {
         
@@ -473,7 +473,7 @@ class Inspector {
         
         throw new FloatException ();
       }
-    } elseif ( $meta [ "@Image" ] ) {
+    } elseif ( isset ( $meta [ "@Image" ] ) ) {
       
       if ( \is_object ( $argument ) ) {
         
@@ -489,7 +489,7 @@ class Inspector {
         
         throw new ObjectException ();
       }
-    } elseif ( $meta [ "@int" ] ) {
+    } elseif ( isset ( $meta [ "@int" ] ) ) {
       
       if ( \is_​int ( $argument ) ) {
         
@@ -499,7 +499,7 @@ class Inspector {
         
         throw new IntegerException ();
       }
-    } elseif ( $meta [ "@integer" ] ) {
+    } elseif ( isset ( $meta [ "@integer" ] ) ) {
       
       if ( \is_​integer ( $argument ) ) {
         
@@ -509,7 +509,7 @@ class Inspector {
         
         throw new IntegerException ();
       }
-    } elseif ( $meta [ "@Ip" ] ) {
+    } elseif ( isset ( $meta [ "@Ip" ] ) ) {
       
       if ( \is_object ( $argument ) ) {
         
@@ -525,7 +525,7 @@ class Inspector {
         
         throw new ObjectException ();
       }
-    } elseif ( $meta [ "@long" ] ) {
+    } elseif ( isset ( $meta [ "@long" ] ) ) {
       
       if ( \is_​long ( $argument ) ) {
         
@@ -534,7 +534,7 @@ class Inspector {
         
         throw new LongException ();
       }
-    } elseif ( $meta [ "@object" ] ) {
+    } elseif ( isset ( $meta [ "@object" ] ) ) {
       
       if ( \is_​object ( $argument ) ) {
         
@@ -544,7 +544,7 @@ class Inspector {
         
         throw new ObjectException ();
       }
-    } elseif ( $meta [ "@real" ] ) {
+    } elseif ( isset ( $meta [ "@real" ] ) ) {
       
       if ( \is_​real ( $argument ) ) {
         
@@ -554,7 +554,7 @@ class Inspector {
         
         throw new RealException ();
       }
-    } elseif ( $meta [ "@string" ] ) {
+    } elseif ( isset ( $meta [ "@string" ] ) ) {
       
       if ( \is_string ( $argument ) ) {
         

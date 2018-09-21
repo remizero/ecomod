@@ -6,7 +6,7 @@ use sys\libs\exceptions\CompileWarningException;
 use sys\libs\exceptions\CoreErrorException;
 use sys\libs\exceptions\CoreWarningException;
 use sys\libs\exceptions\DeprecatedException;
-use sys\libs\exceptions\Exception;
+//use sys\libs\exceptions\Exception;
 use sys\libs\exceptions\ErrorException;
 use sys\libs\exceptions\NoticeException;
 use sys\libs\exceptions\ParseException;
@@ -169,7 +169,13 @@ class ErrorLog {
     }
   }
   
-  public function catchException ( Exception $exception ) {
+  /**
+   * 
+   * @param \Exception $exception
+   * 
+   * @return void
+   */
+  public function catchException ( \Exception $exception ) {
 
     self::validate ();
     $filePointer = \fopen ( 'public/errors/error.log', 'a' );
@@ -177,7 +183,7 @@ class ErrorLog {
     \fclose ( $filePointer );
   }
   
-  private function validate () {
+  private static function validate () {
 
     if ( \filesize ( "public/errors/error.log" ) > 1000000 ) {
 
@@ -193,11 +199,11 @@ class ErrorLog {
    * Metodo que permite guardar la traza de error de una excepcion en un archivo
    * log, para su posterior depuracion.
    * 
-   * @param Exception $exception
+   * @param \Exception $exception
    * 
    * @return void
    */
-  public static function exception ( Exception $exception ) {
+  public static function exception ( \Exception $exception ) {
 
     self::validate ();
     $filePointer = \fopen ( 'public/errors/error.log', 'a' );
