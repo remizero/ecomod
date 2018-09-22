@@ -1,0 +1,351 @@
+[Wed, 19 Sep 2018 01:25:21 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 50 MESSAGE: Advertencia en tiempo de ejecución 
+BACKTRACE: 
+#0 sys\libs\common\ErrorLog->catchError ( "2, fopen(config_cpy.ini): failed to open stream: No such file or directory, /var/www/html/ecomod/indexes/index_config.php, 50, #0 #0 #1 #2 huaiid1bma776jkrm52f84lt41, #3 #4 #5 #6 localhost, keep-alive, max-age=0, 1, Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36 OPR/55.0.2994.61, text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8, gzip, deflate, br, es-419,es;q=0.9, PHPSESSID=huaiid1bma776jkrm52f84lt41, /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin, <address>Apache/2.4.25 (Debian) Server at localhost Port 80</address>
+, Apache/2.4.25 (Debian), localhost, ::1, 80, ::1, /var/www/html, http, , /var/www/html, webmaster@localhost, 
+/var/www/html/ecomod/index.php, 44804, CGI/1.1, HTTP/1.1, GET, , /ecomod/, /ecomod/index.php, /ecomod/index.php, 1537334721.389, 1537334721, , , " )
+
+#1 /var/www/html/ecomod/indexes/index_config.php(50): *** ( "config_cpy.ini, r" )
+#2 /var/www/html/ecomod/index.php(5): require_once ( "/var/www/html/ecomod/indexes/index_config.php" )
+
+[Wed, 19 Sep 2018 01:34:17 -0400] EXCEPTION 
+CODE: 2 
+FILE: /var/www/html/ecomod/indexes/index_config.php 
+LINE: 50 
+MESSAGE: 0 BACKTRACE: #0 sys\libs\common\ErrorLog->catchError ( "2, fopen(config_cpy.ini): failed to open stream: No such file or directory, /var/www/html/ecomod/indexes/index_config.php, 50, #0 #0 #1 #2 huaiid1bma776jkrm52f84lt41, #3 #4 #5 #6 localhost, keep-alive, max-age=0, 1, Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36 OPR/55.0.2994.61, text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8, gzip, deflate, br, es-419,es;q=0.9, PHPSESSID=huaiid1bma776jkrm52f84lt41, /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin, <address>Apache/2.4.25 (Debian) Server at localhost Port 80</address>
+, Apache/2.4.25 (Debian), localhost, ::1, 80, ::1, /var/www/html, http, , /var/www/html, webmaster@localhost, /var/www/html/ecomod/index.php, 44826, CGI/1.1, HTTP/1.1, GET, , /ecomod/, /ecomod/index.php, /ecomod/index.php, 1537335257.883, 1537335257, , , " )#1 /var/www/html/ecomod/indexes/index_config.php(50): *** ( "config_cpy.ini, r" )#2 /var/www/html/ecomod/index.php(5): require_once ( "/var/www/html/ecomod/indexes/index_config.php" )
+
+[Wed, 19 Sep 2018 01:35:19 -0400] EXCEPTION 
+CODE: 2 
+FILE: /var/www/html/ecomod/indexes/index_config.php 
+LINE: 50 
+MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory 
+BACKTRACE: #0 sys\libs\common\ErrorLog->catchError ( "2, fopen(config_cpy.ini): failed to open stream: No such file or directory, /var/www/html/ecomod/indexes/index_config.php, 50, #0 #0 #1 #2 huaiid1bma776jkrm52f84lt41, #3 #4 #5 #6 localhost, keep-alive, max-age=0, 1, Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36 OPR/55.0.2994.61, text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8, gzip, deflate, br, es-419,es;q=0.9, PHPSESSID=huaiid1bma776jkrm52f84lt41, /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin, <address>Apache/2.4.25 (Debian) Server at localhost Port 80</address>
+, Apache/2.4.25 (Debian), localhost, ::1, 80, ::1, /var/www/html, http, , /var/www/html, webmaster@localhost, /var/www/html/ecomod/index.php, 44832, CGI/1.1, HTTP/1.1, GET, , /ecomod/, /ecomod/index.php, /ecomod/index.php, 1537335319.631, 1537335319, , , " )#1 /var/www/html/ecomod/indexes/index_config.php(50): *** ( "config_cpy.ini, r" )#2 /var/www/html/ecomod/index.php(5): require_once ( "/var/www/html/ecomod/indexes/index_config.php" )
+[Wed, 19 Sep 2018 01:40:50 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 50 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: #0 sys\libs\common\ErrorLog->catchError ( "2, fopen(config_cpy.ini): failed to open stream: No such file or directory, /var/www/html/ecomod/indexes/index_config.php, 50, #0 #0 #1 #2 huaiid1bma776jkrm52f84lt41, #3 #4 #5 #6 localhost, keep-alive, max-age=0, 1, Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36 OPR/55.0.2994.61, text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8, gzip, deflate, br, es-419,es;q=0.9, PHPSESSID=huaiid1bma776jkrm52f84lt41, /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin, <address>Apache/2.4.25 (Debian) Server at localhost Port 80</address>
+, Apache/2.4.25 (Debian), localhost, ::1, 80, ::1, /var/www/html, http, , /var/www/html, webmaster@localhost, /var/www/html/ecomod/index.php, 44848, CGI/1.1, HTTP/1.1, GET, , /ecomod/, /ecomod/index.php, /ecomod/index.php, 1537335650.287, 1537335650, , , " )#1 /var/www/html/ecomod/indexes/index_config.php(50): *** ( "config_cpy.ini, r" )#2 /var/www/html/ecomod/index.php(5): require_once ( "/var/www/html/ecomod/indexes/index_config.php" )
+[Wed, 19 Sep 2018 01:52:28 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 50 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Wed, 19 Sep 2018 02:52:43 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 41 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Wed, 19 Sep 2018 02:58:39 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 41 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Wed, 19 Sep 2018 03:03:36 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 41 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Wed, 19 Sep 2018 03:13:01 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 41 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Wed, 19 Sep 2018 03:18:34 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 42 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Wed, 19 Sep 2018 03:21:35 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 42 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Wed, 19 Sep 2018 03:22:11 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 42 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Wed, 19 Sep 2018 03:22:56 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 59 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Wed, 19 Sep 2018 10:05:28 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 59 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 19:51:23 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 62 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 19:53:22 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 62 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 19:55:16 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 62 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 19:55:35 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 62 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 19:55:53 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 62 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 20:36:25 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 62 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 21:05:04 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 62 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 21:06:08 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 62 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 21:11:37 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 62 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 21:39:20 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 151 MESSAGE: DOMDocument::createElement() expects at least 1 parameter, 0 given BACKTRACE: 
+[Thu, 20 Sep 2018 21:41:08 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 21:42:10 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 151 MESSAGE: DOMDocument::createElement() expects at least 1 parameter, 0 given BACKTRACE: 
+[Thu, 20 Sep 2018 21:43:15 -0400] EXCEPTION CODE: 8 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 151 MESSAGE: Undefined variable: root BACKTRACE: 
+[Thu, 20 Sep 2018 21:49:06 -0400] EXCEPTION CODE: 8 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 179 MESSAGE: Undefined variable: root BACKTRACE: 
+[Thu, 20 Sep 2018 21:53:18 -0400] EXCEPTION CODE: 8192 FILE: /var/www/html/ecomod/sys/libs/common/ErrorLog.php LINE: 208 MESSAGE: Non-static method sys\libs\common\ErrorLog::validate() should not be called statically BACKTRACE: 
+[Thu, 20 Sep 2018 21:55:03 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(166): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 21:55:14 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(166): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 21:55:17 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(166): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 21:55:17 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(166): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 21:55:17 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(166): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 21:55:17 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(166): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 21:55:31 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 21:55:46 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(166): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 21:55:49 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(166): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 21:56:11 -0400] EXCEPTION CODE: 8192 FILE: /var/www/html/ecomod/sys/libs/common/ErrorLog.php LINE: 208 MESSAGE: Non-static method sys\libs\common\ErrorLog::validate() should not be called statically BACKTRACE: 
+[Thu, 20 Sep 2018 21:56:52 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(166): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:00:18 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(166): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:00:19 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(166): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:01:25 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(165): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:01:28 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(165): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:01:44 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(165): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:03:10 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(165): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:03:38 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:151
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(151): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(165): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:03:47 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:151
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(151): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(165): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:03:48 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:151
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(151): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(165): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:03:48 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:151
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(151): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(165): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:07:46 -0400] EXCEPTION CODE: 8 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 171 MESSAGE: Undefined variable: new_xml BACKTRACE: 
+[Thu, 20 Sep 2018 22:08:13 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:08:58 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(165): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:12:53 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(164): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:12:55 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(164): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:12:56 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(164): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:12:56 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(164): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:12:57 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(164): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:12:57 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(164): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:12:57 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(164): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:13:15 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(164): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:13:15 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(164): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:13:15 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:153
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(153): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(164): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:13:43 -0400] EXCEPTION DOMException: Invalid Character Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:154
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(154): DOMDocument->createElement('1')
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(165): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), '1')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 22:14:59 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:19:00 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:19:40 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:19:42 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:23:07 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:24:36 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:24:48 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:25:43 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:28:16 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:29:57 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:30:03 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:32:03 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:33:27 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:33:28 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:33:28 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:33:29 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:33:29 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:33:29 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:33:30 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:33:30 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:33:30 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:34:21 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:34:22 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:34:22 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:34:23 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:34:23 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:34:23 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:34:23 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 184 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:35:31 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 22:36:05 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 181 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:38:00 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 188 MESSAGE: simplexml_load_string(): Entity: line 2: parser error : XML declaration allowed only at the start of the document BACKTRACE: 
+[Thu, 20 Sep 2018 22:42:28 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:30 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:32 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:33 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:34 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:34 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:34 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:35 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:35 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:35 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:36 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:36 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:36 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:36 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:37 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:37 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:03:37 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:08:48 -0400] EXCEPTION DOMException: Not Found Error in /var/www/html/ecomod/sys/libs/common/XmlUtils.php:181
+Stack trace:
+#0 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(181): DOMNode->replaceChild(Object(DOMElement), Object(DOMElement))
+#1 /var/www/html/ecomod/sys/libs/common/XmlUtils.php(164): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), true, 'database')
+#2 /var/www/html/ecomod/indexes/index_config.php(45): sys\libs\common\XmlUtils::stdClassToSimpleXmlElement(Object(stdClass), false, 'ecomod')
+#3 /var/www/html/ecomod/index.php(5): require_once('/var/www/html/e...')
+#4 {main}
+[Thu, 20 Sep 2018 23:09:29 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:11:29 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:12:27 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:16:24 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:17:22 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:18:16 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:18:17 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:18:57 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:21:29 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:21:49 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:24:16 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:24:43 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:25:26 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 65 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Thu, 20 Sep 2018 23:54:30 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 66 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Fri, 21 Sep 2018 00:01:53 -0400] EXCEPTION CODE: 8 FILE: /var/www/html/ecomod/sys/libs/common/XmlUtils.php LINE: 134 MESSAGE: Undefined variable: object BACKTRACE: 
+[Fri, 21 Sep 2018 00:02:49 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 66 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Fri, 21 Sep 2018 00:04:28 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 66 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Fri, 21 Sep 2018 00:04:28 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 66 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Fri, 21 Sep 2018 00:04:29 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 66 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Fri, 21 Sep 2018 00:04:30 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 66 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Fri, 21 Sep 2018 00:26:04 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 66 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Fri, 21 Sep 2018 19:56:39 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 66 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Fri, 21 Sep 2018 19:59:06 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 66 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Fri, 21 Sep 2018 20:11:10 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 66 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
+[Fri, 21 Sep 2018 20:13:26 -0400] EXCEPTION CODE: 2 FILE: /var/www/html/ecomod/indexes/index_config.php LINE: 66 MESSAGE: fopen(config_cpy.ini): failed to open stream: No such file or directory BACKTRACE: 
