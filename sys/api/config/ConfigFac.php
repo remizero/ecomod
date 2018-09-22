@@ -102,32 +102,32 @@ abstract class ConfigFac implements FactoryMethod {
     
     switch ( \strtolower ( $className ) ) {
       
-      case ConfigFac::INI:
+      case self::INI:
         
         return new Ini ();
         break;
         
-      case ConfigFac::JSON:
+      case self::JSON:
         
         return new Json ();
         break;
         
-      case ConfigFac::PHP:
+      case self::PHP:
         
         return new Php ();
         break;
         
-      case ConfigFac::TOML:
+      case self::TOML:
         
         return new Toml ();
         break;
         
-      case ConfigFac::XML:
+      case self::XML:
         
         return new Xml ();
         break;
         
-      case ConfigFac::YAML:
+      case self::YAML:
         
         return new Yaml ();
         break;
