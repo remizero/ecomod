@@ -109,63 +109,63 @@ class ErrorLog {
       
       case E_COMPILE_ERROR:
         
-        throw new CompileErrorException ( $code, $error, $file, $line, $context );
+        throw new CompileErrorException ( $code, $error, $file, $line );
         
       case E_COMPILE_WARNING:
         
-        throw new CompileWarningException ( $code, $error, $file, $line, $context );
+        throw new CompileWarningException ( $code, $error, $file, $line );
       
       case E_CORE_ERROR:
         
-        throw new CoreErrorException ( $code, $error, $file, $line, $context );
+        throw new CoreErrorException ( $code, $error, $file, $line );
         
       case E_CORE_WARNING:
         
-        throw new CoreWarningException ( $code, $error, $file, $line, $context );
+        throw new CoreWarningException ( $code, $error, $file, $line );
         
       case E_DEPRECATED:
         
-        throw new DeprecatedException ( $code, $error, $file, $line, $context );
+        throw new DeprecatedException ( $code, $error, $file, $line );
       
       case E_ERROR:
 
-        throw new ErrorException ( $code, $error, $file, $line, $context );
+        throw new ErrorException ( $code, $error, $file, $line );
         
       case E_NOTICE:
         
-        throw new NoticeException ( $code, $error, $file, $line, $context );
+        throw new NoticeException ( $code, $error, $file, $line );
         
       case E_PARSE:
         
-        throw new ParseException ( $code, $error, $file, $line, $context );
+        throw new ParseException ( $code, $error, $file, $line );
         
       case E_RECOVERABLE_ERROR:
         
-        throw new RecoverableErrorException ( $code, $error, $file, $line, $context );
+        throw new RecoverableErrorException ( $code, $error, $file, $line );
         
       case E_STRICT:
         
-        throw new StrictException ( $code, $error, $file, $line, $context );
+        throw new StrictException ( $code, $error, $file, $line );
         
       case E_USER_DEPRECATED:
         
-        throw new UserDeprecatedException ( $code, $error, $file, $line, $context );
+        throw new UserDeprecatedException ( $code, $error, $file, $line );
         
       case E_USER_ERROR:
         
-        throw new UserErrorException ( $code, $error, $file, $line, $context );
+        throw new UserErrorException ( $code, $error, $file, $line );
         
       case E_USER_NOTICE:
         
-        throw new UserNoticeException ( $code, $error, $file, $line, $context );
+        throw new UserNoticeException ( $code, $error, $file, $line );
         
       case E_USER_WARNING:
         
-        throw new UserWarningException ( $code, $error, $file, $line, $context );
+        throw new UserWarningException ( $code, $error, $file, $line );
         
       case E_WARNING:
 
-        throw new WarningException ( $code, $error, $file, $line, $context );
+        throw new WarningException ( $code, $error, $file, $line );
     }
   }
   
