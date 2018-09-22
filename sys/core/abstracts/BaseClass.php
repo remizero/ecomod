@@ -98,35 +98,17 @@ abstract class BaseClass {
       
       throw new Exception ( "Call parent::__construct!" );
     }
-    try {
-
-      if ( ( $called = $this->callGetterSetter ( $name ) ) !== FALSE ) {
-        
-        return $called;
-        
-      } elseif ( ( $called = $this->callGetterSetter ( $name, TRUE, $arguments ) ) !== FALSE ) {
-        
-        return $called;
-        
-      } else {
-        
-        throw new MethodNotImplementedException ( $name );
-      }
-    } catch ( PropertyException $pe ) {
+    if ( ( $called = $this->callGetterSetter ( $name ) ) !== FALSE ) {
       
+      return $called;
       
-    } catch ( PropertyValueException $pve ) {
+    } elseif ( ( $called = $this->callGetterSetter ( $name, TRUE, $arguments ) ) !== FALSE ) {
       
+      return $called;
       
-    } catch ( ReadOnlyException $roe ) {
+    } else {
       
-      
-    } catch ( WriteOnlyException $woe ) {
-      
-      
-    } catch ( MethodNotImplementedException $mnie ) {
-      
-      
+      throw new MethodNotImplementedException ( $name );
     }
   }
   

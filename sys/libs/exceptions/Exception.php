@@ -97,56 +97,52 @@ class Exception extends \Exception {
     foreach ( $trace as $key => $value ) {
       
       if ( \is_array ( $value ) ) {
-        
+
         if ( ( string ) $key == 'args' ) {
-          
-          /*\var_dump ( "CONSEGUI UN ARGUMENTO************************************" );
+
           if ( \array_key_exists ( "function", $args ) && \array_key_exists ( "class", $args ) && \array_key_exists ( "type", $args ) ) {
-            
-            \var_dump ( "CONSEGUI UNA FUNCION UNA CLASE Y UN TIPO***************" );
+
             $parsedTrace .= $args [ "class" ] . $args [ "type" ] . $args [ "function" ];
             $parsedTrace .= " ( \"";
-            \var_dump ( $parsedTrace );
 
-          } else {
+          } elseif ( \array_key_exists ( "function", $args ) ) {
+
+            $parsedTrace .= $args [ "function" ];
+            $parsedTrace .= " ( \"";
             
-            \var_dump ( "NO CONSEGUI UN ARGUMENTOS*********************************" );
+          } else {
+
             $parsedTrace .= "*** ( \"";
-            \var_dump ( $parsedTrace );
           }
           $parsedTrace .= $this->parseTraceError ( $value );
           $parsedTrace = \substr ( $parsedTrace, 0, -2 );
           $parsedTrace .= "\" )";
-          \var_dump ( $parsedTrace );*/
           
         } else {
-          
-          \var_dump ( "ENTRANDO POR EL ARRAY------------------------------------" );
-          $parsedTrace .= "#$traceLevel ";
-          $parsedTrace .= $this->parseTraceError ( $value, $args, $traceLevel++ );
-          \var_dump ( $parsedTrace );
+
+          $auxParsedTrace = $this->parseTraceError ( $value, $args, $traceLevel++ );
+          if ( !empty ( $auxParsedTrace ) ) {
+
+            $parsedTrace .= "#$traceLevel ";
+            $parsedTrace .= $auxParsedTrace;
+          }
         }
       } else {
         
         switch ( ( string ) $key ) {
           
           case "file" :
-            
-            \var_dump ( "CONSEGUI UN ARCHIVO************************************" );
+
             $parsedTrace .= $value . "(";
-            \var_dump ( $parsedTrace );
             break;
             
           case "line" :
-            
-            \var_dump ( "CONSEGUI UNA LINEA*************************************" );
+
             $parsedTrace .= $value . "): ";
-            \var_dump ( $parsedTrace );
             break;
             
           case "function" :
             
-            \var_dump ( "CONSEGUI UNA FUNCION***********************************" );
             $arrayKey = \array_keys ( $trace );
             if ( ( \count ( $trace ) - 1 ) == \array_search ( 'function', $arrayKey ) ) {
               
@@ -157,28 +153,33 @@ class Exception extends \Exception {
               
               $args [ "function" ] = $value;
             }
-            \var_dump ( $parsedTrace );
             break;
             
           case "class" :
-            
-            \var_dump ( "CONSEGUI UNA CLASE*************************************" );
+
             $args [ "class" ] = $value;
-            \var_dump ( $parsedTrace );
             break;
             
           case "type" :
-            
-            \var_dump ( "CONSEGUI UN TIPO***************************************" );
+
             $args [ "type" ] = $value;
-            \var_dump ( $parsedTrace );
+            break;
+            
+          case "0" :
+          case "1" :
+          case "2" :
+          case "3" :
+          case "4" :
+          case "5" :
+          case "6" :
+          case "7" :
+          case "8" :
+          case "9" :
+
+            $parsedTrace .= $value . ", ";
             break;
             
           default :
-            
-            \var_dump ( "CONSEGUI UN DEFAULT************************************" );
-            $parsedTrace .= $value . ", ";
-            \var_dump ( $parsedTrace );
             break;
         }
       }
@@ -280,20 +281,6 @@ class Exception extends \Exception {
    */
   public function __toString () {
 
-    \var_dump ( $this->getTrace () );
-    $backtrace = "";
-    if ( $this->isError ) {
-      
-      $backtrace = $this->parseTraceError ( $this->getTrace () );
-      \var_dump ( $backtrace );
-      
-    } else {
-      
-      $backtrace = $this->parseTrace ( $this->getTrace () );
-      \var_dump ( $backtrace );
-    }
-    //return "CODE: " . $this->getCode () . " FILE: " . $this->getFile () . " LINE: " . $this->getLine () . " MESSAGE: " . $this->getMessage () . " BACKTRACE: " . $this->parseTrace ( $this->getTrace () );
-    return "CODE: " . $this->getCode () . " FILE: " . $this->getFile () . " LINE: " . $this->getLine () . " MESSAGE: " . $this->getMessage () . " BACKTRACE: " . $backtrace;
+    return "CODE: " . $this->getCode () . " FILE: " . $this->getFile () . " LINE: " . $this->getLine () . " MESSAGE: " . $this->getMessage () . " BACKTRACE: " . $this->parseTrace ( $this->getTrace () );
   }
 }
-

@@ -12,18 +12,18 @@ use sys\libs\exceptions\ArgumentException;
 use sys\patterns\creational\FactoryMethod;
 
 /**
- * <strong>Config</strong>
+ * <strong>ConfigFac</strong>
  *
  * Archivo creado el 20 de septiembre de 2018 a las 20:43:00 a.m.
  * <p>Clase abstracta que permite crear objetos controladores para manipular
  * distintos tipos de archivos y estructuras de datos para la configuración del
  * sistema ECOMOD.</p>
  *
- * @name Config
+ * @name ConfigFac
  * @namespace sys\api\config
  * @package ECOMOD.
  * @subpackage CONFIG.
- * @filesource Config.php
+ * @filesource ConfigFac.php
  * @version 1.0
  * @since 1.0
  * @author Filiberto Zaá Avila ( remizero ) filizaa@gmail.com.
