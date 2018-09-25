@@ -70,4 +70,6 @@ if ( $respuesta ) {
 //fopen ( "config_cpy.ini", "r" );
 //otraFuncion ();
 
+$cache = CacheFac::create ( CacheFac::MEMCACHED );
+
 ?>

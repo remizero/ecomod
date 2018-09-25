@@ -3,6 +3,8 @@ namespace sys\api\cache;
 
 use sys\api\cache\core\CacheAbs;
 use sys\api\cache\controller\Memcached;
+use sys\api\cache\controller\Memcachedb;
+use sys\api\cache\controller\Xcache;
 use sys\libs\exceptions\ArgumentException;
 use sys\patterns\creational\FactoryMethod;
 
@@ -73,7 +75,8 @@ abstract class CacheFac implements FactoryMethod {
    * @see \sys\patterns\creational\FactoryMethod::create()
    */
   public static function create ( string $className ) {
-    
+
+    \var_dump ( "ENTRÓ A CREAR EL SERVICIO DE CACHÉ" );
     switch ( \strtolower ( $className ) ) {
       
       case self::MEMCACHED :
@@ -83,12 +86,12 @@ abstract class CacheFac implements FactoryMethod {
         
       case self::MEMCACHEDB :
         
-        return new Json ();
+        return new Memcachedb ();
         break;
         
       case self::XCACHE :
         
-        return new Php ();
+        return new Xcache ();
         break;
         
       default:

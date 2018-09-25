@@ -12,15 +12,15 @@ use sys\api\cache\exceptions\CacheServiceException;
 class Memcached extends CacheAbs {
   
   /**
+   * Constructor de la clase; inicializa los valores por omisión de la clase.
    *
    * @param array $options
    *
    * @return void
    */
-  public function __construct ( array $options ) {
-
+  public function __construct ( array $options = array () ) {
+    
     parent::__construct ( $options );
-    // TODO - Insert your code here
   }
   
   /**
@@ -31,7 +31,9 @@ class Memcached extends CacheAbs {
   }
   
   /**
-   * (non-PHPdoc)
+   * Desconecta el servicio de caché.
+   * 
+   * @return Memcached
    *
    * @see \sys\api\cache\core\CacheAbs::connect()
    */
@@ -54,7 +56,9 @@ class Memcached extends CacheAbs {
   }
 
   /**
-   * (non-PHPdoc)
+   * Desconecta el servicio de caché.
+   * 
+   * @return Memcached
    *
    * @see \sys\api\cache\core\CacheAbs::disconnect()
    */
@@ -69,7 +73,11 @@ class Memcached extends CacheAbs {
   }
 
   /**
-   * (non-PHPdoc)
+   * Elimina un valor del servidor de caché.
+   * 
+   * @param string $key La clave asociada al valor a eliminar.
+   * 
+   * @return Memcached
    *
    * @see \sys\api\cache\core\CacheAbs::erase()
    */
@@ -84,7 +92,13 @@ class Memcached extends CacheAbs {
   }
   
   /**
-   * (non-PHPdoc)
+   * Obtener el valor de la clave dada del servidor de caché.
+   * 
+   * @param string $key La clave asociada al valor a obtener.
+   * @param mixed $default Valor a retornar por omisión si no se consigue un 
+   *        valor válido en la clave dada.
+   * 
+   * @return mixed
    *
    * @see \sys\api\cache\core\CacheAbs::get()
    */
@@ -124,7 +138,7 @@ class Memcached extends CacheAbs {
    * 
    * @throws CacheServiceException
    * 
-   * @return CacheAbs
+   * @return Memcached
    *
    * @see \sys\api\cache\core\CacheAbs::set()
    */

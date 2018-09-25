@@ -74,15 +74,15 @@ abstract class CacheAbs extends BaseClass {
   protected $connected = false;
   
   /**
+   * Constructor de la clase; inicializa los valores por omisión de la clase.
    *
    * @param array $options
    *
    * @return void
    */
-  public function __construct ( array $options ) {
-
+  public function __construct ( array $options = array () ) {
+    
     parent::__construct ( $options );
-    // TODO - Insert your code here
   }
 
   /**
@@ -92,12 +92,38 @@ abstract class CacheAbs extends BaseClass {
     // TODO - Insert your code here
   }
   
+  /**
+   * Conecta el servicio de caché.
+   * 
+   * @return CacheAbs
+   */
   public abstract function connect ();
   
+  /**
+   * Desconecta el servicio de caché.
+   * 
+   * @return CacheAbs
+   */
   public abstract function disconnect ();
   
+  /**
+   * Elimina un valor del servidor de caché.
+   * 
+   * @param string $key La clave asociada al valor a eliminar.
+   * 
+   * @return CacheAbs
+   */
   public abstract function erase ( string $key );
   
+  /**
+   * Obtener el valor de la clave dada del servidor de caché.
+   * 
+   * @param string $key La clave asociada al valor a obtener.
+   * @param mixed $default Valor a retornar por omisión si no se consigue un 
+   *        valor válido en la clave dada.
+   * 
+   * @return mixed
+   */
   public abstract function get ( string $key, $default = null );
 
   /**
