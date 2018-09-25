@@ -102,7 +102,7 @@ abstract class ConfigAbs extends BaseClass {
   /**
    * Método que permite analizar un archivo de configuración.
    * 
-   * @return boolean
+   * @return boolean Verdadero si analiza el archivo, falso en caso contrario.
    */
   public abstract function parse ();
   

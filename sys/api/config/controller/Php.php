@@ -2,6 +2,9 @@
 namespace sys\api\config\controller;
 
 use sys\api\config\core\ConfigAbs;
+use sys\libs\common\ArrayUtils;
+use sys\api\config\exceptions\SyntaxException;
+use sys\libs\exceptions\MethodNotImplementedException;
 
 /**
  * <strong>Php</strong>
@@ -34,7 +37,7 @@ use sys\api\config\core\ConfigAbs;
  *       </ul>
  */
 class Php extends ConfigAbs {
-  
+
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
    *
@@ -43,47 +46,67 @@ class Php extends ConfigAbs {
    * @return void
    */
   public function __construct ( array $options = array () ) {
-    
+
     parent::__construct ( $options );
   }
-  
+
   /**
    */
   function __destruct () {
-    
+
     // TODO - Insert your code here
   }
-  
+
   /**
-   * Método que permite analizar un archivo de configuración Php.
+   * Método que permite analizar un archivo de configuración Xml.
    *
-   * @param string $path Ruta del archivo a analizar.
+   * @throws SyntaxException
    *
-   * @return
-   *
+   * @return boolean Verdadero si analiza el archivo, SyntaxException en caso 
+   *         contrario.
+   *        
    * @see \sys\api\config\core\ConfigAbs::parse()
    */
-  public function parse ( string $path ) {
-    
-    // TODO - Insert your code here
+  public function parse () {
+
+    $settings = array ();
+    include ( $this->path );
+    $this->parsed = $settings;
+    if ( \sizeof ( $this->parsed ) == 0 ) {
+      
+      throw new SyntaxException ();
+    }
+    return true;
   }
-  
+
   /**
-   * Método que permite leer un archivo de configuración Php.
+   * Método que permite obtener la representacion de un archivo de configuracion
+   * en una variable de tipo array.
    *
-   * @param string $path Ruta del archivo a leer.
+   * @return array
    *
-   * @return
-   *
-   * @see \sys\api\config\core\ConfigAbs::read()
+   * @see \sys\api\config\core\ConfigAbs::toArray()
    */
-  public function read ( string $path ) {
-    
-    
+  public function toArray () {
+
+    return $this->parsed;
+  }
+
+  /**
+   * Método que permite obtener la representacion de un archivo de configuracion
+   * en una variable de tipo object.
+   *
+   * @return \stdClass
+   *
+   * @see \sys\api\config\core\ConfigAbs::toObject()
+   */
+  public function toObject () {
+
+    return ArrayUtils::toObject ( $this->parsed );
   }
   
   /**
-   * Método que permite escribir un archivo de configuración Php.
+   * Método que permite escribir un archivo de configuración.
    *
    * @param string $path Ruta del archivo a escribir.
    *
@@ -91,17 +114,9 @@ class Php extends ConfigAbs {
    *
    * @see \sys\api\config\core\ConfigAbs::write()
    */
-  public function write ( string $path, $data ) {
+  public static function write ( string $path, $data ) {
     
-    
+    throw new MethodNotImplementedException ( __METHOD__ );
   }
-public function toArray () {
-
-  }
-
-public function toObject () {
-
-  }
-
 }
 

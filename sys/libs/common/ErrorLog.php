@@ -23,7 +23,7 @@ use sys\libs\exceptions\WarningException;
  *
  * Archivo creado el 14 de septiembre de 2018 a las 19:40:40 p.m.
  * <p>Clase que permite hacer un manejo centralizado de las excepciones y los
- * errores que se presenten durante la ejecucion de un script php.</p>
+ * errores que se presenten durante la ejecución de un script php.</p>
  *
  * @name ErrorLog
  * @namespace sys\libs\common
@@ -45,7 +45,8 @@ use sys\libs\exceptions\WarningException;
  *       <ul>
  *       <li>Inclusión de traza informativa en el sistema de log de errores para
  *       indicar que clase no pudo se encontrada.</li>
- *       <li>.</li>
+ *       <li>Envío de mensajes de errores por pantalla.</li>
+ *       <li>Envío de mensajes de errores vía correo.</li>
  *       <li>.</li>
  *       </ul>
  */
@@ -105,7 +106,7 @@ class ErrorLog {
    */
   public function catchError ( string $code, string $error, string $file = NULL, string $line = NULL, array $context ) {
 
-    switch( $code ) {
+    switch ( $code ) {
       
       case E_COMPILE_ERROR:
         

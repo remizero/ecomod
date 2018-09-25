@@ -1,19 +1,18 @@
 <?php
-namespace sys\api\config\exceptions;
+namespace sys\api\cache\exceptions;
 
 use sys\libs\exceptions\Exception;
 
 /**
- * <strong>SyntaxException</strong>
- * Archivo creado el 12 de septiembre de 2018 a las 01:29:30 a.m.
- * <p>Clase que permite definir el tipo de excepcion de error en tipo o tipo
- * invalido.</p>
+ * <strong>CacheException</strong>
+ * Archivo creado el 24 de septiembre de 2018 a las 22:32:30 p.m.
+ * <p>Clase que permite definir el tipo de excepcion de para cache.</p>
  *
- * @name SyntaxException
- * @namespace sys\api\config\exceptions
+ * @name CacheException
+ * @namespace sys\api\cache\exceptions
  * @package ECOMOD.
- * @subpackage CONFIG.
- * @filesource SyntaxException.php
+ * @subpackage CACHE.
+ * @filesource CacheException.php
  * @version 1.0
  * @since 1.0
  * @author Filiberto Zaá Avila ( remizero ) filizaa@gmail.com.
@@ -32,7 +31,7 @@ use sys\libs\exceptions\Exception;
  *       <li>.</li>
  *       </ul>
  */
-class SyntaxException extends Exception {
+class CacheException extends Exception {
   
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
@@ -40,7 +39,7 @@ class SyntaxException extends Exception {
    * @return void
    */
   public function __construct () {
-    
+
     parent::__construct ( "Invalid syntax. Could not parse configuration file.", 0, null );
   }
 

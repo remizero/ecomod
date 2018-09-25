@@ -62,7 +62,8 @@ class Ini extends ConfigAbs {
    * 
    * @throws SyntaxException
    *
-   * @return boolean
+   * @return boolean Verdadero si analiza el archivo, SyntaxException en caso 
+   *         contrario.
    *
    * @see \sys\api\config\core\ConfigAbs::parse()
    */
