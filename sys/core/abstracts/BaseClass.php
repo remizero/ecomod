@@ -75,7 +75,7 @@ abstract class BaseClass {
   
   /**
    */
-  function __destruct () {
+  public function __destruct () {
     
     // TODO - Insert your code here
   }

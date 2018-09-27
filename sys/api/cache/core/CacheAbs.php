@@ -9,7 +9,7 @@ use sys\libs\types\Ip;
  *
  * Archivo creado el 23 de septiembre de 2018 a las 20:43:00 p.m.
  * <p>Clase abstracta que permite crear objetos controladores para manipular
- * distintos tipos de archivos y estructuras de datos para la configuración del
+ * distintos tipos de sistema distribuido para caché basado en memoria, del
  * sistema ECOMOD.</p>
  *
  * @name CacheAbs
@@ -38,16 +38,16 @@ use sys\libs\types\Ip;
 abstract class CacheAbs extends BaseClass {
   
   /**
-   * 
-   * 
+   * Indica si está conectado el servicio de cache.
+   *
    * @readwrite
-   * 
-   * @var CacheAbs
+   *
+   * @var boolean
    */
-  protected $service;
+  protected $connected = false;
   
   /**
-   * 
+   * Puerto del servidor de caché.
    * 
    * @readwrite
    * 
@@ -65,13 +65,23 @@ abstract class CacheAbs extends BaseClass {
   protected $port = "11211";
   
   /**
-   * Indica si está conectado el servicio de cache.
+   * Almacena el prefijo de una instancia para separarla de otra cuando se 
+   * trabaja diferentes aplicaciones desde un mismo servidor.
    * 
    * @readwrite
-   * 
-   * @var boolean
+   *  
+   * @var string
    */
-  protected $connected = false;
+  protected $prefix = "";
+  
+  /**
+   * Instancia del objeto puente con el servidor de caché.
+   *
+   * @readwrite
+   *
+   * @var CacheAbs
+   */
+  protected $service;
   
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
@@ -87,7 +97,7 @@ abstract class CacheAbs extends BaseClass {
 
   /**
    */
-  function __destruct () {
+  public function __destruct () {
 
     // TODO - Insert your code here
   }

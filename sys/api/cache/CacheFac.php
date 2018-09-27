@@ -42,21 +42,21 @@ use sys\patterns\creational\FactoryMethod;
 abstract class CacheFac implements FactoryMethod {
   
   /**
-   * Constante que define el tipo de controlador Ini.
+   * Constante que define el tipo de controlador Memcached.
    *
    * @var string
    */
-  const MEMCACHED = 'Memcached';
+  const MEMCACHED = 'memcached';
   
   /**
-   * Constante que define el tipo de controlador Ini.
+   * Constante que define el tipo de controlador Memcachedb.
    *
    * @var string
    */
   const MEMCACHEDB = 'memcachedb';
   
   /**
-   * Constante que define el tipo de controlador Ini.
+   * Constante que define el tipo de controlador Xcache.
    *
    * @var string
    */
@@ -76,7 +76,6 @@ abstract class CacheFac implements FactoryMethod {
    */
   public static function create ( string $className ) {
 
-    \var_dump ( "ENTRÓ A CREAR EL SERVICIO DE CACHÉ" );
     switch ( \strtolower ( $className ) ) {
       
       case self::MEMCACHED :
@@ -98,6 +97,7 @@ abstract class CacheFac implements FactoryMethod {
         
         throw new ArgumentException ();
         break;
+    }
   }
 }
 

@@ -5,9 +5,34 @@ use sys\api\cache\core\CacheAbs;
 use sys\api\cache\exceptions\CacheServiceException;
 
 /**
+ * <strong>Memcached</strong>
  *
- * @author remizero
- *        
+ * Archivo creado el 25 de septiembre de 2018 a las 22:56:00 p.m.
+ * <p>Clase controladora del sistema distribuido para caché basado en memoria
+ * Memcached.</p>
+ *
+ * @name Memcached
+ * @namespace sys\api\config
+ * @package ECOMOD.
+ * @subpackage CACHE.
+ * @filesource Memcached.php
+ * @version 1.0
+ * @since 1.0
+ * @author Filiberto Zaá Avila ( remizero ) filizaa@gmail.com.
+ * @copyright Todos los derechos reservados 2018.
+ * @link http://www.ecosoftware.com.ve
+ * @license http://www.ecosoftware.com.ve/licencia
+ * @uses <ul>
+ *       <li>.php</li>
+ *       </ul>
+ * @see .php
+ * @todo <p>En futuras versiones estarán disponibles los métodos para dar
+ *       soporte a:</p>
+ *       <ul>
+ *       <li>https://diego.com.es/rendimiento-en-php.</li>
+ *       <li>.</li>
+ *       <li>.</li>
+ *       </ul>
  */
 class Memcached extends CacheAbs {
   

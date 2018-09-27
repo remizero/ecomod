@@ -1,6 +1,8 @@
 <?php
 namespace sys\libs\common;
 
+use sys\core\abstracts\BaseClass;
+
 /**
  * <strong>ObjectUtils</strong>
  * Archivo creado el 14 de septiembre de 2018 a las 11:39:20 a.m.
@@ -29,7 +31,7 @@ namespace sys\libs\common;
  *       <li>.</li>
  *       </ul>
  */
-class ObjectUtils {
+abstract class ObjectUtils {
   
   /**
    * Metodo que permite convertir un array a string para ser guardado en un
@@ -62,6 +64,32 @@ class ObjectUtils {
       
     }
     return $output;
+  }
+  
+  /**
+   * Método que permite convertir un objeto de tipo stdClass o de tipo BaseClass
+   * en formato JSON.
+   * 
+   * @param \stdClass|BaseClass $object Objeto a convertir.
+   * 
+   * @return string
+   */
+  public static function toJson ( $object ) {
+    
+    return \json_encode ( $object );
+  }
+  
+  /**
+   * Método que permite convertir un objeto de tipo stdClass o de tipo BaseClass
+   * en arreglo (array).
+   * 
+   * @param \stdClass|BaseClass $object Objeto a convertir.
+   * 
+   * @return array
+   */
+  public static function toArray ( $object ) {
+    
+    return array();
   }
 }
 

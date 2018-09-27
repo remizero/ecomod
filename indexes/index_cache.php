@@ -14,6 +14,8 @@ use sys\api\config\controller\Ini;
 use sys\api\config\controller\Xml;
 use sys\libs\common\ErrorLog;
 use sys\libs\common\XmlUtils;
+use sys\api\cache\CacheFac;
+use sys\core\Registry;
 
 $hello = new Hello ();
 
@@ -21,6 +23,8 @@ $hello->setWorld ( "foo!" );
 var_dump ( $hello->getWorld () );
 
 echo date ( DATE_RFC2822 );
+
+$registry = Registry::getInstance ();
 
 new ErrorLog ();
 
