@@ -58,32 +58,40 @@ class Inspector {
    *
    * @var string|object
    */
-  protected $_class;
+  protected $class;
+  
+  /**
+   * Clase introspectada para hacer uso de la reflección para obtener 
+   * información de una clase.
+   * 
+   * @var \ReflectionClass
+   */
+  protected $introspectedClass;
 
   /**
    *
    * @var array
    */
-  protected $_meta = array ( 
+  protected $meta = array ( 
     
       "class" => array (),
       "properties" => array (),
       "methods" => array () 
   );
+  
+  /**
+   * Arreglo con los metodos de la clase.
+   *
+   * @var array
+   */
+  protected $methods = array ();
 
   /**
    * Arreglo con las propiedades de la clase.
    *
    * @var array
    */
-  protected $_properties = array ();
-
-  /**
-   * Arreglo con los metodos de la clase.
-   *
-   * @var array
-   */
-  protected $_methods = array ();
+  protected $properties = array ();
 
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
@@ -95,7 +103,8 @@ class Inspector {
    */
   public function __construct ( $class ) {
 
-    $this->_class = $class;
+    $this->class = $class;
+    $this->introspectedClass = new \ReflectionClass ( $this->class );
   }
 
   /**
@@ -111,8 +120,7 @@ class Inspector {
    */
   protected function _getClassComment () {
 
-    $reflection = new \ReflectionClass ( $this->_class );
-    return $reflection->getDocComment ();
+    return $this->introspectedClass->getDocComment ();
   }
 
   /**
@@ -121,8 +129,7 @@ class Inspector {
    */
   protected function _getClassMethods () {
 
-    $reflection = new \ReflectionClass ( $this->_class );
-    return $reflection->getMethods ();
+    return $this->introspectedClass->getMethods ();
   }
 
   /**
@@ -131,8 +138,7 @@ class Inspector {
    */
   protected function _getClassProperties () {
 
-    $reflection = new \ReflectionClass ( $this->_class );
-    return $reflection->getProperties ();
+    return $this->introspectedClass->getProperties ();
   }
 
   /**
@@ -143,8 +149,8 @@ class Inspector {
    */
   protected function _getMethodComment ( string $method ) {
 
-    $reflection = new \ReflectionMethod ( $this->_class, $method );
-    return $reflection->getDocComment ();
+    $introspectedMethod = $this->introspectedClass->getMethod ( $method );
+    return $introspectedMethod->getDocComment ();
   }
 
   /**
@@ -155,8 +161,8 @@ class Inspector {
    */
   protected function _getPropertyComment ( string $property ) {
 
-    $reflection = new \ReflectionProperty ( $this->_class, $property );
-    return $reflection->getDocComment ();
+    $introspectedProperty = $this->introspectedClass->getProperty ( $property );
+    return $introspectedProperty->getDocComment ();
   }
 
   /**
@@ -191,19 +197,19 @@ class Inspector {
    */
   public function getClassMeta () {
 
-    if ( !isset ( $_meta [ "class" ] ) ) {
+    if ( !isset ( $meta [ "class" ] ) ) {
       
       $comment = $this->_getClassComment ();
       if ( !empty ( $comment ) ) {
         
-        $_meta [ "class" ] = $this->_parse ( $comment );
+        $meta [ "class" ] = $this->_parse ( $comment );
         
       } else {
         
-        $_meta [ "class" ] = null;
+        $meta [ "class" ] = null;
       }
     }
-    return $_meta [ "class" ];
+    return $meta [ "class" ];
   }
 
   /**
@@ -212,15 +218,15 @@ class Inspector {
    */
   public function getClassMethods () {
 
-    if ( !isset ( $_methods ) ) {
+    if ( !isset ( $methods ) ) {
       
       $methods = $this->_getClassMethods ();
       foreach ( $methods as $method ) {
         
-        $_methods [] = $method->getName ();
+        $methods [] = $method->getName ();
       }
     }
-    return $_properties;
+    return $properties;
   }
 
   /**
@@ -229,15 +235,15 @@ class Inspector {
    */
   public function getClassProperties () {
 
-    if ( !isset ( $_properties ) ) {
+    if ( !isset ( $properties ) ) {
       
       $properties = $this->_getClassProperties ();
       foreach ( $properties as $property ) {
         
-        $_properties [] = $property->getName ();
+        $properties [] = $property->getName ();
       }
     }
-    return $_properties;
+    return $properties;
   }
 
   /**
@@ -248,19 +254,19 @@ class Inspector {
    */
   public function getMethodMeta ( string $method ) {
 
-    if ( !isset ( $_meta [ "actions" ] [ $method ] ) ) {
+    if ( !isset ( $meta [ "actions" ] [ $method ] ) ) {
       
       $comment = $this->_getMethodComment ( $method );
       if ( !empty ( $comment ) ) {
         
-        $_meta [ "methods" ] [ $method ] = $this->_parse ( $comment );
+        $meta [ "methods" ] [ $method ] = $this->_parse ( $comment );
         
       } else {
         
-        $_meta [ "methods" ] [ $method ] = null;
+        $meta [ "methods" ] [ $method ] = null;
       }
     }
-    return $_meta [ "methods" ] [ $method ];
+    return $meta [ "methods" ] [ $method ];
   }
 
   /**
@@ -271,19 +277,19 @@ class Inspector {
    */
   public function getPropertyMeta ( string $property ) {
 
-    if ( !isset ( $_meta [ "properties" ] [ $property ] ) ) {
+    if ( !isset ( $meta [ "properties" ] [ $property ] ) ) {
       
       $comment = $this->_getPropertyComment ( $property );
       if ( !empty ( $comment ) ) {
         
-        $_meta [ "properties" ] [ $property ] = $this->_parse ( $comment );
+        $meta [ "properties" ] [ $property ] = $this->_parse ( $comment );
         
       } else {
         
-        $_meta [ "properties" ] [ $property ] = null;
+        $meta [ "properties" ] [ $property ] = null;
       }
     }
-    return $_meta [ "properties" ] [ $property ];
+    return $meta [ "properties" ] [ $property ];
   }
 
   /**
@@ -294,20 +300,13 @@ class Inspector {
    * @param mixed $property Propiedad a ser validada.
    *       
    * @throws ImageException
+   * @throws IpException
    * @throws PropertyNullException
    *
    * @return array|string|boolean|number|\StdClass|mixed
    */
   public function getTypeValidation ( array $meta, $property ) {
 
-    /**
-     * El punto aqui es, validar que el valor de la propiedad no este en null,
-     * de ser asi hacer una advertencia, por otro lado realizar las conversiones
-     * necesarias sobre todo en el caso la propiedad de tipo Ip y/o cualquier
-     * otro tipo de dato definido por el desarrollador del sistema ECOMOD que
-     * requiera alguna conversion particular.
-     * 
-     */
     if ( \is_null ( $property ) ) {
       
       throw new PropertyNullException ();
@@ -391,10 +390,10 @@ class Inspector {
    * @throws DoubleException
    * @throws FloatException
    * @throws ImageException
-   * @throws ObjectException
    * @throws IntegerException
    * @throws IpException
    * @throws LongException
+   * @throws ObjectException
    * @throws RealException
    * @throws StringException
    *
@@ -439,7 +438,6 @@ class Inspector {
         throw new ArrayException ();
       }
     } elseif ( isset ( $meta [ "@binary" ] ) ) {
-      
       
       $property = ( binary ) $property;
       

@@ -1,7 +1,6 @@
 <?php
-namespace sys\api\config\core;
+namespace sys\core\abstracts;
 
-use sys\core\abstracts\BaseClass;
 use sys\libs\common\FileUtils;
 use sys\libs\common\ClassUtils;
 use sys\libs\exceptions\ArgumentException;
