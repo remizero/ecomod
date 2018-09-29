@@ -48,38 +48,35 @@ class Simple extends RouteAbs {
   }
 
   /**
-   * 
-   * @param string $url
-   * 
-   * @return number|boolean
+   * Método que permite crear la cadena de búsqueda correcta y devolver 
+   * cualquier coincidencia con la URL proporcionada.
+   *  
+   * @param string $url Dirección url del recurso solicitado.
+   *
+   * @return int|boolean
+   *
+   * @see \sys\api\router\core\RouteAbs::matches()
    */
   public function matches ( string $url ) {
 
     $pattern = $this->pattern;
-    
-    // get keys
-    \preg_match_all ( "#:([a-zA-Z0-9]+)#", $pattern, $keys );
+    \preg_match_all ( "#:([a-zA-Z0-9]+)#", $pattern, $keys ); // get keys
     
     if ( \sizeof ( $keys ) && \sizeof ( $keys [ 0 ] ) && \sizeof ( $keys [ 1 ] ) ) {
       
       $keys = $keys [ 1 ];
       
     } else {
-      
-      // no keys in the pattern, return a simple match
-      return \preg_match ( "#^{$pattern}$#", $url );
+
+      return \preg_match ( "#^{$pattern}$#", $url ); // no keys in the pattern, return a simple match
     }
-    // normalize route pattern
-    $pattern = \preg_replace ( "#(:[a-zA-Z0-9]+)#", "([a-zA-Z0-9-_]+)", $pattern );
-    // check values
-    \preg_match_all ( "#^{$pattern}$#", $url, $values );
+    $pattern = \preg_replace ( "#(:[a-zA-Z0-9]+)#", "([a-zA-Z0-9-_]+)", $pattern ); // normalize route pattern
+    \preg_match_all ( "#^{$pattern}$#", $url, $values ); // check values
     
     if ( \sizeof ( $values ) && \sizeof ( $values [ 0 ] ) && \sizeof ( $values [ 1 ] ) ) {
-      
-      // unset the matched url
-      unset ( $values [ 0 ] );
-      // values found, modify parameters and return
-      $derived = \array_combine ( $keys, ArrayUtils::flatten ( $values ) );
+
+      unset ( $values [ 0 ] ); // unset the matched url
+      $derived = \array_combine ( $keys, ArrayUtils::flatten ( $values ) ); // values found, modify parameters and return
       $this->parameters = \array_merge ( $this->parameters, $derived );
       return true;
     }

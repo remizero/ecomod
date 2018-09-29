@@ -67,11 +67,12 @@ abstract class RouteAbs extends BaseClass {
   }
   
   /**
-   * Método que permite  
-   * @param string $url
+   * Método que permite crear la cadena de búsqueda correcta y devolver 
+   * cualquier coincidencia con la URL proporcionada.
+   *  
+   * @param string $url Dirección url del recurso solicitado.
    *
-   * @return number|boolean
+   * @return int|boolean
    */
   public abstract function matches ( string $url );
 }
-

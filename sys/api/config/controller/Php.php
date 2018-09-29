@@ -2,8 +2,8 @@
 namespace sys\api\config\controller;
 
 use sys\api\config\core\ConfigAbs;
-use sys\libs\common\ArrayUtils;
 use sys\api\config\exceptions\SyntaxException;
+use sys\libs\common\ArrayUtils;
 use sys\libs\exceptions\MethodNotImplementedException;
 
 /**

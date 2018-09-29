@@ -63,7 +63,7 @@ class Registry {
    * 
    * @return mixed
    */
-  public static function get ( string $key, $default = null ) {
+  public function get ( string $key, $default = null ) {
 
     if ( isset ( self::$instances [ $key ] ) ) {
       
@@ -77,7 +77,7 @@ class Registry {
    * 
    * @return array
    */
-  public static function getInstances () {
+  public function getInstances () {
     
     return Registry::$instances;
   }
@@ -90,7 +90,7 @@ class Registry {
    * 
    * @return void
    */
-  public static function set ( string $key, $instance = null ) {
+  public function set ( string $key, $instance = null ) {
 
     self::$instances [ $key ] = $instance;
   }
@@ -102,7 +102,7 @@ class Registry {
    * 
    * @return void
    */
-  public static function erase ( string $key ) {
+  public function erase ( string $key ) {
 
     unset ( self::$instances [ $key ] );
     return !\array_key_exists ( $key , self::$instances );

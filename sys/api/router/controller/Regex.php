@@ -53,21 +53,23 @@ class Regex extends RouteAbs {
   }
 
   /**
-   * 
-   * @param string $url
-   * 
-   * @return boolean
+   * Método que permite crear la cadena de búsqueda correcta y devolver 
+   * cualquier coincidencia con la URL proporcionada.
+   *  
+   * @param string $url Dirección url del recurso solicitado.
+   *
+   * @return int|boolean
+   *
+   * @see \sys\api\router\core\RouteAbs::matches()
    */
   public function matches ( string $url ) {
 
     $pattern = $this->pattern;
-    // check values
-    \preg_match_all ( "#^{$pattern}$#", $url, $values );
+    \preg_match_all ( "#^{$pattern}$#", $url, $values ); // check values
     
     if ( \sizeof ( $values ) && \sizeof ( $values [ 0 ] ) && \sizeof ( $values [ 1 ] ) ) {
-      
-      // values found, modify parameters and return
-      $derived = \array_combine ( $this->keys, $values [ 1 ] );
+
+      $derived = \array_combine ( $this->keys, $values [ 1 ] ); // values found, modify parameters and return
       $this->parameters = \array_merge ( $this->parameters, $derived );
       return true;
     }

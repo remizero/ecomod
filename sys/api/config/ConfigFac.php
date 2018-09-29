@@ -1,5 +1,5 @@
 <?php
-namespace sys\api\config;
+namespace sys\core\config;
 
 use sys\api\config\controller\Ini;
 use sys\api\config\controller\Json;
