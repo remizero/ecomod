@@ -2,6 +2,8 @@
 namespace sys\core;
 
 use sys\core\abstracts\BaseClass;
+use sys\api\router\exceptions\ControllerException;
+use sys\api\router\exceptions\ActionException;
 
 /**
  * <strong>Router</strong>
@@ -12,7 +14,7 @@ use sys\core\abstracts\BaseClass;
  * @name Router
  * @namespace sys\api\config
  * @package ECOMOD.
- * @subpackage CACHE.
+ * @subpackage ROUTER.
  * @filesource Router.php
  * @version 1.0
  * @since 1.0
@@ -133,7 +135,7 @@ class Router extends BaseClass {
       
     } catch ( \Exception $e ) {
       
-      throw new Exception\Controller ( "Controller {$name} not found" );
+      throw new ControllerException ( $name );
     }
     
     Events::fire ( "framework.router.controller.after", array ( 
@@ -145,7 +147,7 @@ class Router extends BaseClass {
       $instance->willRenderLayoutView = false;
       $instance->willRenderActionView = false;
       
-      throw new Exception\Action ( "Action {$action} not found" );
+      throw new ActionException ( $action );
     }
     
     $inspector = new Inspector ( $instance );
@@ -153,7 +155,7 @@ class Router extends BaseClass {
     
     if ( ! empty ( $methodMeta [ "@protected" ] ) || ! empty ( $methodMeta [ "@private" ] ) ) {
       
-      throw new Exception\Action ( "Action {$action} not found" );
+      throw new ActionException ( $action );
     }
     
     $hooks = function ( $meta, $type ) use ( $inspector, $instance ) {

@@ -76,6 +76,7 @@ if ( $respuesta ) {
 //otraFuncion ();
 
 $cache = CacheFac::create ( CacheFac::MEMCACHED );
+var_dump ( "CREÓ LA CACHE" );
 
 $router = new Router ();
 
