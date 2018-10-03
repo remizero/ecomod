@@ -86,11 +86,11 @@ abstract class Events {
     $return = FALSE;
     if ( ! empty ( self::$callbacks [ $type ] ) ) {
       
-      foreach ( self::$callbacks [ $type ] as $i => $found ) {
+      foreach ( self::$callbacks [ $type ] as $index => $found ) {
         
         if ( $callback == $found ) {
           
-          unset ( self::$callbacks [ $type ] [ $i ] );
+          unset ( self::$callbacks [ $type ] [ $index ] );
           $return = TRUE;
           break;
         }

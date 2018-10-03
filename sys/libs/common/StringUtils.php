@@ -100,7 +100,7 @@ class StringUtils {
    * 
    * @return number
    */
-  public function indexOf ( $string, $substring, $offset = null ) {
+  public function indexOf ( string $string, string $substring, int $offset = null ) {
     
     $position = \strpos ( $string, $substring, $offset );
     if ( !is_int ( $position ) ) {
@@ -118,7 +118,7 @@ class StringUtils {
    * 
    * @return number
    */
-  public function lastIndexOf ( $string, $substring, $offset = null ) {
+  public function lastIndexOf ( string $string, string $substring, int $offset = null ) {
     
     $position = \strrpos ( $string, $substring, $offset );
     if ( !is_int ( $position ) ) {
@@ -134,7 +134,7 @@ class StringUtils {
    * 
    * @return array|NULL
    */
-  public static function match ( $string, $pattern ) {
+  public static function match ( string $string, string $pattern ) {
     
     \preg_match_all ( self::_normalize ( $pattern ), $string, $matches, PREG_PATTERN_ORDER );
     if ( !empty ( $matches [ 1 ] ) ) {
@@ -154,7 +154,7 @@ class StringUtils {
    * 
    * @return array|string
    */
-  function plural ( $string ) {
+  function plural ( string $string ) {
     
     $result = $string;
     foreach ( self::$_plural as $rule => $replacement ) {
@@ -176,7 +176,7 @@ class StringUtils {
    * 
    * @return string
    */
-  public static function sanitize ( $string, $mask ) {
+  public static function sanitize ( string $string, $mask ) {
     
     if ( \is_array ( $mask ) ) {
       
@@ -204,7 +204,7 @@ class StringUtils {
    * 
    * @return void
    */
-  public static function setDelimiter ( $delimiter ) {
+  public static function setDelimiter ( string $delimiter ) {
 
     self::$_delimiter = $delimiter;
   }
@@ -215,7 +215,7 @@ class StringUtils {
    * 
    * @return string
    */
-  public static function singular ( $string ) {
+  public static function singular ( string $string ) {
     
     $result = $string;
     
@@ -239,7 +239,7 @@ class StringUtils {
    * 
    * @return array
    */
-  public static function split ( $string, $pattern, $limit = null ) {
+  public static function split ( string $string, string $pattern, $limit = null ) {
 
     $flags = PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE;
     return \preg_split ( self::_normalize ( $pattern ), $string, $limit, $flags );
