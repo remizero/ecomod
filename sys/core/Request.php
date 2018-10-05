@@ -4,6 +4,7 @@ namespace sys\core;
 use sys\core\abstracts\BaseClass;
 use sys\libs\common\StringUtils;
 use sys\libs\common\RequestUtils;
+use sys\libs\exceptions\ResponseException;
 
 /**
  * <strong>Request</strong>
@@ -107,7 +108,8 @@ class Request extends BaseClass {
 
   function get ( $url, $parameters = array() ) {
 
-    if ( ! empty ( $parameters ) ) {
+    if ( !empty ( $parameters ) ) {
+      
       $url .= StringUtils::indexOf ( $url, "?" ) ? "&" : "?";
       $url .= \is_string ( $parameters ) ? $parameters : \http_build_query ( $parameters, "", "&" );
     }
@@ -132,9 +134,7 @@ class Request extends BaseClass {
   function request ( $method, $url, $parameters = array() ) {
 
     \session_write_close ();
-    Events::fire ( "framework.request.request.before", array ( 
-      $method,$url,$parameters
-    ) );
+    Events::fire ( "framework.request.request.before", array ( $method, $url, $parameters ) );
     $request = $this->_request = \curl_init ();
     if ( \is_array ( $parameters ) ) {
       
@@ -150,16 +150,12 @@ class Request extends BaseClass {
     }
     if ( $response ) {
       
-      $response = new Response ( array ( 
-        "response" => $response
-      ) );
+      $response = new Response ( array ( "response" => $response ) );
     } else {
       
-      throw new Exception\Response ( \ucfirst ( \curl_error ( $request ) ) );
+      throw new ResponseException ( \ucfirst ( \curl_error ( $request ) ) );
     }
-    Events::fire ( "framework.request.request.after", array ( 
-      $method,$url,$parameters,$response
-    ) );
+    Events::fire ( "framework.request.request.after", array ( $method, $url, $parameters, $response ) );
     \curl_close ( $request );
     return $response;
   }
@@ -183,17 +179,17 @@ class Request extends BaseClass {
         
         $this->_setOption ( CURLOPT_NOBODY, true );
         break;
-        
+      
       case "GET" :
         
         $this->_setOption ( CURLOPT_HTTPGET, true );
         break;
-        
+      
       case "POST" :
         
         $this->_setOption ( CURLOPT_POST, true );
         break;
-        
+      
       default :
         
         $this->_setOption ( CURLOPT_CUSTOMREQUEST, $method );
@@ -208,7 +204,7 @@ class Request extends BaseClass {
       ->_setOption ( CURLOPT_HEADER, true )
       ->_setOption ( CURLOPT_RETURNTRANSFER, true )
       ->_setOption ( CURLOPT_USERAGENT, $this->agent );
-    if ( ! empty ( $parameters ) ) {
+    if ( !empty ( $parameters ) ) {
       
       $this->_setOption ( CURLOPT_POSTFIELDS, $parameters );
     }

@@ -39,39 +39,39 @@ abstract class Controller extends BaseClass {
   /**
    *
    * @read
-   * 
-   * @var 
+   *
+   * @var
    */
   protected $name;
 
   /**
    *
    * @readwrite
-   * 
-   * @var 
+   *
+   * @var
    */
   protected $parameters;
 
   /**
    *
    * @readwrite
-   * 
-   * @var 
+   *
+   * @var
    */
   protected $layoutView;
 
   /**
    *
    * @readwrite
-   * 
-   * @var 
+   *
+   * @var
    */
   protected $actionView;
 
   /**
    *
    * @readwrite
-   * 
+   *
    * @var boolean
    */
   protected $willRenderLayoutView = true;
@@ -79,7 +79,7 @@ abstract class Controller extends BaseClass {
   /**
    *
    * @readwrite
-   * 
+   *
    * @var boolean
    */
   protected $willRenderActionView = true;
@@ -87,7 +87,7 @@ abstract class Controller extends BaseClass {
   /**
    *
    * @readwrite
-   * 
+   *
    * @var string
    */
   protected $defaultPath = "application/views";
@@ -95,7 +95,7 @@ abstract class Controller extends BaseClass {
   /**
    *
    * @readwrite
-   * 
+   *
    * @var string
    */
   protected $defaultLayout = "layouts/standard";
@@ -103,7 +103,7 @@ abstract class Controller extends BaseClass {
   /**
    *
    * @readwrite
-   * 
+   *
    * @var string
    */
   protected $defaultExtension = "html";
@@ -111,25 +111,21 @@ abstract class Controller extends BaseClass {
   /**
    *
    * @readwrite
-   * 
+   *
    * @var string
    */
   protected $defaultContentType = "text/html";
-  
+
   public function __construct ( $options = array() ) {
-    
+
     parent::__construct ( $options );
-    Events::fire ( "framework.controller.construct.before", array (
-      $this->name
-    ) );
+    Events::fire ( "framework.controller.construct.before", array ( $this->name ) );
     if ( $this->willRenderLayoutView ) {
       
       $defaultPath = $this->defaultPath;
       $defaultLayout = $this->defaultLayout;
       $defaultExtension = $this->defaultExtension;
-      $view = new View ( array (
-        "file" => APP_PATH . "/{$defaultPath}/{$defaultLayout}.{$defaultExtension}"
-      ) );
+      $view = new View ( array ( "file" => APP_PATH . "/{$defaultPath}/{$defaultLayout}.{$defaultExtension}" ) );
       $this->layoutView = $view;
     }
     if ( $this->willRenderActionView ) {
@@ -137,25 +133,17 @@ abstract class Controller extends BaseClass {
       $router = Registry::get ( "router" );
       $controller = $router->controller;
       $action = $router->action;
-      $view = new View ( array (
-        "file" => APP_PATH . "/{$defaultPath}/{$controller}/{$action}.{$defaultExtension}"
-      ) );
+      $view = new View ( array ( "file" => APP_PATH . "/{$defaultPath}/{$controller}/{$action}.{$defaultExtension}" ) );
       $this->actionView = $view;
     }
-    Events::fire ( "framework.controller.construct.after", array (
-      $this->name
-    ) );
+    Events::fire ( "framework.controller.construct.after", array ( $this->name ) );
   }
 
   public function __destruct () {
 
-    Events::fire ( "framework.controller.destruct.before", array ( 
-      $this->name
-    ) );
+    Events::fire ( "framework.controller.destruct.before", array ( $this->name ) );
     $this->render ();
-    Events::fire ( "framework.controller.destruct.after", array ( 
-      $this->name
-    ) );
+    Events::fire ( "framework.controller.destruct.after", array ( $this->name ) );
   }
 
   protected function getName () {
@@ -169,28 +157,25 @@ abstract class Controller extends BaseClass {
 
   public function render () {
 
-    Events::fire ( "framework.controller.render.before", array ( 
-      $this->name
-    ) );
+    Events::fire ( "framework.controller.render.before", array ( $this->name ) );
     $defaultContentType = $this->defaultContentType;
     $results = null;
     $doAction = $this->willRenderActionView && $this->actionView;
     $doLayout = $this->willRenderLayoutView && $this->layoutView;
     try {
-
+      
       if ( $doAction ) {
-
+        
         $view = $this->actionView;
         $results = $view->render ();
         $this->actionView->template->implementation->set ( "action", $results );
       }
       if ( $doLayout ) {
-
+        
         $view = $this->layoutView;
         $results = $view->render ();
         \header ( "Content-type: {$defaultContentType}" );
         echo $results;
-        
       } else if ( $doAction ) {
         
         \header ( "Content-type: {$defaultContentType}" );
@@ -198,13 +183,10 @@ abstract class Controller extends BaseClass {
       }
       $this->willRenderLayoutView = false;
       $this->willRenderActionView = false;
-      
     } catch ( \Exception $e ) {
       
       throw new LayoutException ();
     }
-    Events::fire ( "framework.controller.render.after", array ( 
-      $this->name
-    ) );
+    Events::fire ( "framework.controller.render.after", array ( $this->name ) );
   }
 }

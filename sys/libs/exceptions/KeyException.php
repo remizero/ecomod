@@ -2,15 +2,17 @@
 namespace sys\libs\exceptions;
 
 /**
- * <strong>ImplementationException</strong>
- * Archivo creado el 31 de agosto de 2018 a las 18:41:44 p.m.
- * <p>Clase que permite definir el tipo de excepcion de solo lectura.</p>
+ * <strong>KeyException</strong>
  *
- * @name ImplementationException
- * @namespace sys\libs\exceptions
+ * Archivo creado el 03 de octubre de 2018 a las 19:38:00 p.m.
+ * <p>Clase que ejecutar acciones secundarias antes o después de las acciones
+ * principales definidas para el sistema ECOMOD.</p>
+ *
+ * @name KeyException
+ * @namespace sys\api\config
  * @package ECOMOD.
  * @subpackage EXCEPTIONS.
- * @filesource ImplementationException.php
+ * @filesource KeyException.php
  * @version 1.0
  * @since 1.0
  * @author Filiberto Zaá Avila ( remizero ) filizaa@gmail.com.
@@ -24,12 +26,12 @@ namespace sys\libs\exceptions;
  * @todo <p>En futuras versiones estarán disponibles los métodos para dar
  *       soporte a:</p>
  *       <ul>
- *       <li>.</li>
+ *       <li>https://diego.com.es/rendimiento-en-php.</li>
  *       <li>.</li>
  *       <li>.</li>
  *       </ul>
  */
-class ImplementationException extends Exception {
+class KeyException extends Exception {
   
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
@@ -38,14 +40,7 @@ class ImplementationException extends Exception {
    */
   public function __construct () {
     
-    parent::__construct ( "Error de implementación.", 0, null );
-  }
-
-  /**
-   */
-  function __destruct () {
-
-    // TODO - Insert your code here
+    parent::__construct ( "Key must be a string or a number.", 0, null );
   }
 }
 

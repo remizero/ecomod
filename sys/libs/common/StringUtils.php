@@ -132,7 +132,7 @@ class StringUtils {
    * @param string $string
    * @param string $pattern
    * 
-   * @return array|NULL
+   * @return array
    */
   public static function match ( string $string, string $pattern ) {
     
@@ -145,7 +145,7 @@ class StringUtils {
       
       return $matches [ 0 ];
     }
-    return null;
+    return array ();
   }
   
   /**

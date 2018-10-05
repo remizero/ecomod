@@ -1,7 +1,9 @@
 <?php
 namespace sys\core;
 
+use sys\api\template\controller\Extended;
 use sys\core\abstracts\BaseClass;
+use sys\libs\exceptions\KeyException;
 
 /**
  * <strong>View</strong>
@@ -38,6 +40,8 @@ class View extends BaseClass {
   /**
    *
    * @readwrite
+   * 
+   * @var string
    */
   protected $file;
 
@@ -52,27 +56,27 @@ class View extends BaseClass {
    * @read
    */
   protected $template;
-
-  public function __construct ( $options = array() ) {
-
+  
+  /**
+   * Constructor de la clase; inicializa los valores por omisión de la clase.
+   *
+   * @param array $options
+   *
+   * @return void
+   */
+  public function __construct ( array $options = array () ) {
+    
     parent::__construct ( $options );
-    Events::fire ( "framework.view.construct.before", array ( 
-      $this->file
-    ) );
-    $this->_template = new Template ( array ( 
-      "implementation" => new Template\Implementation\Extended ()
-    ) );
-    Events::fire ( "framework.view.construct.after", array ( 
-      $this->file,$this->template
-    ) );
+    Events::fire ( "framework.view.construct.before", array ( $this->file ) );
+    $this->_template = new Template ( array ( "implementation" => new Extended () ) );
+    Events::fire ( "framework.view.construct.after", array ( $this->file, $this->template ) );
   }
 
   public function render () {
 
-    Events::fire ( "framework.view.render.before", array ( 
-      $this->file
-    ) );
+    Events::fire ( "framework.view.render.before", array ( $this->file ) );
     if ( !\file_exists ( $this->file ) ) {
+      
       return "";
     }
     return $this->template->parse ( \file_get_contents ( $this->file ) )->process ( $this->data );
@@ -91,10 +95,10 @@ class View extends BaseClass {
 
     if ( !\is_string ( $key ) && !\is_numeric ( $key ) ) {
       
-      throw new Exception\Data ( "Key must be a string or a number" );
+      throw new KeyException ();
     }
     $data = $this->data;
-    if ( ! $data ) {
+    if ( !$data ) {
       
       $data = array ();
     }

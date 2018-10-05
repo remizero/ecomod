@@ -50,7 +50,7 @@ abstract class BaseClass {
    *
    * @var Inspector
    */
-  private $_inspector = NULL;
+  private $inspector = NULL;
   
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
@@ -61,7 +61,7 @@ abstract class BaseClass {
    */
   public function __construct ( array $options = array () ) {
     
-    $this->_inspector = new Inspector ( $this );
+    $this->inspector = new Inspector ( $this );
     if ( \is_array ( $options ) || \is_object ( $options ) ) {
       
       foreach ( $options as $key => $value ) {
@@ -94,7 +94,7 @@ abstract class BaseClass {
    */
   public function __call ( string $name, array $arguments ) {
     
-    if ( empty ( $this->_inspector ) ) {
+    if ( empty ( $this->inspector ) ) {
       
       throw new Exception ( "Call parent::__construct!" );
     }
@@ -172,17 +172,19 @@ abstract class BaseClass {
     if ( \sizeof ( $matches ) > 0 ) {
       
       $normalized = \lcfirst ( $matches [ 0 ] );
-      $property = "_{$normalized}";
+      //$property = "_{$normalized}";
+      $property = "{$normalized}";
       if ( \property_exists ( $this, $property ) ) {
         
-        $meta = $this->_inspector->getPropertyMeta ( $property );
+        $meta = $this->inspector->getPropertyMeta ( $property );
         if ( $set ) {
 
           if ( empty ( $meta [ "@readwrite" ] ) && empty ( $meta [ "@write" ] ) ) {
             
             throw new ReadOnlyException ( $normalized );
           }
-          if ( ( $argument = $this->_inspector->setTypeValidation ( $meta, $arguments [ 0 ] ) ) !== FALSE ) {
+          \var_dump ( $arguments [ 0 ] );
+          if ( ( $argument = $this->inspector->setTypeValidation ( $meta, $arguments [ 0 ] ) ) !== FALSE ) {
 
             $this->$property = $argument;
             return $this;
@@ -201,14 +203,14 @@ abstract class BaseClass {
 
             try {
               
-              return $this->_inspector->getTypeValidation ( $meta, $this->$property );
+              return $this->inspector->getTypeValidation ( $meta, $this->$property );
               
             } catch ( ImageException $e ) {
               
               
             } catch ( PropertyNullException $e ) {
             }
-            //return $this->_inspector->getTypeValidation ( $meta, $this->$property );
+            //return $this->inspector->getTypeValidation ( $meta, $this->$property );
           }
           return null;
         }

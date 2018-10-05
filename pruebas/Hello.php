@@ -12,8 +12,9 @@ class Hello extends BaseClass {
   /**
    * @string
    * @readwrite
+   * @var string
    */
-  protected $_world;
+  protected $world;
 /*
   public function setWorld ( $value ) {
 

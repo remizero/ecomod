@@ -311,27 +311,33 @@ class Inspector {
       
       throw new PropertyNullException ();
     }
-    if ( isset ( $meta [ "@array" ] ) ) {
+    $auxMeta = "";
+    if ( isset ( $meta [ "@var" ] ) ) {
+      
+      \var_dump ( $meta [ "@var" ] [ 0 ] );
+      $auxMeta = $meta [ "@var" ] [ 0 ];
+    }
+    if ( $auxMeta == "array" ) {
       
       $property = ( array ) $property;
       
-    } elseif ( isset ( $meta [ "@binary" ] ) ) {
+    } elseif ( $auxMeta == "binary" ) {
       
       $property = ( binary ) $property;
       
-    } elseif ( isset ( $meta [ "@bool" ] ) || isset ( $meta [ "@boolean" ] ) ) {
+    } elseif ( ( $auxMeta == "bool" ) || ( $auxMeta == "boolean" ) ) {
       
       $property = ( bool ) $property;
       
-    } elseif ( isset ( $meta [ "@double" ] ) ) {
+    } elseif ( $auxMeta == "double" ) {
       
       $property = ( double ) $property;
       
-    } elseif ( isset ( $meta [ "@float" ] ) ) {
+    } elseif ( $auxMeta == "float" ) {
       
       $property = ( float ) $property;
       
-    } elseif ( isset ( $meta [ "@Image" ] ) ) {
+    } elseif ( $auxMeta == "Image" ) {
       
       if ( !( $property instanceof Image ) ) {
         
@@ -341,15 +347,15 @@ class Inspector {
 
         throw new ImageException ();
       }
-    } elseif ( isset ( $meta [ "@int" ] ) ) {
+    } elseif ( $auxMeta == "int" ) {
       
       $property = ( int ) $property;
       
-    } elseif ( isset ( $meta [ "@integer" ] ) ) {
+    } elseif ( $auxMeta == "integer" ) {
       
       $property = ( integer ) $property;
       
-    } elseif ( isset ( $meta [ "@Ip" ] ) ) {
+    } elseif ( $auxMeta == "Ip" ) {
       
       if ( !( $property instanceof Ip ) ) {
         
@@ -359,19 +365,19 @@ class Inspector {
         
         throw new IpException ();
       }
-    } elseif ( isset ( $meta [ "@long" ] ) ) {
+    } elseif ( $auxMeta == "long" ) {
       
       $property = ( integer ) $property;
       
-    } elseif ( isset ( $meta [ "@object" ] ) ) {
+    } elseif ( $auxMeta == "object" ) {
       
       $property = ( object ) $property;
       
-    } elseif ( isset ( $meta [ "@real" ] ) ) {
+    } elseif ( $auxMeta == "real" ) {
       
       $property = ( real ) $property;
       
-    } elseif ( isset ( $meta [ "@string" ] ) ) {
+    } elseif ( $auxMeta == "string" ) {
       
       $property = ( string ) $property;
     }
@@ -403,7 +409,7 @@ class Inspector {
 
     /**
      * El punto aqui es, si $arguments cumple con el tipo indicado por la
-     * metaetiqueta $meta [ "@___" ] entonces $arguments es valido y se retorna,
+     * metaetiqueta $meta [ "@var" ] [ 0 ] == "___" ] entonces $arguments es valido y se retorna,
      * en caso contrario se retorna null.
      * Hacer uso de las siguientes funciones:
      *
@@ -426,8 +432,17 @@ class Inspector {
      * \is_writable($filename);
      * \is_writeable($filename);
      */
+    \var_dump ( $meta );
+    //\var_dump ( $meta [ "@var" ] [ 0 ] );
+    $auxMeta = "";
+    if ( isset ( $meta [ "@var" ] ) ) {
+      
+      \var_dump ( $meta [ "@var" ] [ 0 ] );
+      $auxMeta = $meta [ "@var" ] [ 0 ];
+      //\var_dump ( $auxMeta );
+    }
     $validatedType = FALSE;
-    if ( isset ( $meta [ "@array" ] ) ) {
+    if ( $auxMeta == "array" ) {
       
       if ( \is_​array ( $argument ) ) {
         
@@ -437,11 +452,11 @@ class Inspector {
         
         throw new ArrayException ();
       }
-    } elseif ( isset ( $meta [ "@binary" ] ) ) {
+    } elseif ( $auxMeta == "binary" ) {
       
       $property = ( binary ) $property;
       
-    } elseif ( isset ( $meta [ "@bool" ] ) || isset ( $meta [ "@boolean" ] ) ) {
+    } elseif ( ( $auxMeta == "bool" ) || ( $auxMeta == "boolean" ) ) {
       
       if ( \is_​bool ( $argument ) ) {
         
@@ -451,7 +466,7 @@ class Inspector {
         
         throw new BooleanException ();
       }
-    } elseif ( isset ( $meta [ "@double" ] ) ) {
+    } elseif ( $auxMeta == "double" ) {
       
       if ( \is_​double ( $argument ) ) {
         
@@ -461,7 +476,7 @@ class Inspector {
         
         throw new DoubleException ();
       }
-    } elseif ( isset ( $meta [ "@float" ] ) ) {
+    } elseif ( $auxMeta == "float" ) {
       
       if ( \is_​float ( $argument ) ) {
         
@@ -471,7 +486,7 @@ class Inspector {
         
         throw new FloatException ();
       }
-    } elseif ( isset ( $meta [ "@Image" ] ) ) {
+    } elseif ( $auxMeta == "Image" ) {
       
       if ( \is_object ( $argument ) ) {
         
@@ -487,7 +502,7 @@ class Inspector {
         
         throw new ObjectException ();
       }
-    } elseif ( isset ( $meta [ "@int" ] ) ) {
+    } elseif ( $auxMeta == "int" ) {
       
       if ( \is_​int ( $argument ) ) {
         
@@ -497,7 +512,7 @@ class Inspector {
         
         throw new IntegerException ();
       }
-    } elseif ( isset ( $meta [ "@integer" ] ) ) {
+    } elseif ( $auxMeta == "integer" ) {
       
       if ( \is_​integer ( $argument ) ) {
         
@@ -507,7 +522,7 @@ class Inspector {
         
         throw new IntegerException ();
       }
-    } elseif ( isset ( $meta [ "@Ip" ] ) ) {
+    } elseif ( $auxMeta == "Ip" ) {
       
       if ( \is_object ( $argument ) ) {
         
@@ -523,7 +538,7 @@ class Inspector {
         
         throw new ObjectException ();
       }
-    } elseif ( isset ( $meta [ "@long" ] ) ) {
+    } elseif ( $auxMeta == "long" ) {
       
       if ( \is_​long ( $argument ) ) {
         
@@ -532,7 +547,7 @@ class Inspector {
         
         throw new LongException ();
       }
-    } elseif ( isset ( $meta [ "@object" ] ) ) {
+    } elseif ( $auxMeta == "object" ) {
       
       if ( \is_​object ( $argument ) ) {
         
@@ -542,7 +557,7 @@ class Inspector {
         
         throw new ObjectException ();
       }
-    } elseif ( isset ( $meta [ "@real" ] ) ) {
+    } elseif ( $auxMeta == "real" ) {
       
       if ( \is_​real ( $argument ) ) {
         
@@ -552,7 +567,7 @@ class Inspector {
         
         throw new RealException ();
       }
-    } elseif ( isset ( $meta [ "@string" ] ) ) {
+    } elseif ( $auxMeta == "string" ) {
       
       if ( \is_string ( $argument ) ) {
         

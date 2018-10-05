@@ -2,15 +2,15 @@
 namespace sys\libs\exceptions;
 
 /**
- * <strong>ImplementationException</strong>
- * Archivo creado el 31 de agosto de 2018 a las 18:41:44 p.m.
+ * <strong>ParseTemplateException</strong>
+ * Archivo creado el 04 de octubre de 2018 a las 10:54:05 a.m.
  * <p>Clase que permite definir el tipo de excepcion de solo lectura.</p>
  *
- * @name ImplementationException
+ * @name ParseTemplateException
  * @namespace sys\libs\exceptions
  * @package ECOMOD.
  * @subpackage EXCEPTIONS.
- * @filesource ImplementationException.php
+ * @filesource ParseTemplateException.php
  * @version 1.0
  * @since 1.0
  * @author Filiberto Zaá Avila ( remizero ) filizaa@gmail.com.
@@ -29,7 +29,7 @@ namespace sys\libs\exceptions;
  *       <li>.</li>
  *       </ul>
  */
-class ImplementationException extends Exception {
+class ParseTemplateException extends Exception {
   
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
@@ -38,14 +38,7 @@ class ImplementationException extends Exception {
    */
   public function __construct () {
     
-    parent::__construct ( "Error de implementación.", 0, null );
-  }
-
-  /**
-   */
-  function __destruct () {
-
-    // TODO - Insert your code here
+    parent::__construct ( "Error al analizar la plantilla.", 0, null );
   }
 }
 
