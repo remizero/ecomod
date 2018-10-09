@@ -6,7 +6,7 @@ use sys\libs\exceptions\CompileWarningException;
 use sys\libs\exceptions\CoreErrorException;
 use sys\libs\exceptions\CoreWarningException;
 use sys\libs\exceptions\DeprecatedException;
-//use sys\libs\exceptions\Exception;
+// use sys\libs\exceptions\Exception;
 use sys\libs\exceptions\ErrorException;
 use sys\libs\exceptions\NoticeException;
 use sys\libs\exceptions\ParseException;
@@ -53,20 +53,14 @@ use sys\libs\exceptions\WarningException;
 class ErrorLog {
   
   /**
+   * Constructor de la clase; inicializa los valores por omisión de la clase.
+   *
+   * @return void
    */
   public function __construct () {
-    
-    @\set_error_handler ( array (
-      
-        $this,
-        'catchError'
-    ) );
 
-    @\set_exception_handler ( array ( 
-      
-        $this,
-        'catchException' 
-    ) );
+    @\set_error_handler ( array ( $this, 'catchError' ) );
+    @\set_exception_handler ( array ( $this, 'catchException' ) );
   }
 
   /**
@@ -77,15 +71,15 @@ class ErrorLog {
   }
 
   /**
-   * Metodo que permite manejar los errores como excepciones guardar la traza de error en un archivo log, para su
-   * posterior depuracion.
+   * Método que permite manejar los errores como excepciones guardar la traza de
+   * error en un archivo log, para su posterior depuración.
    *
-   * @param string $code Codigo del error.
+   * @param int $code Código del error.
    * @param string $error Mensaje descriptivo del error.
    * @param string $file Archivo donde se genera el error.
-   * @param string $line Linea donde se genera el error.
+   * @param string $line Línea donde se genera el error.
    * @param array $context Contexto donde se genera el error.
-   * 
+   *       
    * @throws CompileErrorException
    * @throws CompileWarningException
    * @throws CoreWarningException
@@ -101,79 +95,79 @@ class ErrorLog {
    * @throws UserNoticeException
    * @throws UserWarningException
    * @throws WarningException
-   * 
+   *
    * @return boolean
    */
-  public function catchError ( string $code, string $error, string $file = NULL, string $line = NULL, array $context ) {
+  public function catchError ( int $code, string $error, string $file = NULL, string $line = NULL, array $context ) {
 
     switch ( $code ) {
       
-      case E_COMPILE_ERROR:
+      case E_COMPILE_ERROR :
         
         throw new CompileErrorException ( $code, $error, $file, $line );
-        
-      case E_COMPILE_WARNING:
+      
+      case E_COMPILE_WARNING :
         
         throw new CompileWarningException ( $code, $error, $file, $line );
       
-      case E_CORE_ERROR:
+      case E_CORE_ERROR :
         
         throw new CoreErrorException ( $code, $error, $file, $line );
-        
-      case E_CORE_WARNING:
+      
+      case E_CORE_WARNING :
         
         throw new CoreWarningException ( $code, $error, $file, $line );
-        
-      case E_DEPRECATED:
+      
+      case E_DEPRECATED :
         
         throw new DeprecatedException ( $code, $error, $file, $line );
       
-      case E_ERROR:
-
-        throw new ErrorException ( $code, $error, $file, $line );
+      case E_ERROR :
         
-      case E_NOTICE:
+        throw new ErrorException ( $code, $error, $file, $line );
+      
+      case E_NOTICE :
         
         throw new NoticeException ( $code, $error, $file, $line );
-        
-      case E_PARSE:
+      
+      case E_PARSE :
         
         throw new ParseException ( $code, $error, $file, $line );
-        
-      case E_RECOVERABLE_ERROR:
+      
+      case E_RECOVERABLE_ERROR :
         
         throw new RecoverableErrorException ( $code, $error, $file, $line );
-        
-      case E_STRICT:
+      
+      case E_STRICT :
         
         throw new StrictException ( $code, $error, $file, $line );
-        
-      case E_USER_DEPRECATED:
+      
+      case E_USER_DEPRECATED :
         
         throw new UserDeprecatedException ( $code, $error, $file, $line );
-        
-      case E_USER_ERROR:
+      
+      case E_USER_ERROR :
         
         throw new UserErrorException ( $code, $error, $file, $line );
-        
-      case E_USER_NOTICE:
+      
+      case E_USER_NOTICE :
         
         throw new UserNoticeException ( $code, $error, $file, $line );
-        
-      case E_USER_WARNING:
+      
+      case E_USER_WARNING :
         
         throw new UserWarningException ( $code, $error, $file, $line );
+      
+      case E_WARNING :
         
-      case E_WARNING:
-
         throw new WarningException ( $code, $error, $file, $line );
     }
   }
-  
+
   /**
-   * 
+   *
    * @param \Exception $exception
-   * 
+   *
    * @return void
    */
   public function catchException ( \Exception $exception ) {
@@ -183,25 +177,25 @@ class ErrorLog {
     \fwrite ( $filePointer, "[" . \date ( DATE_RFC2822 ) . "] EXCEPTION " . $exception->__toString () . PHP_EOL );
     \fclose ( $filePointer );
   }
-  
+
   private static function validate () {
 
     if ( \filesize ( "public/errors/error.log" ) > 1000000 ) {
-
-      //http://ecapy.com/anadir-tu-usuario-de-linux-al-grupo-www-data/index.html
-      //http://flexiblewebs.net/como-configurar-los-permisos-para-el-directorio-raiz-de-un-sitio-web/
-      //https://www.boscolopez.com/anadir-usuario-al-grupo-www-data/
+      
+      // http://ecapy.com/anadir-tu-usuario-de-linux-al-grupo-www-data/index.html
+      // http://flexiblewebs.net/como-configurar-los-permisos-para-el-directorio-raiz-de-un-sitio-web/
+      // https://www.boscolopez.com/anadir-usuario-al-grupo-www-data/
       //
-      \rename ( "public/errors/error.log", "public/errors/error_" . \date("Y-m-d_H:i:s") . ".log" );
+      \rename ( "public/errors/error.log", "public/errors/error_" . \date ( "Y-m-d_H:i:s" ) . ".log" );
     }
   }
-  
+
   /**
    * Metodo que permite guardar la traza de error de una excepcion en un archivo
    * log, para su posterior depuracion.
-   * 
+   *
    * @param \Exception $exception
-   * 
+   *
    * @return void
    */
   public static function exception ( \Exception $exception ) {
@@ -210,11 +204,11 @@ class ErrorLog {
     $filePointer = \fopen ( 'public/errors/error.log', 'a' );
     \fwrite ( $filePointer, "[" . \date ( DATE_RFC2822 ) . "] EXCEPTION " . $exception->__toString () . PHP_EOL );
     \fclose ( $filePointer );
-    $this->sendMail ();
+    // $this->sendMail ();
   }
-  
+
   public function sendMail () {
-    
+
     $from = "test@ecosoftware.com";
     $to = "filizaa@gmail.com";
     $subject = "Checking PHP mail";
@@ -226,7 +220,6 @@ class ErrorLog {
     if ( $respuesta ) {
       
       echo "Si lo envio";
-      
     } else {
       
       echo "No lo envio";

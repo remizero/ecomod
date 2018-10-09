@@ -8,6 +8,18 @@ require_once 'sys/core/ClassLoader.php';
 $classloader = new sys\core\ClassLoader ();
 $classloader->register ();
 
+
+$movies =array(
+  "comedy" => array("Pink Panther", "John English", "See no evil hear no evil"),
+  "action" => array("Die Hard", "Expendables"),
+  "epic" => array("The Lord of the rings"),
+  "Romance" => array("Romeo and Juliet")
+);
+print_r($movies);
+var_dump($movies);
+
+
+
 use pruebas\Hello;
 use sys\api\config\ConfigFac;
 use sys\api\config\controller\Ini;

@@ -385,7 +385,7 @@ class Inspector {
   }
 
   /**
-   * Metodo que permite validar los tipos de datos y los valores a asignar a las
+   * Método que permite validar los tipos de datos y los valores a asignar a las
    * propiedades de las clases.
    *
    * @param array $meta Arreglo con las metaetiquetas de la propiedad.
@@ -432,14 +432,27 @@ class Inspector {
      * \is_writable($filename);
      * \is_writeable($filename);
      */
-    \var_dump ( $meta );
-    //\var_dump ( $meta [ "@var" ] [ 0 ] );
     $auxMeta = "";
     if ( isset ( $meta [ "@var" ] ) ) {
       
-      \var_dump ( $meta [ "@var" ] [ 0 ] );
-      $auxMeta = $meta [ "@var" ] [ 0 ];
-      //\var_dump ( $auxMeta );
+      \var_dump ( "Por lo visto si está definido el índice @var" );
+      if ( \is_array ( $meta [ "@var" ] ) ) {
+
+        if ( isset ( $meta [ "@var" ] [ 0 ] ) ) {
+          
+          \var_dump ( "Por lo visto si está definido el índice 0" );
+          \var_dump ( $meta );
+          \var_dump ( $meta [ '@var' ] [ 0 ] );
+          //$auxMeta = $meta [ '@var' ] [ 0 ];
+          
+        } else {
+          
+          \var_dump ( "Por lo visto no está definido el índice 0" );
+        }
+      }
+    } else {
+      
+      \var_dump ( "Por lo visto no está definido el índice @var" );
     }
     $validatedType = FALSE;
     if ( $auxMeta == "array" ) {
