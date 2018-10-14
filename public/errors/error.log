@@ -425,3 +425,43 @@ BACKTRACE:
 [Thu, 04 Oct 2018 19:49:14 -0400] EXCEPTION CODE: 0 FILE: /var/www/html/ecomod/sys/core/abstracts/BaseClass.php LINE: 194 MESSAGE: The value of the file property is invalid. BACKTRACE: #0 /var/www/html/ecomod/sys/core/abstracts/BaseClass.php(105): sys\core\abstracts\BaseClass->callGetterSetter ( "setFile, 1, #0 /var/www/html/ecomod/application/views/layouts/standard.html" )#1 /var/www/html/ecomod/sys/core/abstracts/BaseClass.php(71): sys\core\abstracts\BaseClass->__call ( "setFile, #0 /var/www/html/ecomod/application/views/layouts/standard.html" )#2 /var/www/html/ecomod/sys/core/View.php(67): sys\core\abstracts\BaseClass->__construct ( "#0 /var/www/html/ecomod/application/views/layouts/standard.htm" )#3 /var/www/html/ecomod/sys/core/Controller.php(128): sys\core\View->__construct ( "#0 /var/www/html/ecomod/application/views/layouts/standard.htm" )#4 /var/www/html/ecomod/indexes/index_prueba_vista.php(85): sys\core\Controller->__construct (" )#5 /var/www/html/ecomod/index.php(8): require_once ( "/var/www/html/ecomod/indexes/index_prueba_vista.php" )
 [Thu, 04 Oct 2018 19:51:26 -0400] EXCEPTION CODE: 0 FILE: /var/www/html/ecomod/sys/core/abstracts/BaseClass.php LINE: 194 MESSAGE: The value of the file property is invalid. BACKTRACE: #0 /var/www/html/ecomod/sys/core/abstracts/BaseClass.php(105): sys\core\abstracts\BaseClass->callGetterSetter ( "setFile, 1, #0 /var/www/html/ecomod/application/views/layouts/standard.html" )#1 /var/www/html/ecomod/sys/core/abstracts/BaseClass.php(71): sys\core\abstracts\BaseClass->__call ( "setFile, #0 /var/www/html/ecomod/application/views/layouts/standard.html" )#2 /var/www/html/ecomod/sys/core/View.php(69): sys\core\abstracts\BaseClass->__construct ( "#0 /var/www/html/ecomod/application/views/layouts/standard.htm" )#3 /var/www/html/ecomod/sys/core/Controller.php(128): sys\core\View->__construct ( "#0 /var/www/html/ecomod/application/views/layouts/standard.htm" )#4 /var/www/html/ecomod/indexes/index_prueba_vista.php(85): sys\core\Controller->__construct (" )#5 /var/www/html/ecomod/index.php(8): require_once ( "/var/www/html/ecomod/indexes/index_prueba_vista.php" )
 [Thu, 04 Oct 2018 19:53:55 -0400] EXCEPTION CODE: 0 FILE: /var/www/html/ecomod/sys/core/abstracts/BaseClass.php LINE: 194 MESSAGE: The value of the file property is invalid. BACKTRACE: #0 /var/www/html/ecomod/sys/core/abstracts/BaseClass.php(105): sys\core\abstracts\BaseClass->callGetterSetter ( "setFile, 1, #0 /var/www/html/ecomod/application/views/layouts/standard.html" )#1 /var/www/html/ecomod/sys/core/abstracts/BaseClass.php(71): sys\core\abstracts\BaseClass->__call ( "setFile, #0 /var/www/html/ecomod/application/views/layouts/standard.html" )#2 /var/www/html/ecomod/sys/core/View.php(69): sys\core\abstracts\BaseClass->__construct ( "#0 /var/www/html/ecomod/application/views/layouts/standard.htm" )#3 /var/www/html/ecomod/sys/core/Controller.php(128): sys\core\View->__construct ( "#0 /var/www/html/ecomod/application/views/layouts/standard.htm" )#4 /var/www/html/ecomod/indexes/index_prueba_vista.php(85): sys\core\Controller->__construct (" )#5 /var/www/html/ecomod/index.php(8): require_once ( "/var/www/html/ecomod/indexes/index_prueba_vista.php" )
+[Tue, 09 Oct 2018 16:33:56 -0400] EXCEPTION CODE: 4096 
+FILE: /var/www/html/ecomod/sys/core/abstracts/BaseClass.php 
+LINE: 72 
+MESSAGE: Object of class sys\api\template\controller\Extended could not be converted to string 
+BACKTRACE: 
+#1 /var/www/html/ecomod/sys/core/abstracts/BaseClass.php(72): sys\libs\common\ErrorLog->catchError ( "4096, Object of class sys\api\template\controller\Extended could not be converted to string, /var/www/html/ecomod/sys/core/abstracts/BaseClass.php, 72" )
+#2 /var/www/html/ecomod/sys/core/Template.php(92): sys\core\abstracts\BaseClass->__construct (" )
+#3 /var/www/html/ecomod/sys/core/View.php(78): sys\core\Template->__construct (" )
+#4 /var/www/html/ecomod/sys/core/Controller.php(128): sys\core\View->__construct ( "#1 /var/www/html/ecomod/application/views/layouts/standard.htm" )
+#5 /var/www/html/ecomod/indexes/index_prueba_vista.php(99): sys\core\Controller->__construct (" )
+#6 /var/www/html/ecomod/index.php(8): require_once ( "/var/www/html/ecomod/indexes/index_prueba_vista.php" )
+[Sat, 13 Oct 2018 15:08:52 -0400] 
+EXCEPTION 
+CODE: 0 
+FILE: /var/www/html/ecomod/sys/core/abstracts/BaseClass.php 
+LINE: 119 
+MESSAGE: setImplementation method not implemented. 
+BACKTRACE: 
+#0 /var/www/html/ecomod/sys/core/abstracts/BaseClass.php(76): sys\core\abstracts\BaseClass->__call ( "setImplementation, #0 sys\api\template\controller\Extended" )
+#1 /var/www/html/ecomod/sys/core/Template.php(92): sys\core\abstracts\BaseClass->__construct ( "#0 sys\api\template\controller\Extended" )
+#2 /var/www/html/ecomod/sys/core/View.php(78): sys\core\Template->__construct ( "#0 sys\api\template\controller\Extended" )
+#3 /var/www/html/ecomod/sys/core/Controller.php(128): sys\core\View->__construct ( "#0 /var/www/html/ecomod/application/views/layouts/standard.htm" )
+#4 /var/www/html/ecomod/indexes/index_prueba_vista.php(99): sys\core\Controller->__construct (" )
+#5 /var/www/html/ecomod/index.php(8): require_once ( "/var/www/html/ecomod/indexes/index_prueba_vista.php" )
+[Sat, 13 Oct 2018 15:57:15 -0400] 
+EXCEPTION 
+CODE: 0 
+FILE: /var/www/html/ecomod/sys/core/abstracts/BaseClass.php 
+LINE: 207 
+MESSAGE: The value of the implementation property is invalid. 
+BACKTRACE: 
+#0 /var/www/html/ecomod/sys/core/abstracts/BaseClass.php(112): sys\core\abstracts\BaseClass->callGetterSetter ( "setImplementation, 1, #0 sys\api\template\controller\Extended" )
+#1 /var/www/html/ecomod/sys/core/abstracts/BaseClass.php(76): sys\core\abstracts\BaseClass->__call ( "setImplementation, #0 sys\api\template\controller\Extended" )
+#2 /var/www/html/ecomod/sys/core/Template.php(92): sys\core\abstracts\BaseClass->__construct ( "#0 sys\api\template\controller\Extended" )
+#3 /var/www/html/ecomod/sys/core/View.php(78): sys\core\Template->__construct ( "#0 sys\api\template\controller\Extended" )
+#4 /var/www/html/ecomod/sys/core/Controller.php(128): sys\core\View->__construct ( "#0 /var/www/html/ecomod/application/views/layouts/standard.htm" )
+#5 /var/www/html/ecomod/indexes/index_prueba_vista.php(99): sys\core\Controller->__construct (" )
+#6 /var/www/html/ecomod/index.php(8): require_once ( "/var/www/html/ecomod/indexes/index_prueba_vista.php" )
+[Sat, 13 Oct 2018 21:58:51 -0400] EXCEPTION CODE: 8192 FILE: /var/www/html/ecomod/sys/core/Controller.php LINE: 134 MESSAGE: Non-static method sys\core\Registry::get() should not be called statically BACKTRACE: #0 /var/www/html/ecomod/sys/core/Controller.php(134"): sys\libs\common\ErrorLog->catchError ( " 8192, Non-static method sys\core\Registry::get() should not be called statically, /var/www/html/ecomod/sys/core/Controller.php, 134, #0 #0" ) #1 /var/www/html/ecomod/indexes/index_prueba_vista.php(99"): sys\core\Controller->__construct ( "" ) #2 /var/www/html/ecomod/index.php(8"): require_once ( " /var/www/html/ecomod/indexes/index_prueba_vista.php," ) 
+[Sat, 13 Oct 2018 21:59:30 -0400] EXCEPTION CODE: 8192 FILE: /var/www/html/ecomod/sys/core/Controller.php LINE: 134 MESSAGE: Non-static method sys\core\Registry::get() should not be called statically BACKTRACE: #0 /var/www/html/ecomod/sys/core/Controller.php(134"): sys\libs\common\ErrorLog->catchError ( " 8192, Non-static method sys\core\Registry::get() should not be called statically, /var/www/html/ecomod/sys/core/Controller.php, 134, #0 #0" ) #1 /var/www/html/ecomod/indexes/index_prueba_vista.php(99"): sys\core\Controller->__construct ( "" ) #2 /var/www/html/ecomod/index.php(8"): require_once ( " /var/www/html/ecomod/indexes/index_prueba_vista.php," ) 

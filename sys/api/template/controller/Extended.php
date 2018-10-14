@@ -3,6 +3,9 @@ namespace sys\api\template\controller;
 
 use sys\core\Registry;
 use sys\libs\common\StringUtils;
+use sys\core\Template;
+use sys\libs\common\RequestUtils;
+use sys\core\Request;
 
 /**
  * <strong>Extended</strong>
@@ -39,20 +42,26 @@ class Extended extends Standard {
   /**
    *
    * @readwrite
+   * 
+   * @var string
    */
-  protected $_defaultPath = "application/views";
+  protected $defaultPath = "application/views";
 
   /**
    *
    * @readwrite
+   * 
+   * @var string
    */
-  protected $_defaultKey = "_data";
+  protected $defaultKey = "data";
 
   /**
    *
    * @readwrite
+   * 
+   * @var int
    */
-  protected $_index = 0;
+  protected $index = 0;
 
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
@@ -63,8 +72,9 @@ class Extended extends Standard {
    */
   public function __construct ( array $options = array () ) {
 
+    \var_dump("entro a crear la clase Extended");
     parent::__construct ( $options );
-    $this->_map = array ( 
+    $this->map = array ( 
       "partial" => array ( 
         "opener" => "{partial","closer" => "}","handler" => "_partial"
       ),"include" => array ( 
@@ -72,8 +82,8 @@ class Extended extends Standard {
       ),"yield" => array ( 
         "opener" => "{yield","closer" => "}","handler" => "yield"
       )
-    ) + $this->_map;
-    $this->_map [ "statement" ] [ "tags" ] = array ( 
+    ) + $this->map;
+    $this->map [ "statement" ] [ "tags" ] = array ( 
       "set" => array ( 
         "isolated" => false,"arguments" => "{key}","handler" => "set"
       ),"append" => array ( 
@@ -81,7 +91,8 @@ class Extended extends Standard {
       ),"prepend" => array ( 
         "isolated" => false,"arguments" => "{key}","handler" => "prepend"
       )
-    ) + $this->_map [ "statement" ] [ "tags" ];
+    ) + $this->map [ "statement" ] [ "tags" ];
+    \var_dump("creo la clase Extended LINEA 95");
   }
 
   protected function _include ( $tree, $content ) {
@@ -93,7 +104,7 @@ class Extended extends Standard {
     $path = $this->defaultPath;
     $content = \file_get_contents ( APP_PATH . "/{$path}/{$file}" );
     $template->parse ( $content );
-    $index = $this->_index ++;
+    $index = $this->index++;
     return "\$_anon = function(\$_data){
                 " . $template->code . "
             };\$_text[] = \$_anon(\$_data);";
@@ -101,13 +112,13 @@ class Extended extends Standard {
 
   protected function _partial ( $tree, $content ) {
 
-    $address = trim ( $tree [ "raw" ], " /" );
+    $address = \trim ( $tree [ "raw" ], " /" );
     if ( StringUtils::indexOf ( $address, "http" ) != 0 ) {
-      $host = RequestMethods::server ( "HTTP_HOST" );
+      $host = RequestUtils::server ( "HTTP_HOST" );
       $address = "http://{$host}/{$address}";
     }
     $request = new Request ();
-    $response = \addslashes ( trim ( $request->get ( $address ) ) );
+    $response = \addslashes ( \trim ( $request->get ( $address ) ) );
     return "\$_text[] = \"{$response}\";";
   }
 

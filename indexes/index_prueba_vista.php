@@ -92,8 +92,11 @@ $cache = CacheFac::create ( CacheFac::MEMCACHED );
 var_dump ( "CREÓ LA CACHE" );
 
 $router = new Router ();
+var_dump ( "CREÓ LA CLASE ROUTER" );
 
 define ( "APP_PATH", dirname ( __DIR__ ) );
+var_dump ( "CREÓ LA CONSTANTE APP_PATH" . APP_PATH );
 $index = new Index ();
+var_dump ( "CREÓ LA CLASE INDEX" );
 
 ?>

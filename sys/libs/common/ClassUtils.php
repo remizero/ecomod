@@ -46,5 +46,16 @@ abstract class ClassUtils {
     $splitClassName = \explode ( "\\" , $className );
     return $splitClassName [ count ( $splitClassName ) - 1 ];
   }
+  
+  /**
+   * Metodo que permite normalizar una propiedad.
+   * 
+   * @param string $property Propiedad a normalizar.
+   * 
+   * @return string
+   */
+  public static function normalizeProperty ( string $property ) {
+    
+    return \lcfirst ( $property );
+  }
 }
-

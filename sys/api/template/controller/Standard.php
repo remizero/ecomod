@@ -35,7 +35,7 @@ use sys\api\template\core\TemplateAbs;
  */
 class Standard extends TemplateAbs {
 
-  protected $_map = array ( 
+  protected $map = array ( 
     "echo" => array ( 
       "opener" => "{echo","closer" => "}","handler" => "_echo"
     ),"script" => array ( 

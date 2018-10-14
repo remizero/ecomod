@@ -2,12 +2,11 @@
 namespace sys\core\abstracts;
 
 use sys\core\Inspector;
+use sys\libs\common\ClassUtils;
 use sys\libs\common\StringUtils;
 use sys\libs\exceptions\Exception;
-use sys\libs\exceptions\ImageException;
 use sys\libs\exceptions\MethodNotImplementedException;
 use sys\libs\exceptions\PropertyException;
-use sys\libs\exceptions\PropertyNullException;
 use sys\libs\exceptions\PropertyValueException;
 use sys\libs\exceptions\ReadOnlyException;
 use sys\libs\exceptions\WriteOnlyException;
@@ -68,7 +67,14 @@ abstract class BaseClass {
         
         $key = \ucfirst ( $key );
         $method = "set{$key}";
+        \var_dump($method . "---------------------------------------------------");
+        if ( \is_object ( $value ) ) {
+          
+          \var_dump ( "es un objeto de tipo " . \get_class ( $value ) );
+        }
+        //\var_dump ( "EL VALOR DE VALUE ES " . $value . "---------------------------------------------------");
         $this->$method ( $value );
+        \var_dump ( "SI CARGO EL VALOR EN EL METODO " . $method . "---------------------------------------------------");
       }
     }
   }
@@ -100,10 +106,12 @@ abstract class BaseClass {
     }
     if ( ( $called = $this->callGetterSetter ( $name ) ) !== FALSE ) {
       
+      \var_dump("esta entrando por la funcion __call linea 110");
       return $called;
       
     } elseif ( ( $called = $this->callGetterSetter ( $name, TRUE, $arguments ) ) !== FALSE ) {
       
+      \var_dump("esta entrando por la funcion __call linea 115");
       return $called;
       
     } else {
@@ -137,6 +145,7 @@ abstract class BaseClass {
    */
   public function __set ( string $name, $value ) {
 
+    \var_dump("esta entrando por la funcion __set linea 149");
     $function = "set" . \ucfirst ( $name );
     return $this->$function ( $value );
   }
@@ -171,8 +180,7 @@ abstract class BaseClass {
     $matches = StringUtils::match ( $name, $pattern );
     if ( \sizeof ( $matches ) > 0 ) {
       
-      $normalized = \lcfirst ( $matches [ 0 ] );
-      //$property = "_{$normalized}";
+      $normalized = ClassUtils::normalizeProperty ( $matches [ 0 ] );
       $property = "{$normalized}";
       if ( \property_exists ( $this, $property ) ) {
         
@@ -183,7 +191,6 @@ abstract class BaseClass {
             
             throw new ReadOnlyException ( $normalized );
           }
-          \var_dump ( $arguments [ 0 ] );
           if ( ( $argument = $this->inspector->setTypeValidation ( $meta, $arguments [ 0 ] ) ) !== FALSE ) {
 
             $this->$property = $argument;
@@ -200,17 +207,8 @@ abstract class BaseClass {
             throw new WriteOnlyException ( $normalized );
           }
           if ( isset ( $this->$property ) ) {
-
-            try {
-              
-              return $this->inspector->getTypeValidation ( $meta, $this->$property );
-              
-            } catch ( ImageException $e ) {
-              
-              
-            } catch ( PropertyNullException $e ) {
-            }
-            //return $this->inspector->getTypeValidation ( $meta, $this->$property );
+  
+            return $this->inspector->getTypeValidation ( $meta, $this->$property );
           }
           return null;
         }

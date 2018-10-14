@@ -87,11 +87,12 @@ class Exception extends \Exception {
    * @param array $trace Traza del error a reconstruir.
    * @param array $args Argumentos de los metodos involucrados en la traza del
    *        error. Para ser usados internamente por el metodo.
-   * @param number $traceLevel Define los niveles de profundidad del error.
+   * @param int $traceLevel Define los niveles de profundidad del error.
+   * @param bool $intoTrace
    *
    * @return string
    */
-  private function parseTraceError ( array $trace, array $args = array (), $traceLevel = 0 ) {
+  private function parseTraceError ( array $trace, array $args = array (), int $traceLevel = 0, bool $intoTrace = FALSE ) {
 
     $parsedTrace = "";
     foreach ( $trace as $key => $value ) {
@@ -103,27 +104,33 @@ class Exception extends \Exception {
           if ( \array_key_exists ( "function", $args ) && \array_key_exists ( "class", $args ) && \array_key_exists ( "type", $args ) ) {
 
             $parsedTrace .= $args [ "class" ] . $args [ "type" ] . $args [ "function" ];
-            $parsedTrace .= " ( \"";
 
           } elseif ( \array_key_exists ( "function", $args ) ) {
 
             $parsedTrace .= $args [ "function" ];
-            $parsedTrace .= " ( \"";
             
           } else {
 
-            $parsedTrace .= "*** ( \"";
+            $parsedTrace .= "***";
           }
+          $parsedTrace .= " ( \" ";
           $parsedTrace .= $this->parseTraceError ( $value );
-          $parsedTrace = \substr ( $parsedTrace, 0, -2 );
-          $parsedTrace .= "\" )";
+          $parsedTrace = \substr ( $parsedTrace, 0, -1 );
+          $parsedTrace .= "\" ) ";
           
         } else {
 
+          if ( ( string ) $key == 'trace' ) {
+
+            $parsedTrace .= "TRACE ";
+            
+          } else {
+
+            $parsedTrace .= "#$traceLevel ";
+          }
           $auxParsedTrace = $this->parseTraceError ( $value, $args, $traceLevel++ );
           if ( !empty ( $auxParsedTrace ) ) {
 
-            $parsedTrace .= "#$traceLevel ";
             $parsedTrace .= $auxParsedTrace;
           }
         }
@@ -138,7 +145,7 @@ class Exception extends \Exception {
             
           case "line" :
 
-            $parsedTrace .= $value . "): ";
+            $parsedTrace .= $value . "\"): ";
             break;
             
           case "function" :
@@ -160,6 +167,27 @@ class Exception extends \Exception {
             $args [ "class" ] = $value;
             break;
             
+          case "key" :
+            
+            $parsedTrace .= "KEY " . $value . " ";
+            break;
+            
+          case "parsedTrace" :
+            
+            $parsedTrace .= "PARSEDTRACE " . $value . " ";
+            break;
+            
+          case "trace" :
+            
+            break;
+            
+          case "traceLevel" :
+
+            $exploded = \explode ( "***", $parsedTrace );
+            $parsedTrace = \substr ( $exploded [ 0 ], 0, -1 ) . $exploded [ 1 ];
+            $parsedTrace .= "TRACELEVEL " . $value . " ";
+            break;
+            
           case "type" :
 
             $args [ "type" ] = $value;
@@ -176,7 +204,26 @@ class Exception extends \Exception {
           case "8" :
           case "9" :
 
-            $parsedTrace .= $value . ", ";
+            if ( \is_object ( $value ) ) {
+              
+              $parsedTrace .= \get_class ( $value ) . ", ";
+              
+            } else {
+              
+              $parsedTrace .= $value . ", ";
+            }
+            break;
+            
+          case "value" :
+            
+            if ( \is_object ( $value ) ) {
+              
+              $parsedTrace .= " VALUE " . \get_class ( $value ) . ", ";
+              
+            } else {
+              
+              $parsedTrace .= $value . ", ";
+            }
             break;
             
           default :
@@ -212,6 +259,7 @@ class Exception extends \Exception {
             
             $parsedTrace .= $args [ "class" ] . $args [ "type" ] . $args [ "function" ];
             $parsedTrace .= " ( \"";
+
           } else {
             
             $parsedTrace .= "*** ( \"";
@@ -219,6 +267,7 @@ class Exception extends \Exception {
           $parsedTrace .= $this->parseTrace ( $value );
           $parsedTrace = \substr ( $parsedTrace, 0, -2 );
           $parsedTrace .= "\" )";
+
         } else {
           
           $parsedTrace .= "#$traceLevel ";
@@ -245,6 +294,7 @@ class Exception extends \Exception {
               
               $exploded = \explode ( "***", $parsedTrace );
               $parsedTrace = $exploded [ 0 ] . $value . $exploded [ 1 ];
+
             } else {
               
               $args [ "function" ] = $value;
@@ -263,7 +313,14 @@ class Exception extends \Exception {
             
           default :
             
-            $parsedTrace .= $value . ", ";
+            if ( \is_object ( $value ) ) {
+              
+              $parsedTrace .= \get_class ( $value ) . ", ";
+              
+            } else {
+              
+              $parsedTrace .= $value . ", ";
+            }
             break;
         }
       }

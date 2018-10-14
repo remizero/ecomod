@@ -1,6 +1,7 @@
 <?php
 namespace sys\core;
 
+use sys\api\template\core\TemplateAbs;
 use sys\core\abstracts\BaseClass;
 use sys\libs\common\StringUtils;
 use sys\libs\common\ArrayUtils;
@@ -42,32 +43,42 @@ class Template extends BaseClass {
   /**
    *
    * @readwrite
+   * 
+   * @var TemplateAbs
    */
-  protected $_implementation;
+  protected $implementation;
 
   /**
    *
    * @readwrite
+   * 
+   * @var string
    */
-  protected $_header = "if (is_array(\$_data) && sizeof(\$_data)) extract(\$_data); \$_text = array();";
+  protected $header = "if (is_array(\$_data) && sizeof(\$_data)) extract(\$_data); \$_text = array();";
 
   /**
    *
    * @readwrite
+   * 
+   * @var string
    */
-  protected $_footer = "return implode(\$_text);";
+  protected $footer = "return implode(\$_text);";
 
   /**
    *
    * @read
+   * 
+   * @var string
    */
-  protected $_code;
+  protected $code;
 
   /**
    *
    * @read
+   * 
+   * @var string
    */
-  protected $_function;
+  protected $function;
 
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
@@ -79,6 +90,7 @@ class Template extends BaseClass {
   public function __construct ( array $options = array () ) {
 
     parent::__construct ( $options );
+    \var_dump("SE CREO LA CLASE TEMPLATE LINEA 73");
   }
 
   protected function _arguments ( $source, $expression ) {
@@ -106,7 +118,7 @@ class Template extends BaseClass {
 
     $tag = null;
     $arguments = array ();
-    $match = $this->_implementation->match ( $source );
+    $match = $this->implementation->match ( $source );
     if ( $match == null ) {
       
       return false;
@@ -153,7 +165,7 @@ class Template extends BaseClass {
     $delimiter = null;
     while ( $source ) {
       
-      $match = $this->_implementation->match ( $source );
+      $match = $this->implementation->match ( $source );
       $type = $match [ "type" ];
       $delimiter = $match [ "delimiter" ];
       $opener = \strpos ( $source, $type [ "opener" ] );
@@ -240,33 +252,33 @@ class Template extends BaseClass {
     }
     if ( isset ( $tree [ "parent" ] ) ) {
       
-      return $this->_implementation->handle ( $tree, \implode ( $content ) );
+      return $this->implementation->handle ( $tree, \implode ( $content ) );
     }
     return implode ( $content );
   }
 
   public function parse ( $template ) {
 
-    if ( !\is_a ( $this->_implementation, "Framework\Template\Implementation" ) ) {
+    if ( !\is_a ( $this->implementation, "sys\api\template\core\TemplateAbs" ) ) {
       
       throw new ImplementationException ();
     }
     $array = $this->_array ( $template );
     $tree = $this->_tree ( $array [ "all" ] );
-    $this->_code = $this->header . $this->_script ( $tree ) . $this->footer;
-    $this->_function = \create_function ( "\$_data", $this->code );
+    $this->code = $this->header . $this->_script ( $tree ) . $this->footer;
+    $this->function = \create_function ( "\$_data", $this->code );
     return $this;
   }
 
   public function process ( $data = array() ) {
 
-    if ( $this->_function == null ) {
+    if ( $this->function == null ) {
       
       throw new ParseTemplateException ();
     }
     try {
       
-      $function = $this->_function;
+      $function = $this->function;
       return $function ( $data );
       
     } catch ( \Exception $e ) {

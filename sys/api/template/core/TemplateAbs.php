@@ -3,6 +3,7 @@ namespace sys\api\template\core;
 
 use sys\core\abstracts\BaseClass;
 use sys\libs\common\StringUtils;
+use sys\libs\exceptions\MethodNotImplementedException;
 
 /**
  * <strong>TemplateAbs</strong>
@@ -49,10 +50,10 @@ abstract class TemplateAbs extends BaseClass {
   }
 
   /**
-   * 
+   *
    * @param array $node
-   * 
-   * @return NULL|unknown
+   *
+   * @return array|NULL
    */
   protected function _handler ( array $node ) {
 
@@ -60,36 +61,47 @@ abstract class TemplateAbs extends BaseClass {
       
       return null;
     }
-    if ( ! empty ( $node [ "tag" ] ) ) {
+    if ( !empty ( $node [ "tag" ] ) ) {
       
-      return $this->_map [ $node [ "delimiter" ] ] [ "tags" ] [ $node [ "tag" ] ] [ "handler" ];
+      return $this->map [ $node [ "delimiter" ] ] [ "tags" ] [ $node [ "tag" ] ] [ "handler" ];
     }
-    return $this->_map [ $node [ "delimiter" ] ] [ "handler" ];
+    return $this->map [ $node [ "delimiter" ] ] [ "handler" ];
   }
 
-  
+  /**
+   * 
+   * @param array $node
+   * @param mixed $content
+   * 
+   * @throws MethodNotImplementedException
+   * 
+   * @return mixed
+   */
   public function handle ( array $node, $content ) {
 
     try {
       
       $handler = $this->_handler ( $node );
       return \call_user_func_array ( array ( 
-        $this,$handler
+        
+          $this,
+          $handler 
       ), array ( 
-        $node,$content
+        
+          $node,
+          $content 
       ) );
-      
     } catch ( \Exception $e ) {
       
-      throw new Exception\Implementation ();
+      throw new MethodNotImplementedException ( $handler );
     }
   }
 
   /**
-   * 
+   *
    * @param string $source
-   * 
-   * @return NULL|NULL[]|unknown[]
+   *
+   * @return array|NULL
    */
   public function match ( string $source ) {
 
@@ -97,13 +109,13 @@ abstract class TemplateAbs extends BaseClass {
     $delimiter = null;
     foreach ( $this->_map as $_delimiter => $_type ) {
       
-      if ( ! $delimiter || StringUtils::indexOf ( $source, $type [ "opener" ] ) == - 1 ) {
+      if ( !$delimiter || StringUtils::indexOf ( $source, $type [ "opener" ] ) == -1 ) {
         
         $delimiter = $_delimiter;
         $type = $_type;
       }
       $indexOf = StringUtils::indexOf ( $source, $_type [ "opener" ] );
-      if ( $indexOf > - 1 ) {
+      if ( $indexOf > -1 ) {
         
         if ( StringUtils::indexOf ( $source, $type [ "opener" ] ) > $indexOf ) {
           
@@ -113,11 +125,13 @@ abstract class TemplateAbs extends BaseClass {
       }
     }
     if ( $type == null ) {
-
+      
       return null;
     }
     return array ( 
-      "type" => $type,"delimiter" => $delimiter
+      
+        "type" => $type,
+        "delimiter" => $delimiter 
     );
   }
 }

@@ -443,7 +443,8 @@ class Inspector {
           \var_dump ( "Por lo visto si está definido el índice 0" );
           \var_dump ( $meta );
           \var_dump ( $meta [ '@var' ] [ 0 ] );
-          //$auxMeta = $meta [ '@var' ] [ 0 ];
+          $auxMeta = $meta [ '@var' ] [ 0 ];
+          \var_dump ( $auxMeta );
           
         } else {
           
@@ -562,7 +563,7 @@ class Inspector {
       }
     } elseif ( $auxMeta == "object" ) {
       
-      if ( \is_​object ( $argument ) ) {
+      if ( \is_object ( $argument ) ) {
         
         $validatedType = $argument;
         
@@ -582,13 +583,31 @@ class Inspector {
       }
     } elseif ( $auxMeta == "string" ) {
       
+      \var_dump("esta entrando por la validacion de string");
       if ( \is_string ( $argument ) ) {
         
+        \var_dump ( "EL VALOR DE \$argument ES " . $argument );
+        \var_dump("si es un string");
         $validatedType = $argument;
         
       } else {
         
+        \var_dump("lanzo un StringException");
         throw new StringException ();
+      }
+    } else {
+      
+      \var_dump("entro por el else LINEA 600------------------------------------");
+      //\var_dump ( $argument );
+      if ( \is_object ( $argument ) ) {
+        
+        \var_dump("es un objeto LINEA 603---------------------------------------");
+        $validatedType = $argument;
+        
+      } else {
+        
+        \var_dump("por lo visto no es un objeto LINEA 608---------------------------------------");
+        throw new ObjectException ();
       }
     }
     return $validatedType;

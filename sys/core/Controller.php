@@ -40,7 +40,7 @@ abstract class Controller extends BaseClass {
    *
    * @read
    *
-   * @var
+   * @var string
    */
   protected $name;
 
@@ -48,7 +48,7 @@ abstract class Controller extends BaseClass {
    *
    * @readwrite
    *
-   * @var
+   * @var array
    */
   protected $parameters;
 
@@ -56,7 +56,7 @@ abstract class Controller extends BaseClass {
    *
    * @readwrite
    *
-   * @var
+   * @var View
    */
   protected $layoutView;
 
@@ -64,7 +64,7 @@ abstract class Controller extends BaseClass {
    *
    * @readwrite
    *
-   * @var
+   * @var View
    */
   protected $actionView;
 
@@ -121,12 +121,13 @@ abstract class Controller extends BaseClass {
     parent::__construct ( $options );
     Events::fire ( "framework.controller.construct.before", array ( $this->name ) );
     if ( $this->willRenderLayoutView ) {
-      
+
       $defaultPath = $this->defaultPath;
       $defaultLayout = $this->defaultLayout;
       $defaultExtension = $this->defaultExtension;
       $view = new View ( array ( "file" => APP_PATH . "/{$defaultPath}/{$defaultLayout}.{$defaultExtension}" ) );
       $this->layoutView = $view;
+      \var_dump("paso por la linea 130 la clase controller");
     }
     if ( $this->willRenderActionView ) {
       

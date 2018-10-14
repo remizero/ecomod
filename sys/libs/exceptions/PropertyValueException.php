@@ -40,7 +40,7 @@ class PropertyValueException extends Exception {
    * @return void
    */
   public function __construct ( string $propertyName ) {
-    
+
     parent::__construct ( "The value of the {$propertyName} property is invalid.", 0, null );
   }
 

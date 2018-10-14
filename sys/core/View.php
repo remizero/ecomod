@@ -48,12 +48,16 @@ class View extends BaseClass {
   /**
    *
    * @readwrite
+   * 
+   * @var array
    */
   protected $data;
 
   /**
    *
    * @read
+   * 
+   * @var Template
    */
   protected $template;
   
@@ -66,9 +70,15 @@ class View extends BaseClass {
    */
   public function __construct ( array $options = array () ) {
     
+    \var_dump("paso por la linea 69 la clase view");
     parent::__construct ( $options );
+    \var_dump("paso por la linea 71 la clase view");
     Events::fire ( "framework.view.construct.before", array ( $this->file ) );
-    $this->_template = new Template ( array ( "implementation" => new Extended () ) );
+    \var_dump("paso por la linea 73 la clase view");
+    $this->template = new Template ( array ( "implementation" => new Extended () ) );
+    //$this->template = new Template ();
+    //$this->template->setImplementation ( new Extended () );
+    \var_dump("paso por la linea 75 la clase view");
     Events::fire ( "framework.view.construct.after", array ( $this->file, $this->template ) );
   }
 

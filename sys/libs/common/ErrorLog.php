@@ -103,63 +103,78 @@ class ErrorLog {
     switch ( $code ) {
       
       case E_COMPILE_ERROR :
-        
+
+        \var_dump ( "CompileErrorException" );
         throw new CompileErrorException ( $code, $error, $file, $line );
       
       case E_COMPILE_WARNING :
         
+        \var_dump ( "CompileWarningException" );
         throw new CompileWarningException ( $code, $error, $file, $line );
       
       case E_CORE_ERROR :
         
+        \var_dump ( "CoreErrorException" );
         throw new CoreErrorException ( $code, $error, $file, $line );
       
       case E_CORE_WARNING :
         
+        \var_dump ( "CoreWarningException" );
         throw new CoreWarningException ( $code, $error, $file, $line );
       
       case E_DEPRECATED :
         
+        \var_dump ( "DeprecatedException" );
         throw new DeprecatedException ( $code, $error, $file, $line );
       
       case E_ERROR :
         
+        \var_dump ( "ErrorException" );
         throw new ErrorException ( $code, $error, $file, $line );
       
       case E_NOTICE :
         
+        \var_dump ( "NoticeException" );
         throw new NoticeException ( $code, $error, $file, $line );
       
       case E_PARSE :
         
+        \var_dump ( "ParseException" );
         throw new ParseException ( $code, $error, $file, $line );
       
       case E_RECOVERABLE_ERROR :
         
+        \var_dump ( "RecoverableErrorException" );
         throw new RecoverableErrorException ( $code, $error, $file, $line );
       
       case E_STRICT :
         
+        \var_dump ( "StrictException" );
         throw new StrictException ( $code, $error, $file, $line );
       
       case E_USER_DEPRECATED :
         
+        \var_dump ( "UserDeprecatedException" );
         throw new UserDeprecatedException ( $code, $error, $file, $line );
       
       case E_USER_ERROR :
         
+        \var_dump ( "UserErrorException" );
         throw new UserErrorException ( $code, $error, $file, $line );
       
       case E_USER_NOTICE :
         
+        \var_dump ( "UserNoticeException" );
         throw new UserNoticeException ( $code, $error, $file, $line );
       
       case E_USER_WARNING :
         
+        \var_dump ( "UserWarningException" );
         throw new UserWarningException ( $code, $error, $file, $line );
       
       case E_WARNING :
         
+        \var_dump ( "WarningException" );
         throw new WarningException ( $code, $error, $file, $line );
     }
   }
