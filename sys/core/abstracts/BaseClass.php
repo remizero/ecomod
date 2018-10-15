@@ -67,14 +67,7 @@ abstract class BaseClass {
         
         $key = \ucfirst ( $key );
         $method = "set{$key}";
-        \var_dump($method . "---------------------------------------------------");
-        if ( \is_object ( $value ) ) {
-          
-          \var_dump ( "es un objeto de tipo " . \get_class ( $value ) );
-        }
-        //\var_dump ( "EL VALOR DE VALUE ES " . $value . "---------------------------------------------------");
         $this->$method ( $value );
-        \var_dump ( "SI CARGO EL VALOR EN EL METODO " . $method . "---------------------------------------------------");
       }
     }
   }
@@ -105,13 +98,11 @@ abstract class BaseClass {
       throw new Exception ( "Call parent::__construct!" );
     }
     if ( ( $called = $this->callGetterSetter ( $name ) ) !== FALSE ) {
-      
-      \var_dump("esta entrando por la funcion __call linea 110");
+
       return $called;
       
     } elseif ( ( $called = $this->callGetterSetter ( $name, TRUE, $arguments ) ) !== FALSE ) {
-      
-      \var_dump("esta entrando por la funcion __call linea 115");
+
       return $called;
       
     } else {
@@ -145,7 +136,6 @@ abstract class BaseClass {
    */
   public function __set ( string $name, $value ) {
 
-    \var_dump("esta entrando por la funcion __set linea 149");
     $function = "set" . \ucfirst ( $name );
     return $this->$function ( $value );
   }

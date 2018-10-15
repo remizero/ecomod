@@ -334,7 +334,7 @@ class Exception extends \Exception {
    *
    * @return string
    *
-   * @see Exception::__toString()
+   * @see Exception::__toString ()
    */
   public function __toString () {
 

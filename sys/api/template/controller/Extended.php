@@ -72,7 +72,6 @@ class Extended extends Standard {
    */
   public function __construct ( array $options = array () ) {
 
-    \var_dump("entro a crear la clase Extended");
     parent::__construct ( $options );
     $this->map = array ( 
       "partial" => array ( 
@@ -92,7 +91,6 @@ class Extended extends Standard {
         "isolated" => false,"arguments" => "{key}","handler" => "prepend"
       )
     ) + $this->map [ "statement" ] [ "tags" ];
-    \var_dump("creo la clase Extended LINEA 95");
   }
 
   protected function _include ( $tree, $content ) {

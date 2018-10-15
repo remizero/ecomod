@@ -90,10 +90,16 @@ class Template extends BaseClass {
   public function __construct ( array $options = array () ) {
 
     parent::__construct ( $options );
-    \var_dump("SE CREO LA CLASE TEMPLATE LINEA 73");
   }
 
-  protected function _arguments ( $source, $expression ) {
+  /**
+   * 
+   * @param string $source
+   * @param string $expression
+   * 
+   * @return array
+   */
+  protected function _arguments ( string $source, string $expression ) {
 
     $args = $this->_array ( $expression, array ( $expression => array ( "opener" => "{", "closer" => "}" ) ) );
     $tags = $args [ "tags" ];
@@ -114,7 +120,13 @@ class Template extends BaseClass {
     return $arguments;
   }
 
-  protected function _tag ( $source ) {
+  /**
+   * 
+   * @param string $source
+   * 
+   * @return array|boolean
+   */
+  protected function _tag ( string $source ) {
 
     $tag = null;
     $arguments = array ();
@@ -156,7 +168,13 @@ class Template extends BaseClass {
     return array ( "tag" => $tag, "delimiter" => $delimiter, "closer" => false, "source" => $extract, "arguments" => $arguments, "isolated" => ( !empty ( $type [ "tags" ] ) ? $type [ "tags" ] [ $tag ] [ "isolated" ] : false ) );
   }
 
-  protected function _array ( $source ) {
+  /**
+   * 
+   * @param string $source
+   * 
+   * @return array
+   */
+  protected function _array ( string $source ) {
 
     $parts = array ();
     $tags = array ();
@@ -193,7 +211,13 @@ class Template extends BaseClass {
     return array ( "text" => ArrayUtils::clean ( $parts ), "tags" => ArrayUtils::clean ( $tags ), "all" => ArrayUtils::clean ( $all ) );
   }
 
-  protected function _tree ( $array ) {
+  /**
+   * 
+   * @param array $array
+   * 
+   * @return array
+   */
+  protected function _tree ( array $array ) {
 
     $root = array ( "children" => array () );
     $current = & $root;
@@ -235,6 +259,12 @@ class Template extends BaseClass {
     return $root;
   }
 
+  /**
+   * 
+   * @param array|string $tree
+   * 
+   * @return string|mixed
+   */
   protected function _script ( $tree ) {
 
     $content = array ();
@@ -254,10 +284,18 @@ class Template extends BaseClass {
       
       return $this->implementation->handle ( $tree, \implode ( $content ) );
     }
-    return implode ( $content );
+    return \implode ( $content );
   }
 
-  public function parse ( $template ) {
+  /**
+   * 
+   * @param string $template
+   * 
+   * @throws ImplementationException
+   * 
+   * @return \sys\core\Template
+   */
+  public function parse ( string $template ) {
 
     if ( !\is_a ( $this->implementation, "sys\api\template\core\TemplateAbs" ) ) {
       
@@ -270,7 +308,15 @@ class Template extends BaseClass {
     return $this;
   }
 
-  public function process ( $data = array() ) {
+  /**
+   * 
+   * @param array $data
+   * 
+   * @throws ParseTemplateException
+   * 
+   * @return string
+   */
+  public function process ( array $data = array () ) {
 
     if ( $this->function == null ) {
       

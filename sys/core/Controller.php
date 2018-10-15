@@ -127,15 +127,19 @@ abstract class Controller extends BaseClass {
       $defaultExtension = $this->defaultExtension;
       $view = new View ( array ( "file" => APP_PATH . "/{$defaultPath}/{$defaultLayout}.{$defaultExtension}" ) );
       $this->layoutView = $view;
-      \var_dump("paso por la linea 130 la clase controller");
     }
     if ( $this->willRenderActionView ) {
       
-      $router = Registry::get ( "router" );
+      \var_dump("paso por la linea 134 la clase controller");
+      $router = Registry::getInstance ()->get ( "router" );
+      \var_dump("paso por la linea 136 la clase controller");
       $controller = $router->controller;
+      \var_dump("paso por la linea 138 la clase controller");
       $action = $router->action;
+      \var_dump("paso por la linea 140 la clase controller");
       $view = new View ( array ( "file" => APP_PATH . "/{$defaultPath}/{$controller}/{$action}.{$defaultExtension}" ) );
       $this->actionView = $view;
+      \var_dump("paso por la linea 143 la clase controller");
     }
     Events::fire ( "framework.controller.construct.after", array ( $this->name ) );
   }

@@ -93,6 +93,7 @@ var_dump ( "CREÓ LA CACHE" );
 
 $router = new Router ();
 var_dump ( "CREÓ LA CLASE ROUTER" );
+Registry::getInstance ()->set ( "router", $router );
 
 define ( "APP_PATH", dirname ( __DIR__ ) );
 var_dump ( "CREÓ LA CONSTANTE APP_PATH" . APP_PATH );
