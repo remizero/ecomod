@@ -93,17 +93,19 @@ class StringUtils {
   }
   
   /**
+   * Devuelve la posición de una subcadena dentro de una cadena más grande.
    * 
-   * @param string $string
-   * @param string $substring
+   * @param string $string Cadena donde buscar.
+   * @param string $substring Subcadena a buscar.
    * @param int $offset
    * 
    * @return number
    */
   public function indexOf ( string $string, string $substring, int $offset = null ) {
-    
+    \var_dump ( "línea 104 StringUtils" );
+    \var_dump ( "El valor de \$string es $string línea 105 StringUtils" );
     $position = \strpos ( $string, $substring, $offset );
-    if ( !is_int ( $position ) ) {
+    if ( !\is_int ( $position ) ) {
       
       return -1;
     }
@@ -121,7 +123,7 @@ class StringUtils {
   public function lastIndexOf ( string $string, string $substring, int $offset = null ) {
     
     $position = \strrpos ( $string, $substring, $offset );
-    if ( !is_int ( $position ) ) {
+    if ( !\is_int ( $position ) ) {
       return -1;
     }
     return $position;
@@ -170,8 +172,10 @@ class StringUtils {
   }
   
   /**
+   * Método que recorre los caracteres de una cadena, reemplazándolos con 
+   * representaciones de caracteres amigables de expresión regular.
    * 
-   * @param string $string
+   * @param string $string Cadena a analizar.
    * @param array|string $mask
    * 
    * @return string
@@ -246,12 +250,13 @@ class StringUtils {
   }
 
   /**
+   * Método que elimina todos los caracteres duplicados en una cadena.
    * 
-   * @param string $string
+   * @param string $string Cadena a analizar.
    * 
    * @return string
    */
-  public static function unique ( $string ) {
+  public static function unique ( string $string ) {
 
     $unique = "";
     $parts = \str_split ( $string );

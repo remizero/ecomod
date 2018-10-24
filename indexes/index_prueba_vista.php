@@ -8,18 +8,6 @@ require_once 'sys/core/ClassLoader.php';
 $classloader = new sys\core\ClassLoader ();
 $classloader->register ();
 
-
-$movies =array(
-  "comedy" => array("Pink Panther", "John English", "See no evil hear no evil"),
-  "action" => array("Die Hard", "Expendables"),
-  "epic" => array("The Lord of the rings"),
-  "Romance" => array("Romeo and Juliet")
-);
-print_r($movies);
-var_dump($movies);
-
-
-
 use pruebas\Hello;
 use sys\api\config\ConfigFac;
 use sys\api\config\controller\Ini;
@@ -98,6 +86,7 @@ Registry::getInstance ()->set ( "router", $router );
 define ( "APP_PATH", dirname ( __DIR__ ) );
 var_dump ( "CREÓ LA CONSTANTE APP_PATH" . APP_PATH );
 $index = new Index ();
+$index->home();
 var_dump ( "CREÓ LA CLASE INDEX" );
 
 ?>

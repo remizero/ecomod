@@ -146,9 +146,9 @@ abstract class Controller extends BaseClass {
 
   public function __destruct () {
 
-    Events::fire ( "framework.controller.destruct.before", array ( $this->name ) );
-    $this->render ();
-    Events::fire ( "framework.controller.destruct.after", array ( $this->name ) );
+    //Events::fire ( "framework.controller.destruct.before", array ( $this->name ) );
+    //$this->render ();
+    //Events::fire ( "framework.controller.destruct.after", array ( $this->name ) );
   }
 
   protected function getName () {
@@ -173,12 +173,15 @@ abstract class Controller extends BaseClass {
         
         $view = $this->actionView;
         $results = $view->render ();
+        \var_dump($results);
         $this->actionView->template->implementation->set ( "action", $results );
+        \var_dump ( "Pasó el actionView de ka ckase controller en la línea 178 -" );
       }
       if ( $doLayout ) {
         
         $view = $this->layoutView;
         $results = $view->render ();
+        \var_dump($results);
         \header ( "Content-type: {$defaultContentType}" );
         echo $results;
       } else if ( $doAction ) {

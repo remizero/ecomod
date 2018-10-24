@@ -131,8 +131,11 @@ class Extended extends Standard {
 
   protected function _setValue ( $key, $value ) {
 
+    \var_dump("si está entrando al método setValue línea 134");
+    \var_dump("El valor de \$key es $key 135");
     if ( ! empty ( $key ) ) {
       
+      \var_dump($this->defaultKey);
       $data = Registry::get ( $this->defaultKey, array () );
       $data [ $key ] = $value;
       Registry::set ( $this->defaultKey, $data );
@@ -149,18 +152,26 @@ class Extended extends Standard {
     return "";
   }
 
-  public function set ( $key, $value ) {
+  public function set ( string $key, string $value ) {
 
+    \var_dump("si está entrando al método set línea 157");
+    \var_dump ( "El valor de \$key es $key 158" );
+    \var_dump ( "El valor de \$vakue es $value 159" );
+    StringUtils::indexOf ( ( string ) $value, "\$_text" );
     if ( StringUtils::indexOf ( $value, "\$_text" ) > - 1 ) {
       
+      \var_dump("si es mayor a -1 línea 160");
       $first = StringUtils::indexOf ( $value, "\"" );
       $last = StringUtils::lastIndexOf ( $value, "\"" );
       $value = \stripslashes ( \substr ( $value, $first + 1, ( $last - $first ) - 1 ) );
     }
+    \var_dump("línea 167--------------------------------------------------------");
     if ( \is_array ( $key ) ) {
       
+      \var_dump("si es un array el \$key línea 167");
       $key = $this->_getKey ( $key );
     }
+    \var_dump("antes de entrar al método setValue línea 170");
     $this->_setValue ( $key, $value );
   }
 
