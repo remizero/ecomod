@@ -96,4 +96,9 @@ abstract class RequestUtils {
     }
     return $default;
   }
+  
+  public static function requestMethod ( string $method ) {
+    
+    return ( $_SERVER [ "REQUEST_METHOD" ] == $method );
+  }
 }

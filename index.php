@@ -5,6 +5,7 @@ error_reporting ( E_ALL );
 //require_once 'indexes/index_config.php';
 //require_once 'indexes/index_cache.php';
 //require_once 'indexes/index_router.php';
-require_once 'indexes/index_prueba_vista.php';
+//require_once 'indexes/index_prueba_vista.php';
+require_once 'indexes/index_cookies.php';
 
 ?>

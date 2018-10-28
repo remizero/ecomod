@@ -5,6 +5,8 @@ use sys\core\abstracts\BaseClass;
 use sys\libs\common\StringUtils;
 use sys\libs\common\RequestUtils;
 use sys\libs\exceptions\ResponseException;
+use sys\core\http\Http;
+use sys\core\http\Url;
 
 /**
  * <strong>Request</strong>
@@ -44,7 +46,15 @@ class Request extends BaseClass {
    *
    * @var boolean
    */
-  public $_willFollow = true;
+  //public $ = "";
+  
+  /**
+   *
+   * @readwrite
+   *
+   * @var Url
+   */
+  public $url = "";
 
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
@@ -57,6 +67,56 @@ class Request extends BaseClass {
 
     parent::__construct ( $options );
     $this->agent = RequestUtils::server ( "HTTP_USER_AGENT", "Curl/PHP " . PHP_VERSION );
+  }
+
+  /**
+   * Determina si la solicitud es una solicitud GET.
+   * 
+   * @return boolean
+   */
+  public function isGet () {
+    
+    return RequestUtils::requestMethod ( Http::GET );
+  }
+  
+  /**
+   * Determina si la solicitud es una solicitud HEAD.
+   * 
+   * @return boolean
+   */
+  public function isHead () {
+    
+    return RequestUtils::requestMethod ( Http::HEAD );
+  }
+  
+  /**
+   * Determina si la solicitud es una solicitud OPTION.
+   *
+   * @return boolean
+   */
+  public function isOption () {
+    
+    return RequestUtils::requestMethod ( Http::OPTIONS );
+  }
+  
+  /**
+   * Determina si la solicitud es una solicitud POST.
+   * 
+   * @return boolean
+   */
+  public function isPost () {
+    
+    return RequestUtils::requestMethod ( Http::POST );
+  }
+  
+  /**
+   * Determina si la solicitud es una solicitud POST.
+   * 
+   * @return boolean
+   */
+  public function isPut () {
+    
+    return RequestUtils::requestMethod ( Http::PUT );
   }
 
   /**

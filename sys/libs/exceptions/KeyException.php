@@ -5,8 +5,7 @@ namespace sys\libs\exceptions;
  * <strong>KeyException</strong>
  *
  * Archivo creado el 03 de octubre de 2018 a las 19:38:00 p.m.
- * <p>Clase que ejecutar acciones secundarias antes o después de las acciones
- * principales definidas para el sistema ECOMOD.</p>
+ * <p>Clase que permite definir el tipo de excepcion de tipo key.</p>
  *
  * @name KeyException
  * @namespace sys\api\config
