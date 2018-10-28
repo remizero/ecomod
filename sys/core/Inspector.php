@@ -24,8 +24,8 @@ use sys\libs\types\Ip;
  * Archivo creado el 16 de agosto de 2018 a las 23:48:07 p.m.
  * <p>Clase que permite definir e inspeccionar diferentes tipos de banderas y
  * pares clave/valor, para determinar si un método/propiedad puede ser accesible
- * o se deben llamar a otros métodos antes o después de ser inspeccionado. 
- * Evaluar bloques de comentarios especiales para información, usando código, 
+ * o se deben llamar a otros métodos antes o después de ser inspeccionado.
+ * Evaluar bloques de comentarios especiales para información, usando código,
  * determinar todo tipo de metadatos sobre cada método/propiedad.</p>
  *
  * @name Inspector
@@ -59,11 +59,11 @@ class Inspector {
    * @var string|object
    */
   protected $class;
-  
+
   /**
-   * Clase introspectada para hacer uso de la reflección para obtener 
+   * Clase introspectada para hacer uso de la reflección para obtener
    * información de una clase.
-   * 
+   *
    * @var \ReflectionClass
    */
   protected $introspectedClass;
@@ -73,12 +73,8 @@ class Inspector {
    * @var array
    */
   protected $meta = array ( 
-    
-      "class" => array (),
-      "properties" => array (),
-      "methods" => array () 
-  );
-  
+  "class" => array (), "properties" => array (), "methods" => array () );
+
   /**
    * Arreglo con los metodos de la clase.
    *
@@ -115,7 +111,8 @@ class Inspector {
   }
 
   /**
-   *
+   * Método que permite obtener los comentarios de la clase.
+   * 
    * @return string
    */
   protected function _getClassComment () {
@@ -124,7 +121,8 @@ class Inspector {
   }
 
   /**
-   *
+   * Método que permite obtener los métodos de la clase.
+   * 
    * @return array
    */
   protected function _getClassMethods () {
@@ -133,7 +131,8 @@ class Inspector {
   }
 
   /**
-   *
+   * Método que permite obtener las propiedades de la clase.
+   * 
    * @return array
    */
   protected function _getClassProperties () {
@@ -142,8 +141,9 @@ class Inspector {
   }
 
   /**
-   *
-   * @param string $method
+   * Método que permite obtener los comentarios de un método.
+   * 
+   * @param string $method Método sobre le cual se obtendrán los comentarios.
    *
    * @return string
    */
@@ -154,8 +154,10 @@ class Inspector {
   }
 
   /**
-   *
-   * @param string $property
+   * Método que permite obtener los comentarios de una propiedad.
+   * 
+   * @param string $property Propiedad sobre la cual se obtendrán los 
+   *        comentarios.
    *
    * @return string
    */
@@ -166,7 +168,8 @@ class Inspector {
   }
 
   /**
-   *
+   * Método que analiza estructura de la clase.
+   * 
    * @param string $comment
    *
    * @return boolean[]|array[]
@@ -192,7 +195,8 @@ class Inspector {
   }
 
   /**
-   *
+   * Método que permite obtener las metaetiquetas de la clase.
+   * 
    * @return boolean|array
    */
   public function getClassMeta () {
@@ -203,7 +207,6 @@ class Inspector {
       if ( !empty ( $comment ) ) {
         
         $meta [ "class" ] = $this->_parse ( $comment );
-        
       } else {
         
         $meta [ "class" ] = null;
@@ -213,6 +216,7 @@ class Inspector {
   }
 
   /**
+   * Método que permite obtener los métodos de la clase.
    *
    * @return array
    */
@@ -230,7 +234,8 @@ class Inspector {
   }
 
   /**
-   *
+   * Método que permite obtener las propiedades de la clase.
+   * 
    * @return array
    */
   public function getClassProperties () {
@@ -247,8 +252,9 @@ class Inspector {
   }
 
   /**
-   *
-   * @param string $method
+   * Método que permite obtener las metaetiquetas de un método.
+   * 
+   * @param string $method Método sobre el cual se obtendrán las metaetiquetas.
    *
    * @return void
    */
@@ -260,7 +266,6 @@ class Inspector {
       if ( !empty ( $comment ) ) {
         
         $meta [ "methods" ] [ $method ] = $this->_parse ( $comment );
-        
       } else {
         
         $meta [ "methods" ] [ $method ] = null;
@@ -270,9 +275,11 @@ class Inspector {
   }
 
   /**
+   * Método que permite obtener las metaetiquetas de una propiedad.
    *
-   * @param string $property
-   *
+   * @param string $property Propiedad sobre la cual se obtendrán las 
+   *        metaetiquetas.
+   *       
    * @return void
    */
   public function getPropertyMeta ( string $property ) {
@@ -283,7 +290,6 @@ class Inspector {
       if ( !empty ( $comment ) ) {
         
         $meta [ "properties" ] [ $property ] = $this->_parse ( $comment );
-        
       } else {
         
         $meta [ "properties" ] [ $property ] = null;
@@ -293,7 +299,7 @@ class Inspector {
   }
 
   /**
-   * Metodo que permite validar la propiedad solicitada y realizar las
+   * Método que permite validar la propiedad solicitada y realizar las
    * operaciones previas sobre la misma antes de ser devuelta.
    *
    * @param array $meta Arreglo con las metaetiquetas de la propiedad.
@@ -320,23 +326,18 @@ class Inspector {
     if ( $auxMeta == "array" ) {
       
       $property = ( array ) $property;
-      
     } elseif ( $auxMeta == "binary" ) {
       
-      $property = ( binary ) $property;
-      
+      $property = ( string ) $property;
     } elseif ( ( $auxMeta == "bool" ) || ( $auxMeta == "boolean" ) ) {
       
       $property = ( bool ) $property;
-      
     } elseif ( $auxMeta == "double" ) {
       
       $property = ( double ) $property;
-      
     } elseif ( $auxMeta == "float" ) {
       
       $property = ( float ) $property;
-      
     } elseif ( $auxMeta == "Image" ) {
       
       if ( !( $property instanceof Image ) ) {
@@ -344,17 +345,15 @@ class Inspector {
         throw new ImageException ();
       }
       if ( !\is_a ( $property, "Image" ) ) {
-
+        
         throw new ImageException ();
       }
     } elseif ( $auxMeta == "int" ) {
       
       $property = ( int ) $property;
-      
     } elseif ( $auxMeta == "integer" ) {
       
       $property = ( integer ) $property;
-      
     } elseif ( $auxMeta == "Ip" ) {
       
       if ( !( $property instanceof Ip ) ) {
@@ -368,15 +367,12 @@ class Inspector {
     } elseif ( $auxMeta == "long" ) {
       
       $property = ( integer ) $property;
-      
     } elseif ( $auxMeta == "object" ) {
       
       $property = ( object ) $property;
-      
     } elseif ( $auxMeta == "real" ) {
       
       $property = ( real ) $property;
-      
     } elseif ( $auxMeta == "string" ) {
       
       $property = ( string ) $property;
@@ -434,13 +430,12 @@ class Inspector {
      */
     $auxMeta = "";
     if ( isset ( $meta [ "@var" ] ) ) {
-
+      
       if ( \is_array ( $meta [ "@var" ] ) ) {
-
+        
         if ( isset ( $meta [ "@var" ] [ 0 ] ) ) {
-
-          $auxMeta = $meta [ '@var' ] [ 0 ];
           
+          $auxMeta = $meta [ '@var' ] [ 0 ];
         } else {
           
           \var_dump ( "Por lo visto no está definido el índice 0" );
@@ -456,41 +451,33 @@ class Inspector {
       if ( \is_​array ( $argument ) ) {
         
         $validatedType = $argument;
-        
       } else {
         
         throw new ArrayException ();
       }
     } elseif ( $auxMeta == "binary" ) {
       
-      $property = ( binary ) $property;
-      
+      $property = ( string ) $property;
     } elseif ( ( $auxMeta == "bool" ) || ( $auxMeta == "boolean" ) ) {
       
-      if ( \is_​bool ( $argument ) ) {
-        
-        $validatedType = $argument;
-        
-      } else {
+      if ( !\is_​bool ( $argument ) && ( ( $validatedType = \filter_var ( $argument, FILTER_VALIDATE_BOOLEAN ) ) === FALSE ) ) {
         
         throw new BooleanException ();
       }
     } elseif ( $auxMeta == "double" ) {
       
-      if ( \is_​double ( $argument ) ) {
+      if ( \is_​double ( $argument ) && ( \filter_var ( $argument, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION | FILTER_FLAG_ALLOW_THOUSAND | FILTER_FLAG_ALLOW_SCIENTIFIC ) !== FALSE ) && ( \filter_var ( $argument, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_THOUSAND ) !== FALSE ) ) {
         
         $validatedType = $argument;
-        
       } else {
         
         throw new DoubleException ();
       }
     } elseif ( $auxMeta == "float" ) {
       
-      if ( \is_​float ( $argument ) ) {
+      if ( \is_​float ( $argument ) && ( \filter_var ( $argument, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION | FILTER_FLAG_ALLOW_THOUSAND | FILTER_FLAG_ALLOW_SCIENTIFIC ) !== FALSE ) && ( \filter_var ( $argument, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_THOUSAND ) !== FALSE ) ) {
         
         $validatedType = $argument;
-        
       } else {
         
         throw new FloatException ();
@@ -502,7 +489,6 @@ class Inspector {
         if ( !( $argument instanceof Image ) ) {
           
           $validatedType = $argument;
-          
         } else {
           
           throw new ImageException ();
@@ -513,20 +499,18 @@ class Inspector {
       }
     } elseif ( $auxMeta == "int" ) {
       
-      if ( \is_​int ( $argument ) ) {
+      if ( \is_​int ( $argument ) && ( \filter_var ( $argument, FILTER_SANITIZE_NUMBER_INT ) !== FALSE ) && ( \filter_var ( $argument, FILTER_VALIDATE_INT ) !== FALSE ) ) {
         
         $validatedType = $argument;
-        
       } else {
         
         throw new IntegerException ();
       }
     } elseif ( $auxMeta == "integer" ) {
       
-      if ( \is_​integer ( $argument ) ) {
+      if ( \is_​integer ( $argument ) && ( \filter_var ( $argument, FILTER_SANITIZE_NUMBER_INT ) !== FALSE ) && ( \filter_var ( $argument, FILTER_VALIDATE_INT ) !== FALSE ) ) {
         
         $validatedType = $argument;
-        
       } else {
         
         throw new IntegerException ();
@@ -538,7 +522,6 @@ class Inspector {
         if ( !( $argument instanceof Ip ) ) {
           
           $validatedType = $argument;
-          
         } else {
           
           throw new IpException ();
@@ -549,7 +532,7 @@ class Inspector {
       }
     } elseif ( $auxMeta == "long" ) {
       
-      if ( \is_​long ( $argument ) ) {
+      if ( \is_​long ( $argument ) && ( \filter_var ( $argument, FILTER_SANITIZE_NUMBER_INT ) !== FALSE ) && ( \filter_var ( $argument, FILTER_VALIDATE_INT ) !== FALSE ) ) {
         
         $validatedType = $argument;
       } else {
@@ -561,39 +544,32 @@ class Inspector {
       if ( \is_object ( $argument ) ) {
         
         $validatedType = $argument;
-        
       } else {
         
         throw new ObjectException ();
       }
     } elseif ( $auxMeta == "real" ) {
       
-      if ( \is_​real ( $argument ) ) {
+      if ( \is_​real ( $argument ) && ( \filter_var ( $argument, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION | FILTER_FLAG_ALLOW_THOUSAND | FILTER_FLAG_ALLOW_SCIENTIFIC ) !== FALSE ) && ( \filter_var ( $argument, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_THOUSAND ) !== FALSE ) ) {
         
         $validatedType = $argument;
-        
       } else {
         
         throw new RealException ();
       }
     } elseif ( $auxMeta == "string" ) {
-
-      if ( \is_string ( $argument ) ) {
-
-        $validatedType = $argument;
+      
+      if ( \is_string ( $argument ) && ( ( $validatedType = \filter_var ( $argument, FILTER_SANITIZE_STRING ) ) !== FALSE ) ) {
         
-      } else {
-
         throw new StringException ();
       }
     } else {
-
+      
       if ( \is_object ( $argument ) ) {
-
-        $validatedType = $argument;
         
+        $validatedType = $argument;
       } else {
-
+        
         throw new ObjectException ();
       }
     }
