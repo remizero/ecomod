@@ -326,18 +326,23 @@ class Inspector {
     if ( $auxMeta == "array" ) {
       
       $property = ( array ) $property;
+      
     } elseif ( $auxMeta == "binary" ) {
       
       $property = ( string ) $property;
+      
     } elseif ( ( $auxMeta == "bool" ) || ( $auxMeta == "boolean" ) ) {
       
       $property = ( bool ) $property;
+      
     } elseif ( $auxMeta == "double" ) {
       
       $property = ( double ) $property;
+      
     } elseif ( $auxMeta == "float" ) {
       
       $property = ( float ) $property;
+      
     } elseif ( $auxMeta == "Image" ) {
       
       if ( !( $property instanceof Image ) ) {
@@ -351,9 +356,11 @@ class Inspector {
     } elseif ( $auxMeta == "int" ) {
       
       $property = ( int ) $property;
+      
     } elseif ( $auxMeta == "integer" ) {
       
       $property = ( integer ) $property;
+      
     } elseif ( $auxMeta == "Ip" ) {
       
       if ( !( $property instanceof Ip ) ) {
@@ -367,15 +374,31 @@ class Inspector {
     } elseif ( $auxMeta == "long" ) {
       
       $property = ( integer ) $property;
+      
     } elseif ( $auxMeta == "object" ) {
       
       $property = ( object ) $property;
+      
     } elseif ( $auxMeta == "real" ) {
       
       $property = ( real ) $property;
+      
     } elseif ( $auxMeta == "string" ) {
       
       $property = ( string ) $property;
+      
+    } else {
+      
+      if ( \is_object ( $property ) ) {
+        
+        if ( !( $property instanceof $auxMeta ) ) {
+          
+          throw new ObjectException ();
+        }
+      } else {
+        
+        throw new ObjectException ();
+      }
     }
     return $property;
   }
@@ -436,6 +459,7 @@ class Inspector {
         if ( isset ( $meta [ "@var" ] [ 0 ] ) ) {
           
           $auxMeta = $meta [ '@var' ] [ 0 ];
+          
         } else {
           
           \var_dump ( "Por lo visto no está definido el índice 0" );
@@ -451,6 +475,7 @@ class Inspector {
       if ( \is_​array ( $argument ) ) {
         
         $validatedType = $argument;
+        
       } else {
         
         throw new ArrayException ();
@@ -458,6 +483,7 @@ class Inspector {
     } elseif ( $auxMeta == "binary" ) {
       
       $property = ( string ) $property;
+      
     } elseif ( ( $auxMeta == "bool" ) || ( $auxMeta == "boolean" ) ) {
       
       if ( !\is_​bool ( $argument ) && ( ( $validatedType = \filter_var ( $argument, FILTER_VALIDATE_BOOLEAN ) ) === FALSE ) ) {
@@ -469,6 +495,7 @@ class Inspector {
       if ( \is_​double ( $argument ) && ( \filter_var ( $argument, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION | FILTER_FLAG_ALLOW_THOUSAND | FILTER_FLAG_ALLOW_SCIENTIFIC ) !== FALSE ) && ( \filter_var ( $argument, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_THOUSAND ) !== FALSE ) ) {
         
         $validatedType = $argument;
+        
       } else {
         
         throw new DoubleException ();
@@ -478,6 +505,7 @@ class Inspector {
       if ( \is_​float ( $argument ) && ( \filter_var ( $argument, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION | FILTER_FLAG_ALLOW_THOUSAND | FILTER_FLAG_ALLOW_SCIENTIFIC ) !== FALSE ) && ( \filter_var ( $argument, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_THOUSAND ) !== FALSE ) ) {
         
         $validatedType = $argument;
+        
       } else {
         
         throw new FloatException ();
@@ -489,6 +517,7 @@ class Inspector {
         if ( !( $argument instanceof Image ) ) {
           
           $validatedType = $argument;
+          
         } else {
           
           throw new ImageException ();
@@ -502,6 +531,7 @@ class Inspector {
       if ( \is_​int ( $argument ) && ( \filter_var ( $argument, FILTER_SANITIZE_NUMBER_INT ) !== FALSE ) && ( \filter_var ( $argument, FILTER_VALIDATE_INT ) !== FALSE ) ) {
         
         $validatedType = $argument;
+        
       } else {
         
         throw new IntegerException ();
@@ -511,6 +541,7 @@ class Inspector {
       if ( \is_​integer ( $argument ) && ( \filter_var ( $argument, FILTER_SANITIZE_NUMBER_INT ) !== FALSE ) && ( \filter_var ( $argument, FILTER_VALIDATE_INT ) !== FALSE ) ) {
         
         $validatedType = $argument;
+        
       } else {
         
         throw new IntegerException ();
@@ -522,6 +553,7 @@ class Inspector {
         if ( !( $argument instanceof Ip ) ) {
           
           $validatedType = $argument;
+          
         } else {
           
           throw new IpException ();
@@ -535,6 +567,7 @@ class Inspector {
       if ( \is_​long ( $argument ) && ( \filter_var ( $argument, FILTER_SANITIZE_NUMBER_INT ) !== FALSE ) && ( \filter_var ( $argument, FILTER_VALIDATE_INT ) !== FALSE ) ) {
         
         $validatedType = $argument;
+        
       } else {
         
         throw new LongException ();
@@ -544,6 +577,7 @@ class Inspector {
       if ( \is_object ( $argument ) ) {
         
         $validatedType = $argument;
+        
       } else {
         
         throw new ObjectException ();
@@ -553,6 +587,7 @@ class Inspector {
       if ( \is_​real ( $argument ) && ( \filter_var ( $argument, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION | FILTER_FLAG_ALLOW_THOUSAND | FILTER_FLAG_ALLOW_SCIENTIFIC ) !== FALSE ) && ( \filter_var ( $argument, FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_THOUSAND ) !== FALSE ) ) {
         
         $validatedType = $argument;
+        
       } else {
         
         throw new RealException ();
@@ -567,7 +602,14 @@ class Inspector {
       
       if ( \is_object ( $argument ) ) {
         
-        $validatedType = $argument;
+        if ( $argument instanceof $auxMeta ) {
+          
+          $validatedType = $argument;
+
+        } else {
+          
+          throw new ObjectException ();
+        }
       } else {
         
         throw new ObjectException ();

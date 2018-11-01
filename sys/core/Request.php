@@ -55,7 +55,7 @@ class Request extends BaseClass {
    *
    * @var string
    */
-  public $module = "";
+  private $module = "";
   
   /**
    * Controlador a ejecutar según la solicitud al servidor.
@@ -64,7 +64,7 @@ class Request extends BaseClass {
    *
    * @var string
    */
-  public $controller = "";
+  private $controller = "";
   
   /**
    * Acción a ejecutar según la solicitud al servidor.
@@ -73,7 +73,7 @@ class Request extends BaseClass {
    *
    * @var string
    */
-  public $action = "";
+  private $action = "";
   
   /**
    * Método a ejecutar según la solicitud al servidor.
@@ -82,7 +82,7 @@ class Request extends BaseClass {
    *
    * @var string
    */
-  public $method = "";
+  private $method = "";
   
   /**
    * Parámetros a asignar al método solicitado según la solicitud al servidor. 
@@ -91,7 +91,7 @@ class Request extends BaseClass {
    *
    * @var string
    */
-  public $params = "";
+  private $params = "";
   
   /**
    * Url solicitante.
@@ -100,7 +100,7 @@ class Request extends BaseClass {
    *
    * @var Url
    */
-  public $url = "";
+  private $url = "";
 
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
@@ -112,8 +112,9 @@ class Request extends BaseClass {
   public function __construct ( array $options = array () ) {
 
     parent::__construct ( $options );
-    \var_dump ( $_SERVER );
-    $this->agent = RequestUtils::server ( "HTTP_USER_AGENT", "Curl/PHP " . PHP_VERSION );
+    $url = ( ( isset ( $_SERVER [ 'HTTPS' ] ) && ( $_SERVER [ 'HTTPS' ] === 'on' ) ) ? "https" : "http" ) . "://" . $_SERVER [ "HTTP_HOST" ] . $_SERVER [ "REQUEST_URI" ];
+    $this->url = new Url ( $url );
+    //$this->agent = RequestUtils::server ( "HTTP_USER_AGENT", "Curl/PHP " . PHP_VERSION );
   }
   
   public function get () {
@@ -131,9 +132,20 @@ class Request extends BaseClass {
     
   }
   
-  public function getPost () {
+  public function getPost ( string $post = "" ) {
     
-    
+    if ( $post == "" ) {
+      
+      return $_POST;
+      
+    } elseif ( $_POST [ $post ] ) {
+      
+      return $_POST [ $post ];
+      
+    } else {
+      
+      return "";
+    }
   }
   
   public function getQuery () {
@@ -144,6 +156,16 @@ class Request extends BaseClass {
   public function getRequest () {
     
     
+  }
+  
+  /**
+   * Determina si la solicitud es una solicitud DELETE.
+   *
+   * @return boolean
+   */
+  public function isDelete () {
+    
+    return RequestUtils::requestMethod ( Http::DELETE );
   }
 
   /**

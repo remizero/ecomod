@@ -122,7 +122,7 @@ class Url {
     $url = Url::validate ( $url );
     $parsedUrl = \parse_url ( $url );
     foreach ( $parsedUrl as $key => $value ) {
-      
+
       $this->$key = $value;
     }
   }
