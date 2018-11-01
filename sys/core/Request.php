@@ -49,6 +49,52 @@ class Request extends BaseClass {
   //public $ = "";
   
   /**
+   * Módulo 
+   *
+   * @readwrite
+   *
+   * @var string
+   */
+  public $module = "";
+  
+  /**
+   * Controlador a ejecutar según la solicitud al servidor.
+   *
+   * @readwrite
+   *
+   * @var string
+   */
+  public $controller = "";
+  
+  /**
+   * Acción a ejecutar según la solicitud al servidor.
+   *
+   * @readwrite
+   *
+   * @var string
+   */
+  public $action = "";
+  
+  /**
+   * Método a ejecutar según la solicitud al servidor.
+   *
+   * @readwrite
+   *
+   * @var string
+   */
+  public $method = "";
+  
+  /**
+   * Parámetros a asignar al método solicitado según la solicitud al servidor. 
+   *
+   * @readwrite
+   *
+   * @var string
+   */
+  public $params = "";
+  
+  /**
+   * Url solicitante.
    *
    * @readwrite
    *
@@ -66,7 +112,38 @@ class Request extends BaseClass {
   public function __construct ( array $options = array () ) {
 
     parent::__construct ( $options );
+    \var_dump ( $_SERVER );
     $this->agent = RequestUtils::server ( "HTTP_USER_AGENT", "Curl/PHP " . PHP_VERSION );
+  }
+  
+  public function get () {
+    
+    
+  }
+  
+  public function getCookie () {
+    
+    
+  }
+  
+  public function getFiles () {
+    
+    
+  }
+  
+  public function getPost () {
+    
+    
+  }
+  
+  public function getQuery () {
+    
+    
+  }
+  
+  public function getRequest () {
+    
+    
   }
 
   /**

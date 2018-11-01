@@ -1,0 +1,8 @@
+RewriteEngine on
+# Redireccionar todas las url a index
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]
+# indicar que se detalle la url como parámetro para el index.php, 
+# así poder obtener el query string y saber desde el index.php hacia donde ir.
+# RewriteRule ^(.*)$ index.php?q=$1 [L,QSA

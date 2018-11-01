@@ -6,4 +6,24 @@ http://www.danielmayor.com/temporizador-en-php-calcular-cuanto-tiempo-tarda-en-c
 Para el manejo de errores y excepciones
 http://php.net/manual/es/class.exception.php
 http://php.net/manual/es/class.errorexception.php
+
+Para internacionalización
+http://www.ribosomatic.com/articulos/sitio-web-en-multiples-idiomas-con-php/
+https://www.clubdelphi.com/foros/showthread.php?t=38993
+https://www.ibm.com/developerworks/xml/library/x-ajaxxml8/index.html
+http://www.ribosomatic.com/articulos/chat-con-ajax-parte-1/
+http://www.ribosomatic.com/articulos/chat-prototype-un-chat-con-comet-y-protype/
+http://www.ribosomatic.com/articulos/litbox-ventanas-dentro-del-navegador/
+http://www.ribosomatic.com/articulos/ventanas-dentro-del-navegador/
+http://www.ribosomatic.com/articulos/busqueda-en-tiempo-real-con-livesearch/
+http://www.ribosomatic.com/articulos/sistema-de-encuesta-con-ajax/
+http://www.ribosomatic.com/articulos/consulta-de-datos-con-ajax-clases-en-php/
+http://www.webtaller.com/maletin/articulos/aprendiendo-entender-ajax.php
+https://www.w3schools.com/js/js_ajax_intro.asp
+https://desarrolloweb.com/articulos/explicando-codigo-pasar-get-post-mediante-ajax.html
+https://webplusplus.blogspot.com/2011/12/php-ajax.html
+http://www.caricatos.net/Ajax/index.php
+https://sentidoweb.com/2007/10/18/errores-al-desarrollar-con-ajax.php
+http://www.cristalab.com/tutoriales/introduccion-a-ajax-con-php-y-formularios-c165l/
+
  
