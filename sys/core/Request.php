@@ -191,7 +191,7 @@ class Request extends BaseClass {
   
   public function getRequest () {
     
-    
+    return $_REQUEST;
   }
   
   /**
