@@ -2,11 +2,11 @@
 namespace sys\core;
 
 use sys\core\abstracts\BaseClass;
-use sys\libs\common\StringUtils;
 use sys\libs\common\RequestUtils;
-use sys\libs\exceptions\ResponseException;
 use sys\core\http\Http;
 use sys\core\http\Url;
+use sys\core\http\Files;
+use sys\core\http\Cookies;
 
 /**
  * <strong>Request</strong>
@@ -49,13 +49,13 @@ class Request extends BaseClass {
   //public $ = "";
   
   /**
-   * Módulo 
+   * Acción a ejecutar según la solicitud al servidor.
    *
    * @readwrite
    *
    * @var string
    */
-  private $module = "";
+  private $action = "";
   
   /**
    * Controlador a ejecutar según la solicitud al servidor.
@@ -67,13 +67,22 @@ class Request extends BaseClass {
   private $controller = "";
   
   /**
-   * Acción a ejecutar según la solicitud al servidor.
+   * Instancia de la clase Cookies con las cookies a enviar al cliente.
    *
    * @readwrite
    *
-   * @var string
+   * @var Cookies
    */
-  private $action = "";
+  private $cookies = NULL;
+  
+  /**
+   * Instancia de la clase Files con los archivos a cargar al servidor.
+   *
+   * @readwrite
+   *
+   * @var Files
+   */
+  private $files = NULL;
   
   /**
    * Método a ejecutar según la solicitud al servidor.
@@ -83,6 +92,15 @@ class Request extends BaseClass {
    * @var string
    */
   private $method = "";
+  
+  /**
+   * Módulo
+   *
+   * @readwrite
+   *
+   * @var string
+   */
+  private $module = "";
   
   /**
    * Parámetros a asignar al método solicitado según la solicitud al servidor. 
@@ -115,6 +133,14 @@ class Request extends BaseClass {
     $url = ( ( isset ( $_SERVER [ 'HTTPS' ] ) && ( $_SERVER [ 'HTTPS' ] === 'on' ) ) ? "https" : "http" ) . "://" . $_SERVER [ "HTTP_HOST" ] . $_SERVER [ "REQUEST_URI" ];
     $this->url = new Url ( $url );
     //$this->agent = RequestUtils::server ( "HTTP_USER_AGENT", "Curl/PHP " . PHP_VERSION );
+    if ( !empty ( $_FILES ) ) {
+      
+      $this->files = new Files ();
+    }
+    if ( !empty ( $_COOKIE ) ) {
+      
+      $this->cookies = new Cookies ();
+    }
   }
   
   public function get () {
@@ -122,14 +148,24 @@ class Request extends BaseClass {
     
   }
   
+  /**
+   * Retorna una instancia con las cookies.
+   * 
+   * @return \sys\core\http\Cookies
+   */
   public function getCookie () {
     
-    
+    return $this->cookies;
   }
   
+  /**
+   * Retorna una instancia con los archivos a cargar en el servidor.
+   *
+   * @return \sys\core\http\Cookies
+   */
   public function getFiles () {
     
-    
+    return $this->files;
   }
   
   public function getPost ( string $post = "" ) {
@@ -150,7 +186,7 @@ class Request extends BaseClass {
   
   public function getQuery () {
     
-    
+    \var_dump ( $this->url->getQuery () );
   }
   
   public function getRequest () {
