@@ -62,6 +62,22 @@ abstract class ArrayUtils {
   }
   
   /**
+   *
+   * @param array $array
+   *
+   * @return NULL|string
+   */
+  public static function firstKey ( $array ) {
+    
+    if ( \sizeof ( $array ) == 0 ) {
+      
+      return null;
+    }
+    $keys = \array_keys ( $array );
+    return $keys [ 0 ];
+  }
+  
+  /**
    * 
    * @param array $array
    * @param array $return
@@ -99,6 +115,36 @@ abstract class ArrayUtils {
     $keys = \array_keys ( $array );
     return $array [ $keys [ \sizeof ( $keys ) - 1 ] ];
   }
+  
+  /**
+   *
+   * @param array $array
+   *
+   * @return NULL|string
+   */
+  public static function lastKey ( $array ) {
+    
+    if ( \sizeof ( $array ) == 0 ) {
+      
+      return null;
+    }
+    $keys = \array_keys ( $array );
+    return $keys [ \sizeof ( $keys ) - 1 ];
+  }
+  
+  public static function uploadArray ( array $array ) {
+
+    $result = array ();
+    foreach ( $array as $key1 => $value1 ) {
+      
+      $indexFile = 0;
+      foreach ( $value1 as $key2 => $value2 ) {
+        
+        $result [ "file" . $indexFile++ ] [ $key1 ] = $value2;
+      }
+    }
+    return $result;
+  } 
   
   /**
    * Metodo que permite convertir un array a string para ser guardado en un

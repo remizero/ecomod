@@ -65,9 +65,9 @@ class Cookies {
    * @param mixed $cookieValue Valor de la cookie.
    * @param int $cookieExpire Tiempo de duración de la cookie.
    * 
-   * @return void
+   * @return \sys\core\http\Cookies
    */
-  public function add ( string $cookieName, $cookieValue = NULL, int $cookieExpire = -1 ) {
+  public function add ( $cookieName, $cookieValue = NULL, int $cookieExpire = -1 ) {
     
     if ( \is_string ( $cookieName ) ) {
       
@@ -83,6 +83,7 @@ class Cookies {
         $this->cookies [ $cookieName->getName () ] = $cookieName;
       }
     }
+    return $this;
   }
   
   /**

@@ -15,6 +15,7 @@ new ErrorLog ();
 var_dump ( $_REQUEST );
 var_dump ( $_SERVER );
 var_dump ( $_ENV );
+var_dump ( $_FILES );
 //phpinfo ();
 
 $request = new Request ();
@@ -25,5 +26,7 @@ var_dump ( '$request->isOption ' . $request->isOption () );
 var_dump ( '$request->isPost ' . $request->isPost () );
 var_dump ( '$request->isPut ' . $request->isPut () );
 var_dump ( '$request->isXmlHttpRequest ' . $request->isXmlHttpRequest () );
+
+$request->getQuery ();
 
 ?>
