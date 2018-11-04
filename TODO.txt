@@ -26,4 +26,7 @@ http://www.caricatos.net/Ajax/index.php
 https://sentidoweb.com/2007/10/18/errores-al-desarrollar-con-ajax.php
 http://www.cristalab.com/tutoriales/introduccion-a-ajax-con-php-y-formularios-c165l/
 
+ATAQUES A UN SITIO WEB
+https://xsser.03c8.net/xsser/XSS_for_fun_and_profit_SCG09_(spanish).pdf
+
  
