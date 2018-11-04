@@ -23,5 +23,18 @@ class Json {
 
     // TODO - Insert your code here
   }
+  
+  /**
+   * Metodo que permite validar si una cadena dada es de tipo Json.
+   * 
+   * @param string $json Cadena Json a evaluar.
+   * 
+   * @return boolean
+   */
+  public static function isValid ( string $json ) {
+
+    \json_decode ( $json );
+    return ( \json_last_error () === JSON_ERROR_NONE ); 
+  }
 }
 

@@ -79,6 +79,7 @@ class Ajax {
 }
 
 function isValidJson ( json ) {
+<<<<<<< HEAD
   
   // https://es.stackoverflow.com/questions/133325/validar-un-json-e-imprimirlo-formateado
   try {
@@ -100,6 +101,29 @@ function isValidJson ( json ) {
     }*/
   }
   return true;
+=======
+	
+  // https://es.stackoverflow.com/questions/133325/validar-un-json-e-imprimirlo-formateado
+	try {
+	  
+    objJson = JSON.parse ( json );
+    //console.log ( 'Sintaxis Correcta' );
+    
+	}	catch ( error ) {
+	  
+	  return false;
+    /*if ( error instanceof SyntaxError ) {
+      
+      let mensaje = error.message;
+      console.log ( 'ERROR EN LA SINTAXIS:', mensaje );
+        
+    } else {
+      
+      throw error; // si es otro error, que lo siga lanzando
+    }*/
+	}
+	return true;
+>>>>>>> branch 'master' of https://github.com/remizero/ecomod.git
 }
 
 

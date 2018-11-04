@@ -259,7 +259,7 @@ class Request extends BaseClass {
    * 
    * @return boolean
    */
-  public function isXmlHttpRequest () {
+  public static function isXmlHttpRequest () {
     
     return !empty ( $_SERVER [ 'HTTP_X_REQUESTED_WITH' ] ) && \strtolower ( $_SERVER [ 'HTTP_X_REQUESTED_WITH' ] ) == 'xmlhttprequest';
   }
