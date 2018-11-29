@@ -26,8 +26,8 @@
  * ( etiqueta, valor ) 
  * 
  * 
- * PROPIEDADES DEL OBJETO XMLHttpRequest
- * Propiedad            Descripción
+ * EVENTOS DEL OBJETO XMLHttpRequest
+ * Evento               Descripción
  * onreadystatechange   Evento que se dispara con cada cambio de estado.
  * onabort              (Level 2) Evento que se dispara al abortar la operación.
  * onload               (Level 2) Evento que se dispara al completar la carga.
@@ -60,6 +60,31 @@ class Ajax {
 
       this.xmlhttp = new XMLHttpRequest ();
     }
+  }
+  
+  sendGet ( url ) {
+    
+    //var nuevoajax = this.objeto;
+    //Lugar de la página donde se inserta el objeto.
+    var idajax = id;
+    //preparar el envio: método open
+    this.xmlhttp.open ( "GET", url, true );
+    //Devolver el archivo cuando éste se haya cargado
+    this.xmlhttp.onreadystatechange = function () {
+      
+      if ( this.xmlhttp.readyState == 4 && this.xmlhttp.status == 200 ) {
+        
+        var textoAjax = this.xmlhttp.responseText;
+        //document.getElementById ( idajax ).innerHTML = textoAjax;
+        alert ( textoAjax );
+      }
+    }
+    this.xmlhttp.send (); //enviar
+  }
+  
+  sendPost () {
+    
+    
   }
   
   // PARA UTILIZAR

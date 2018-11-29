@@ -200,6 +200,15 @@ class Request extends BaseClass {
   }
   
   /**
+   * 
+   * @return \sys\core\http\Url
+   */
+  public function getUrl () {
+    
+    return $this->url;
+  }
+  
+  /**
    * Determina si la solicitud es una solicitud DELETE.
    *
    * @return boolean

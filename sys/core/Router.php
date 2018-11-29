@@ -87,7 +87,7 @@ class Router extends BaseClass {
    * 
    * @return \sys\core\Router
    */
-  public function add ( string $route ) {
+  /*public function add ( string $route ) {
 
     $this->routes [] = $route;
     return $this;
@@ -252,5 +252,5 @@ class Router extends BaseClass {
       $url,$controller,$action,$parameters
     ) );
     $this->pass ( $controller, $action, $parameters );
-  }
+  }*/
 }

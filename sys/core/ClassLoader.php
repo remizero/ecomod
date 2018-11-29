@@ -72,6 +72,8 @@ class ClassLoader {
    * @var boolean
    */
   private $useIncludePath = false;
+  
+  private $rootPath = "";
 
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
@@ -85,6 +87,8 @@ class ClassLoader {
    */
   public function __construct ( bool $debug = false ) {
 
+    $this->rootPath = \substr ( \dirname ( __FILE__ ), 0, -9 );
+    //echo $this->rootPath;
     $this->debug = $debug;
     if ( $this->debug ) {
       
@@ -156,10 +160,11 @@ class ClassLoader {
    */
   public function findFile ( string $class ) {
 
-    if ( false !== $pos = strrpos ( $class, '\\' ) ) { // namespaced class name
+    if ( false !== $pos = \strrpos ( $class, '\\' ) ) { // namespaced class name
       
       $classPath = \str_replace ( '\\', DIRECTORY_SEPARATOR, \substr ( $class, 0, $pos ) ) . DIRECTORY_SEPARATOR;
       $className = \substr ( $class, $pos + 1 );
+
     } else { // PEAR-like class name
       
       $classPath = null;
@@ -171,25 +176,33 @@ class ClassLoader {
       if ( $class === \strstr ( $class, $prefix ) ) {
         
         foreach ( $dirs as $dir ) {
-          
+
           if ( \file_exists ( $dir . DIRECTORY_SEPARATOR . $classPath ) ) {
-            
+
+            echo $dir;
             return $dir . DIRECTORY_SEPARATOR . $classPath;
           }
         }
       }
     }
     foreach ( $this->fallbackDirs as $dir ) {
-      
+
       if ( \file_exists ( $dir . DIRECTORY_SEPARATOR . $classPath ) ) {
-        
+
+        echo $dir;
         return $dir . DIRECTORY_SEPARATOR . $classPath;
       }
     }
+    // Previene errores al realizar autocarga desde peticioones ajax
+    if ( \defined ( "AJAXREQUEST" ) && AJAXREQUEST ) {
+      
+      $classPath = SITEROOT . $classPath;
+    }
+    
     // if ( $this->useIncludePath && $file = \stream_resolve_include_path (
     // $classPath ) ) {
     if ( $file = \stream_resolve_include_path ( $classPath ) ) {
-      
+
       return $file;
     }
   }
@@ -251,6 +264,8 @@ class ClassLoader {
     }
     if ( $file = $this->findFile ( $class ) ) {
       
+      //require_once $this->rootPath . DIRECTORY_SEPARATOR . $file;
+      //echo $file . "\n";
       require_once $file;
       if ( $this->debug ) {
         
@@ -293,7 +308,7 @@ class ClassLoader {
   public function register ( bool $prepend = false ) {
 
     \spl_autoload_register ( array ( 
-      $this,'loadClass' 
+      $this, 'loadClass' 
     ), true, $prepend );
   }
 
@@ -305,7 +320,7 @@ class ClassLoader {
   public function unregister () {
 
     \spl_autoload_unregister ( array ( 
-      $this,'loadClass' 
+      $this, 'loadClass' 
     ) );
   }
 }
