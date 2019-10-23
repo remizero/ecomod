@@ -121,6 +121,8 @@ abstract class RequestUtils {
    * @param string $key Indice de la variable request a solicitar.
    * @param string $default Valor por omisión en caso de no existir.
    *
+   * @deprecated
+   *
    * @return string
    */
   public static function request ( string $key, string $default = "") {

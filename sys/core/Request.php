@@ -103,18 +103,16 @@ class Request extends BaseClass {
     }
   }
 
-  public function getGet ( string $var = "") {
+  /**
+   * Permite obtener el valor de una variable.
+   *
+   * @param string $key Indice de la variable get a solicitar.
+   *
+   * @return string
+   */
+  public function getGet ( string $key ) {
 
-    if ( $var == "" ) {
-
-      return $_GET;
-    } elseif ( isset ( $_GET [ $var ] ) ) {
-
-      return $_GET [ $var ];
-    } else {
-
-      return "";
-    }
+    return RequestUtils::get ( $key );
   }
 
   /**
@@ -137,18 +135,16 @@ class Request extends BaseClass {
     return $this->files;
   }
 
-  public function getPost ( string $var = "") {
+  /**
+   * Permite obtener el valor de una variable.
+   *
+   * @param string $key Indice de la variable post a solicitar.
+   *
+   * @return string
+   */
+  public function getPost ( string $key ) {
 
-    if ( $var == "" ) {
-
-      return $_POST;
-    } elseif ( isset ( $_POST [ $var ] ) ) {
-
-      return $_POST [ $var ];
-    } else {
-
-      return "";
-    }
+    return RequestUtils::post ( $key );
   }
 
   public function getQuery () {
@@ -159,25 +155,20 @@ class Request extends BaseClass {
   /**
    * Permite obtener el valor de una variable.
    *
-   * @param string $var Indice a solicitar
+   * @param string $key Indice de la variable request a solicitar.
    *
-   * @return array|string
+   * @deprecated
+   *
+   * @return string
    */
-  public function getRequest ( string $var = "") {
+  public function getRequest ( string $key ) {
 
-    if ( $var == "" ) {
-
-      return $_REQUEST;
-    } elseif ( isset ( $_REQUEST [ $var ] ) ) {
-
-      return $_REQUEST [ $var ];
-    } else {
-
-      return "";
-    }
+    return RequestUtils::request ( $key );
   }
 
   /**
+   * Retorna la URL de la petición actual.
+   *
    * @return \sys\core\http\Url
    */
   public function getUrl () {

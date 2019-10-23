@@ -40,6 +40,8 @@ if ( $request->isPost () ) {
 
 if ( $request->isGet () ) {
 
+  var_dump ( $request->getGet ( "nombre" ) );
+  var_dump ( $request->getGet ( "email" ) );
   var_dump ( $request->getRequest ( "nombre" ) );
   var_dump ( $request->getRequest ( "email" ) );
 }

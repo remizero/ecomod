@@ -1,4 +1,5 @@
 <?php
+
 namespace sys\libs\common;
 
 use sys\libs\exceptions\CompileErrorException;
@@ -6,7 +7,6 @@ use sys\libs\exceptions\CompileWarningException;
 use sys\libs\exceptions\CoreErrorException;
 use sys\libs\exceptions\CoreWarningException;
 use sys\libs\exceptions\DeprecatedException;
-// use sys\libs\exceptions\Exception;
 use sys\libs\exceptions\ErrorException;
 use sys\libs\exceptions\NoticeException;
 use sys\libs\exceptions\ParseException;
@@ -51,7 +51,7 @@ use sys\libs\exceptions\WarningException;
  *       </ul>
  */
 class ErrorLog {
-  
+
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
    *
@@ -79,7 +79,7 @@ class ErrorLog {
    * @param string $file Archivo donde se genera el error.
    * @param string $line Línea donde se genera el error.
    * @param array $context Contexto donde se genera el error.
-   *       
+   *
    * @throws CompileErrorException
    * @throws CompileWarningException
    * @throws CoreWarningException
@@ -101,88 +101,88 @@ class ErrorLog {
   public function catchError ( int $code, string $error, string $file = NULL, string $line = NULL, array $context ) {
 
     switch ( $code ) {
-      
+
       case E_COMPILE_ERROR :
 
         \var_dump ( "CompileErrorException" );
         throw new CompileErrorException ( $code, $error, $file, $line );
-      
+
       case E_COMPILE_WARNING :
-        
+
         \var_dump ( "CompileWarningException" );
         throw new CompileWarningException ( $code, $error, $file, $line );
-      
+
       case E_CORE_ERROR :
-        
+
         \var_dump ( "CoreErrorException" );
         throw new CoreErrorException ( $code, $error, $file, $line );
-      
+
       case E_CORE_WARNING :
-        
+
         \var_dump ( "CoreWarningException" );
         throw new CoreWarningException ( $code, $error, $file, $line );
-      
+
       case E_DEPRECATED :
-        
+
         \var_dump ( "DeprecatedException" );
         throw new DeprecatedException ( $code, $error, $file, $line );
-      
+
       case E_ERROR :
-        
+
         \var_dump ( "ErrorException" );
         throw new ErrorException ( $code, $error, $file, $line );
-      
+
       case E_NOTICE :
-        
+
         \var_dump ( "NoticeException" );
         throw new NoticeException ( $code, $error, $file, $line );
-      
+
       case E_PARSE :
-        
+
         \var_dump ( "ParseException" );
         throw new ParseException ( $code, $error, $file, $line );
-      
+
       case E_RECOVERABLE_ERROR :
-        
+
         \var_dump ( "RecoverableErrorException" );
         throw new RecoverableErrorException ( $code, $error, $file, $line );
-      
+
       case E_STRICT :
-        
+
         \var_dump ( "StrictException" );
         throw new StrictException ( $code, $error, $file, $line );
-      
+
       case E_USER_DEPRECATED :
-        
+
         \var_dump ( "UserDeprecatedException" );
         throw new UserDeprecatedException ( $code, $error, $file, $line );
-      
+
       case E_USER_ERROR :
-        
+
         \var_dump ( "UserErrorException" );
         throw new UserErrorException ( $code, $error, $file, $line );
-      
+
       case E_USER_NOTICE :
-        
+
         \var_dump ( "UserNoticeException" );
         throw new UserNoticeException ( $code, $error, $file, $line );
-      
+
       case E_USER_WARNING :
-        
+
         \var_dump ( "UserWarningException" );
         throw new UserWarningException ( $code, $error, $file, $line );
-      
+
       case E_WARNING :
-        
+
         \var_dump ( "WarningException" );
         throw new WarningException ( $code, $error, $file, $line );
     }
   }
 
   /**
-   * Método que permite manejar las excepciones, guardar la traza de error en un 
+   * Método que permite manejar las excepciones, guardar la traza de error en un
    * archivo log, para su posterior depuración.
-   * 
+   *
    * @param \Exception $exception
    *
    * @return void
@@ -195,10 +195,16 @@ class ErrorLog {
     \fclose ( $filePointer );
   }
 
+  /**
+   * Método que permite validar si el log de errores ha alcanzado el límite de
+   * 1MB, para así generar un nuevo log de errores histórico con fecha y hora.
+   *
+   * @return void
+   */
   private static function validate () {
 
     if ( \filesize ( "public/errors/error.log" ) > 1000000 ) {
-      
+
       // http://ecapy.com/anadir-tu-usuario-de-linux-al-grupo-www-data/index.html
       // http://flexiblewebs.net/como-configurar-los-permisos-para-el-directorio-raiz-de-un-sitio-web/
       // https://www.boscolopez.com/anadir-usuario-al-grupo-www-data/
@@ -208,7 +214,7 @@ class ErrorLog {
   }
 
   /**
-   * Metodo que permite guardar la traza de error de una excepcion en un archivo
+   * Método que permite guardar la traza de error de una excepcion en un archivo
    * log, para su posterior depuracion.
    *
    * @param \Exception $exception
@@ -235,9 +241,8 @@ class ErrorLog {
     $headers = "From:" . $from;
     $respuesta = \mail ( $to, $subject, $message, $headers );
     if ( $respuesta ) {
-      
-      echo "Si lo envio";
 
+      echo "Si lo envio";
     } else {
 
       echo "No lo envio";

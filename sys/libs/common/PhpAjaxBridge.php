@@ -22,10 +22,12 @@ if ( !empty ( $_SERVER [ 'HTTP_X_REQUESTED_WITH' ] ) && \strtolower ( $_SERVER [
   define ( "SITEROOT", \substr ( \dirname ( __FILE__ ), 0, -15 ) );
 
   require_once SITEROOT . 'sys/core/ClassLoader.php';
+  require_once SITEROOT . 'sys/core/Request.php';
 
   $classloader = new sys\core\ClassLoader ();
   $classloader->register ();
 
+  $request = new sys\core\Request ();
   /**
    * Aquí se debe definir la estrategia para procesar la petición realizada vía
    * Ajax como por ejemplo, saber que tipo de cabeceras han de ser usadas.
@@ -89,7 +91,14 @@ if ( !empty ( $_SERVER [ 'HTTP_X_REQUESTED_WITH' ] ) && \strtolower ( $_SERVER [
   // echo $method [ 'oculto' ];
   // echo ${$method};
 
-  echo "Hi. What did you expect? ;P";
+  if ( $request->isPost () ) {
+
+    echo "Hi. What did you expect? The request is POST ;P";
+  } else {
+
+    echo "Hi. What did you expect? The request is GET ;P";
+  }
+
   // echo file_get_contents ( "PhpAjxBridge2.php" );
   // exit ();
 } else {

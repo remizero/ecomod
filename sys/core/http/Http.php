@@ -23,7 +23,7 @@ namespace sys\core\http;
  * @see .php
  * @todo <p>En futuras versiones estarán disponibles los métodos para dar soporte a:</p>
  *       <ul>
- *       <li>https://diego.com.es/rendimiento-en-php.</li>
+ *       <li>.</li>
  *       <li>.</li>
  *       <li>.</li>
  *       </ul>
