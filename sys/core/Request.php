@@ -1,12 +1,13 @@
 <?php
+
 namespace sys\core;
 
 use sys\core\abstracts\BaseClass;
-use sys\libs\common\RequestUtils;
+use sys\core\http\Cookies;
+use sys\core\http\Files;
 use sys\core\http\Http;
 use sys\core\http\Url;
-use sys\core\http\Files;
-use sys\core\http\Cookies;
+use sys\libs\common\RequestUtils;
 
 /**
  * <strong>Request</strong>
@@ -46,31 +47,12 @@ use sys\core\http\Cookies;
 class Request extends BaseClass {
 
   /**
-   *
    * @readwrite
    *
    * @var boolean
    */
-  //public $ = "";
-  
-  /**
-   * Acción a ejecutar según la solicitud al servidor.
-   *
-   * @readwrite
-   *
-   * @var string
-   */
-  private $action = "";
-  
-  /**
-   * Controlador a ejecutar según la solicitud al servidor.
-   *
-   * @readwrite
-   *
-   * @var string
-   */
-  private $controller = "";
-  
+  // public $ = "";
+
   /**
    * Instancia de la clase Cookies con las cookies a enviar al cliente.
    *
@@ -79,7 +61,7 @@ class Request extends BaseClass {
    * @var Cookies
    */
   private $cookies = NULL;
-  
+
   /**
    * Instancia de la clase Files con los archivos a cargar al servidor.
    *
@@ -88,34 +70,7 @@ class Request extends BaseClass {
    * @var Files
    */
   private $files = NULL;
-  
-  /**
-   * Método a ejecutar según la solicitud al servidor.
-   *
-   * @readwrite
-   *
-   * @var string
-   */
-  private $method = "";
-  
-  /**
-   * Módulo
-   *
-   * @readwrite
-   *
-   * @var string
-   */
-  private $module = "";
-  
-  /**
-   * Parámetros a asignar al método solicitado según la solicitud al servidor. 
-   *
-   * @readwrite
-   *
-   * @var string
-   */
-  private $params = "";
-  
+
   /**
    * Url solicitante.
    *
@@ -132,149 +87,181 @@ class Request extends BaseClass {
    *
    * @return void
    */
-  public function __construct ( array $options = array () ) {
+  public function __construct ( array $options = array ()) {
 
     parent::__construct ( $options );
     $url = ( ( isset ( $_SERVER [ 'HTTPS' ] ) && ( $_SERVER [ 'HTTPS' ] === 'on' ) ) ? "https" : "http" ) . "://" . $_SERVER [ "HTTP_HOST" ] . $_SERVER [ "REQUEST_URI" ];
     $this->url = new Url ( $url );
-    //$this->agent = RequestUtils::server ( "HTTP_USER_AGENT", "Curl/PHP " . PHP_VERSION );
+    // $this->agent = RequestUtils::server ( "HTTP_USER_AGENT", "Curl/PHP " . PHP_VERSION );
     if ( !empty ( $_FILES ) ) {
-      
+
       $this->files = new Files ();
     }
     if ( !empty ( $_COOKIE ) ) {
-      
+
       $this->cookies = new Cookies ();
     }
   }
-  
-  public function get () {
-    
-    
+
+  public function getGet ( string $var = "") {
+
+    if ( $var == "" ) {
+
+      return $_GET;
+    } elseif ( isset ( $_GET [ $var ] ) ) {
+
+      return $_GET [ $var ];
+    } else {
+
+      return "";
+    }
   }
-  
+
   /**
-   * Retorna una instancia con las cookies.
-   * 
+   * Retorna una instancia con las cookies creadas o almacenadas.
+   *
    * @return \sys\core\http\Cookies
    */
   public function getCookie () {
-    
+
     return $this->cookies;
   }
-  
+
   /**
    * Retorna una instancia con los archivos a cargar en el servidor.
    *
    * @return \sys\core\http\Cookies
    */
   public function getFiles () {
-    
+
     return $this->files;
   }
-  
-  public function getPost ( string $post = "" ) {
-    
-    if ( $post == "" ) {
-      
+
+  public function getPost ( string $var = "") {
+
+    if ( $var == "" ) {
+
       return $_POST;
-      
-    } elseif ( $_POST [ $post ] ) {
-      
-      return $_POST [ $post ];
-      
+    } elseif ( isset ( $_POST [ $var ] ) ) {
+
+      return $_POST [ $var ];
     } else {
-      
+
       return "";
     }
   }
-  
+
   public function getQuery () {
-    
+
     \var_dump ( $this->url->getQuery () );
   }
-  
-  public function getRequest () {
-    
-    return $_REQUEST;
-  }
-  
+
   /**
-   * 
+   * Permite obtener el valor de una variable.
+   *
+   * @param string $var Indice a solicitar
+   *
+   * @return array|string
+   */
+  public function getRequest ( string $var = "") {
+
+    if ( $var == "" ) {
+
+      return $_REQUEST;
+    } elseif ( isset ( $_REQUEST [ $var ] ) ) {
+
+      return $_REQUEST [ $var ];
+    } else {
+
+      return "";
+    }
+  }
+
+  /**
    * @return \sys\core\http\Url
    */
   public function getUrl () {
-    
+
     return $this->url;
   }
-  
+
   /**
-   * Determina si la solicitud es una solicitud DELETE.
+   * Determina si la solicitud es una solicitud de tipo DELETE.
    *
    * @return boolean
    */
   public function isDelete () {
-    
+
     return RequestUtils::requestMethod ( Http::DELETE );
   }
 
   /**
-   * Determina si la solicitud es una solicitud GET.
-   * 
+   * Determina si la solicitud es una solicitud de tipo GET.
+   *
    * @return boolean
    */
   public function isGet () {
-    
+
     return RequestUtils::requestMethod ( Http::GET );
   }
-  
+
   /**
-   * Determina si la solicitud es una solicitud HEAD.
-   * 
+   * Determina si la solicitud es una solicitud de tipo HEAD.
+   *
    * @return boolean
    */
   public function isHead () {
-    
+
     return RequestUtils::requestMethod ( Http::HEAD );
   }
-  
+
   /**
-   * Determina si la solicitud es una solicitud OPTION.
+   * Determina si la solicitud es una solicitud de tipo OPTION.
    *
    * @return boolean
    */
   public function isOption () {
-    
+
     return RequestUtils::requestMethod ( Http::OPTIONS );
   }
-  
+
   /**
-   * Determina si la solicitud es una solicitud POST.
-   * 
+   * Determina si la solicitud es una solicitud de tipo POST.
+   *
    * @return boolean
    */
   public function isPost () {
-    
+
     return RequestUtils::requestMethod ( Http::POST );
   }
-  
+
   /**
-   * Determina si la solicitud es una solicitud POST.
-   * 
+   * Determina si la solicitud es una solicitud de tipo PUT.
+   *
    * @return boolean
    */
   public function isPut () {
-    
+
     return RequestUtils::requestMethod ( Http::PUT );
   }
 
   /**
-   * Método que indica si una petición o solicitud se ha realizado vía AJAX o no.
-   * 
+   * Determina si la solicitud es una solicitud de tipo PUT.
+   *
+   * @return boolean
+   */
+  public function isTrace () {
+
+    return RequestUtils::requestMethod ( Http::TRACE );
+  }
+
+  /**
+   * Determina si la solicitud es una solicitud de tipo AJAX.
+   *
    * @return boolean
    */
   public static function isXmlHttpRequest () {
-    
+
     return !empty ( $_SERVER [ 'HTTP_X_REQUESTED_WITH' ] ) && \strtolower ( $_SERVER [ 'HTTP_X_REQUESTED_WITH' ] ) == 'xmlhttprequest';
   }
 }

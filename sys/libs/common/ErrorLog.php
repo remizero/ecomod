@@ -96,7 +96,7 @@ class ErrorLog {
    * @throws UserWarningException
    * @throws WarningException
    *
-   * @return boolean
+   * @return void
    */
   public function catchError ( int $code, string $error, string $file = NULL, string $line = NULL, array $context ) {
 
@@ -180,7 +180,9 @@ class ErrorLog {
   }
 
   /**
-   *
+   * Método que permite manejar las excepciones, guardar la traza de error en un 
+   * archivo log, para su posterior depuración.
+   * 
    * @param \Exception $exception
    *
    * @return void
@@ -235,8 +237,9 @@ class ErrorLog {
     if ( $respuesta ) {
       
       echo "Si lo envio";
+
     } else {
-      
+
       echo "No lo envio";
     }
   }

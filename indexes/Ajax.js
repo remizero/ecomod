@@ -1,10 +1,16 @@
+
+"use strict";
+
 /**
  * ATRIBUTOS DEL OBEJTO XMLHttpRequest 
  * Atributo       Descripción
  * readyState     Devuelve el estado del objeto como sigue: 
  *                0 = sin inicializar, 1 = abierto, 2 = cabeceras recibidas, 3 = cargando y 4 = completado.
+ * response		  Después de una solicitud exitosa, la propiedad de respuesta de xhr contendrá los datos solicitados como DOMString, ArrayBuffer, Blob o Document (dependiendo de lo que se configuró para responseType).
  * responseBody   (Level 2) Devuelve la respuesta como un array de bytes
  * responseText   Devuelve la respuesta como una cadena
+ * responseType	  Antes de enviar una solicitud, configure xhr.responseType en "text", "arraybuffer", "blob" o "document", según sus necesidades de datos. Tenga en cuenta que establecer xhr.responseType = '' (u omitir) predeterminará la respuesta a "texto".
+ * 				  '' (default)	Same as 'text', 'text'	String, 'arraybuffer'	ArrayBuffer, 'blob'	Blob, 'document'	Document, 'json'	Object
  * responseXML    Devuelve la respuesta como XML. Esta propiedad devuelve un objeto documento XML, que puede ser examinado usando las propiedades y métodos del árbol del Document Object Model.
  * status         Devuelve el estado como un número (p. ej. 404 para "Not Found" y 200 para "OK").
  * statusText     Devuelve el estado como una cadena (p. ej. "Not Found" o "OK").
@@ -12,8 +18,8 @@
  * 
  * MÉTODOS DEL OBJETO XMLHttpRequest
  * Método                   Descripción
- * abort ()                 Cancela la petición en curso getAllResponseHeaders () 
- *                          Devuelve el conjunto de cabeceras HTTP como una cadena.
+ * abort ()                 Cancela la petición en curso
+ * getAllResponseHeaders () Devuelve el conjunto de cabeceras HTTP como una cadena.
  * getResponseHeader        Devuelve el valor de la cabecera HTTP especificada. 
  * ( nombreCabecera ) 
  * open                     Especifica el método, URL y otros atributos opcionales de una petición.
@@ -24,6 +30,7 @@
  * send([datos])            Envía la petición
  * setRequestHeader         Añade un par etiqueta/valor a la cabecera HTTP a enviar.
  * ( etiqueta, valor ) 
+ * overrideMimeType(mime : String)
  * 
  * 
  * EVENTOS DEL OBJETO XMLHttpRequest
@@ -35,7 +42,18 @@
  * onprogress           (Level 2) Evento que se dispara periódicamente con información de estado.
  * 
  * 
- */
+ * PROPIEDADES DEL OBJETO XMLHttpRequest
+ * DONE : Number  readonly  value = 4
+ * HEADERS_RECEIVED : Number  readonly  value = 2
+ * LOADING : Number  readonly  value = 3
+ * OPENED : Number  readonly  value = 1
+ * UNSENT : Number  readonly  value = 0
+ * 
+ * 
+ * 
+ * HACER USO DE ESTAS IDEAS
+ * https://www.html5rocks.com/en/tutorials/file/xhr2/
+ *
 class Ajax extends XMLHttpRequest {
 
   constructor () {
@@ -61,7 +79,7 @@ class Ajax extends XMLHttpRequest {
     if ( !this.xhr && typeof XMLHttpRequest != 'undefined' ) {
 
       this.xhr = new XMLHttpRequest ();
-    }*/
+    }*
     
     //this.xhr = null;
     /*let xhr = null;
@@ -92,7 +110,11 @@ class Ajax extends XMLHttpRequest {
     if ( !this.xhr ) {
       
       console.log ( "El navegador no tiene soporte para realizar este tipo de solicitudes al servidor." );
-    }*/
+    }*
+    
+    
+    
+    
     this.addEventListener ( "onloadstart", this.onLoadStartEvent.bind ( this ), true );
     this.addEventListener ( "onprogress", this.onProgressEvent.bind ( this ), true );
     this.addEventListener ( "onabort", this.onAbortEvent.bind ( this ), true );
@@ -102,6 +124,8 @@ class Ajax extends XMLHttpRequest {
     this.addEventListener ( "onloadend", this.onLoadEndEvent.bind ( this ), true );
     
     //this.xhr.addEventListener ( "onreadystatechange", this.readyStateChange.bind ( this.readyStateChangeCallback ), true );
+      //this.addEventListener ( "onreadystatechange", this.readyStateChange.bind ( this.readyStateChangeCallback ), true );
+      this.addEventListener ( "onreadystatechange", this.readyStateChange.bind ( this.readyStateChangeCallback ) );
   }
 
   destroy () {
@@ -114,7 +138,7 @@ class Ajax extends XMLHttpRequest {
     this.removeEventListener ( "ontimeout", this.onTimeOutEvent.bind ( this ) );
     this.removeEventListener ( "onloadend", this.onLoadEndEvent.bind ( this ) );
     
-    //this.xhr.removeEventListener ( "onreadystatechange", this.readyStateChange.bind ( this.readyStateChangeCallback ) );
+    this.xhr.removeEventListener ( "onreadystatechange", this.readyStateChange.bind ( this.readyStateChangeCallback ) );
   }
   
   send ( method, event, url ) {
@@ -123,8 +147,8 @@ class Ajax extends XMLHttpRequest {
     this.open ( method, url, true );
     this.setRequestHeader ( 'X-Requested-With', 'XMLHttpRequest');
     //this.xhr.setRequestHeader ( "Content-Type", "application/x-www-form-urlencoded" );
-    //this.xhr.setRequestHeader ( "Content-Type", "multipart/form-data" );
-    this.setRequestHeader ( "Content-Type", "text/plain" );
+    this.setRequestHeader ( "Content-Type", "multipart/form-data" );
+    //this.setRequestHeader ( "Content-Type", "text/plain" );
     //this.xhr.onreadystatechange = this.readyStateChangeCallback ( this.xhr.readyState );
 
     
@@ -141,6 +165,8 @@ class Ajax extends XMLHttpRequest {
     //this.xhr.onload = this.onLoadEvent ();
     //this.xhr.ontimeout = this.onTimeOutEvent ();
     //this.xhr.onloadend = this.onLoadEndEvent ();
+    
+    
   }
   
   readyStateChange ( callback ) {
@@ -240,6 +266,12 @@ function sendRequest () {
   
   let ajax = new Ajax ();
   ajax.send ( "POST", null, "http://localhost/ecomod/sys/libs/common/PhpAjaxBridge.php" );
+  
+  if((ajax.status>= 200 && ajax.status<300) || ajax.status === 304){
+	  alert(ajax.responseText);
+	}else{
+	  alert("Some problem "+ ajax.status);
+	}
 }
 
 /*class Ajax {
@@ -558,7 +590,78 @@ if ( mi_ajax.readyState == 3 ) {
       document.getElementById ( "responsephp" ).innerHTML = textoAjax;
     }
   };
+}
+
+
+
+
+// 1. create a new XMLHttpRequest object -- an object like any other!
+var myRequest = new XMLHttpRequest();
+
+
+// 2. open the request and pass the HTTP method name and the resource as parameters
+myRequest.open ( 'GET', 'http://localhost/ecomod/sys/libs/common/PhpAjaxBridge.php?title=apocalypse', true );
+
+myRequest.setRequestHeader ( 'X-Requested-With', 'XMLHttpRequest');
+// 3. write a function that runs anytime the state of the AJAX request changes
+myRequest.onreadystatechange = function () { 
+    // 4. check if the request has a readyState of 4, which indicates the server has responded (complete)
+    if ( myRequest.readyState === 4 ) {
+        // 5. insert the text sent by the server into the HTML of the 'ajax-content'
+        document.getElementById ( 'responsephp' ).innerHTML = myRequest.responseText;
+    }
+};
+
+function sendRequest () {
+
+    myRequest.send ();
+    //document.getElementById ( 'responsephp' ).style.display = 'none';
 }*/
+
+/**
+ * MÉTODOS DEL OBJETO XMLHttpRequest
+ * Método                   Descripción
+ * abort ()                 Cancela la petición en curso
+ * getAllResponseHeaders () Devuelve el conjunto de cabeceras HTTP como una cadena.
+ * getResponseHeader        Devuelve el valor de la cabecera HTTP especificada. 
+ * ( nombreCabecera ) 
+ * open                     Especifica el método, URL y otros atributos opcionales de una petición.
+ * ( método, URL [,         El parámetro de método puede tomar los valores "GET", "POST", o "PUT" ("GET" y "POST" son dos formas para solicitar datos, con "GET" los parámetros de la petición se codifican en la URL y con "POST" en las cabeceras de HTTP). 
+ * asíncrono [,             El parámetro URL puede ser una URL relativa o completa. 
+ * nombreUsuario [,         El parámetro asíncrono especifica si la petición será gestionada asíncronamente o no. Un valor true indica que el proceso del script continúa después del método send(), sin esperar a la respuesta, y false indica que el script se detiene hasta que se complete la operación, tras lo cual se reanuda la ejecución.
+ * clave ] ] ] )            En el caso asíncrono se especifican manejadores de eventos, que se ejecutan ante cada cambio de estado y permiten tratar los resultados de la consulta una vez que se reciben, o bien gestionar eventuales errores.
+ * send([datos])            Envía la petición
+ * setRequestHeader         Añade un par etiqueta/valor a la cabecera HTTP a enviar.
+ * ( etiqueta, valor ) 
+ * overrideMimeType(mime : String)
+ */
+
+class Ajax extends XMLHttpRequest {
+	
+	constructor () {
+
+		super ();
+	}
+	
+	send ( method, event, url ) {
+
+    //preparar el envio: método open
+    this.open ( method, url, true );
+    this.setRequestHeader ( 'X-Requested-With', 'XMLHttpRequest');
+    //this.xhr.setRequestHeader ( "Content-Type", "application/x-www-form-urlencoded" );
+    this.setRequestHeader ( "Content-Type", "multipart/form-data" );
+    //this.setRequestHeader ( "Content-Type", "text/plain" );
+    //this.xhr.onreadystatechange = this.readyStateChangeCallback ( this.xhr.readyState );
+
+    
+    super.send ( event ); //enviar
+    
+	}
+}
+
+
+
+
 
 
 

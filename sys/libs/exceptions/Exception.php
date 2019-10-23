@@ -25,7 +25,7 @@ namespace sys\libs\exceptions;
  * @todo <p>En futuras versiones estarán disponibles los métodos para dar
  *       soporte a:</p>
  *       <ul>
- *       <li>.</li>
+ *       <li>Capturar errores fatales.</li>
  *       <li>.</li>
  *       <li>.</li>
  *       </ul>
@@ -33,7 +33,7 @@ namespace sys\libs\exceptions;
 class Exception extends \Exception {
   
   /**
-   * Permite identificar si la excepcion es de tipo error.
+   * Permite identificar si la excepción es de tipo error.
    * 
    * @var boolean
    */
@@ -61,10 +61,10 @@ class Exception extends \Exception {
   }
 
   /**
-   * Metodo recursivo que permite reconstruir la traza de excepcion hasta el
-   * ultimo nivel de profundidad del error o excepcion.
+   * Método recursivo que permite reconstruir la traza de excepción hasta el
+   * último nivel de profundidad del error o excepción.
    *
-   * @param array $trace Traza del error o de la excepcion a reconstruir.
+   * @param array $trace Traza del error o de la excepción a reconstruir.
    *       
    * @return string
    */
@@ -81,18 +81,18 @@ class Exception extends \Exception {
   }
   
   /**
-   * Metodo recursivo que permite reconstruir la traza de excepcion hasta el
-   * ultimo nivel de profundidad del error.
+   * Método recursivo que permite reconstruir la traza de excepción hasta el
+   * último nivel de profundidad del error.
    *
    * @param array $trace Traza del error a reconstruir.
-   * @param array $args Argumentos de los metodos involucrados en la traza del
-   *        error. Para ser usados internamente por el metodo.
+   * @param array $args Argumentos de los métodos involucrados en la traza del
+   *        error. Para ser usados internamente por el método.
    * @param int $traceLevel Define los niveles de profundidad del error.
    * @param bool $intoTrace
    *
    * @return string
    */
-  private function parseTraceError ( array $trace, array $args = array (), int $traceLevel = 0, bool $intoTrace = FALSE ) {
+  private function parseTraceError ( array $trace, array $args = array (), int $traceLevel = 0, bool $intoTrace = FALSE, bool $argsToken = FALSE ) {
 
     $parsedTrace = "";
     foreach ( $trace as $key => $value ) {
@@ -101,34 +101,75 @@ class Exception extends \Exception {
 
         if ( ( string ) $key == 'args' ) {
 
+          $argsToken = !$argsToken;
           if ( \array_key_exists ( "function", $args ) && \array_key_exists ( "class", $args ) && \array_key_exists ( "type", $args ) ) {
 
             $parsedTrace .= $args [ "class" ] . $args [ "type" ] . $args [ "function" ];
+            $parsedTrace .= " ( ";
 
           } elseif ( \array_key_exists ( "function", $args ) ) {
 
             $parsedTrace .= $args [ "function" ];
+            $parsedTrace .= " ( \"";
             
           } else {
 
             $parsedTrace .= "***";
+            $parsedTrace .= " ( \"";
           }
-          $parsedTrace .= " ( \" ";
-          $parsedTrace .= $this->parseTraceError ( $value );
+          $parsedTrace .= $this->parseTraceError ( $value, $args, $traceLevel, $intoTrace, $argsToken );
           $parsedTrace = \substr ( $parsedTrace, 0, -1 );
-          $parsedTrace .= "\" ) ";
-          
+          if ( \array_key_exists ( "function", $args ) && \array_key_exists ( "class", $args ) && \array_key_exists ( "type", $args ) ) {
+            
+            $parsedTrace .= " ) ";
+            
+          } elseif ( \array_key_exists ( "function", $args ) ) {
+            
+            $parsedTrace = \substr ( $parsedTrace, 0, -1 );
+            $parsedTrace .= "\" ) ";
+            
+          } else {
+            
+            $parsedTrace = \substr ( $parsedTrace, 0, -1 );
+            $parsedTrace .= "\" ) ";
+          }
         } else {
 
           if ( ( string ) $key == 'trace' ) {
 
             $parsedTrace .= "TRACE ";
+            $auxParsedTrace = $this->parseTraceError ( $value, $args, $traceLevel++, $intoTrace, $argsToken );
             
-          } else {
+          } elseif ( \is_object ( $value ) ) {
 
-            $parsedTrace .= "#$traceLevel ";
+          } else {
+            
+            switch ( ( string ) $key ) {
+              
+              case "_GET" :
+              case "_POST" :
+              case "_COOKIE" :
+              case "_FILES" :
+              case "_ENV" :
+              case "_REQUEST" :
+              case "_SERVER" :
+
+                break;
+                
+              default :
+
+                if ( $argsToken && \is_array ( $value ) ) {
+                  
+                  $argsToken = !$argsToken;
+                  $parsedTrace = \substr ( $parsedTrace, 0, -1 );
+                  
+                } else {
+                  
+                  $parsedTrace .= "#$traceLevel ";
+                  $auxParsedTrace = $this->parseTraceError ( $value, $args, $traceLevel++, $intoTrace, $argsToken );
+                }
+            }
           }
-          $auxParsedTrace = $this->parseTraceError ( $value, $args, $traceLevel++ );
           if ( !empty ( $auxParsedTrace ) ) {
 
             $parsedTrace .= $auxParsedTrace;
@@ -145,7 +186,7 @@ class Exception extends \Exception {
             
           case "line" :
 
-            $parsedTrace .= $value . "\"): ";
+            $parsedTrace .= $value . "): ";
             break;
             
           case "function" :
@@ -235,14 +276,14 @@ class Exception extends \Exception {
   }
   
   /**
-   * Metodo recursivo que permite reconstruir la traza de excepcion hasta el
-   * ultimo nivel de profundidad de la excepcion.
+   * Método recursivo que permite reconstruir la traza de excepción hasta el
+   * último nivel de profundidad de la excepción.
    *
-   * @param array $trace Traza de la excepcion a reconstruir.
-   * @param array $args Argumentos de los metodos involucrados en la traza de
-   *        excepcion. Para ser usados internamente por el metodo.
+   * @param array $trace Traza de la excepción a reconstruir.
+   * @param array $args Argumentos de los métodos involucrados en la traza de
+   *        excepción. Para ser usados internamente por el método.
    * @param number $traceLevel Define los niveles de profundidad de la
-   *        excepcion.
+   *        excepción.
    *
    * @return string
    */
@@ -329,7 +370,7 @@ class Exception extends \Exception {
   }
 
   /**
-   * Metodo que permite mostrar una cadena de texto de la excepcion generada
+   * Método que permite mostrar una cadena de texto de la excepción generada
    * entendible para humanos.
    *
    * @return string

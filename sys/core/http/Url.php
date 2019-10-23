@@ -215,6 +215,7 @@ class Url {
    */
   public function queryStringToQueryArray () {
     
+    $queryArray = array ();
     \parse_str ( $this->query, $queryArray );
     return $queryArray;
   }

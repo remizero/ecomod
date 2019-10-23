@@ -1,0 +1,6 @@
+https://www.rephp.com/permita-el-acceso-al-archivo-php-solo-a-traves-de-ajax-en-el-servidor-local.html
+https://www.rephp.com/como-verificar-si-la-solicitud-es-una-solicitud-de-ajax-con-php.html
+https://phpgr.blogspot.com/search/label/htaccess
+https://developer.mozilla.org/es/docs/Web/Guide/AJAX
+http://www.uco.es/~lr1maalm/manualdeajax.pdf (MANUAL DE AJAX)
+https://cybmeta.com/ajax-con-json-y-php-con-javascript-puro
