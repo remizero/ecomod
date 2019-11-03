@@ -4,3 +4,26 @@ https://phpgr.blogspot.com/search/label/htaccess
 https://developer.mozilla.org/es/docs/Web/Guide/AJAX
 http://www.uco.es/~lr1maalm/manualdeajax.pdf (MANUAL DE AJAX)
 https://cybmeta.com/ajax-con-json-y-php-con-javascript-puro
+
+PARA CARGAR Y DESCARGAR ARCHIVOS VÍA AJAX
+https://msdn.microsoft.com/es-es/silverlight/hh673569(v=vs.100)
+https://www.rephp.com/subir-barra-de-progreso-en-php.html
+https://evilnapsis.com/2019/05/17/mostrar-el-progreso-al-subir-imagenes-con-ajax-y-php/
+ 
+
+PARA EL OBJETO AJAX
+https://codeday.me/es/qa/20181212/995.html
+http://www.codexexempla.org/curso/curso_4_3_e.php
+https://www.aprenderaprogramar.com/index.php?option=com_content&view=article&id=841:addeventlistener-javascript-remove-attachevent-this-eventos-propagacion-bubbling-captura-cu01158e&catid=78&Itemid=206
+https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener
+http://www.caricatos.net/DOM/ajax.php
+https://geeks.ms/jalarcon/2006/04/07/ajax-v-posibles-problemas-ii-gestin-de-errores-y-llamadas-que-no-vuelven/
+https://manuais.iessanclemente.net/index.php/Estados_en_el_ciclo_"solicitud/respuesta"_de_http
+http://help.dottoro.com/ljjtjrxk.php(MUY BUENO)
+http://www.peachpit.com/articles/article.aspx?p=443580&seqNum=2
+
+https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+
+
+PRECARGA DE PÁGINA Y MEJORA DE RENDIMIENTO
+https://geeks.ms/jalarcon/2016/06/14/precarga-y-renderizado-de-paginas-y-recursos-para-mejorar-el-rendimiento-de-navegacion/

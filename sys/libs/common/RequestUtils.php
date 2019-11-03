@@ -138,13 +138,23 @@ abstract class RequestUtils {
   }
 
   /**
+   * Permite obtener cual es el método de la petición Request.
+   *
+   * @return string
+   */
+  public static function requestMethod () {
+
+    return ( $_SERVER [ "REQUEST_METHOD" ] );
+  }
+
+  /**
    * Permite comparar cual es el método solicitado a traves de la petición Request.
    *
    * @param string $method Nombre del método a comparar.
    *
    * @return boolean
    */
-  public static function requestMethod ( string $method ) {
+  public static function isRequestMethod ( string $method ) {
 
     return ( $_SERVER [ "REQUEST_METHOD" ] == $method );
   }

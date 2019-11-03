@@ -167,6 +167,16 @@ class Request extends BaseClass {
   }
 
   /**
+   * Permite obtener el valor de la variable REQUEST_METHOD.
+   *
+   * @return string
+   */
+  public function getRequestMethod () {
+
+    return RequestUtils::server ( 'REQUEST_METHOD' );
+  }
+
+  /**
    * Retorna la URL de la petición actual.
    *
    * @return \sys\core\http\Url
@@ -183,7 +193,7 @@ class Request extends BaseClass {
    */
   public function isDelete () {
 
-    return RequestUtils::requestMethod ( Http::DELETE );
+    return RequestUtils::isRequestMethod ( Http::DELETE );
   }
 
   /**
@@ -193,7 +203,7 @@ class Request extends BaseClass {
    */
   public function isGet () {
 
-    return RequestUtils::requestMethod ( Http::GET );
+    return RequestUtils::isRequestMethod ( Http::GET );
   }
 
   /**
@@ -203,7 +213,7 @@ class Request extends BaseClass {
    */
   public function isHead () {
 
-    return RequestUtils::requestMethod ( Http::HEAD );
+    return RequestUtils::isRequestMethod ( Http::HEAD );
   }
 
   /**
@@ -213,7 +223,7 @@ class Request extends BaseClass {
    */
   public function isOption () {
 
-    return RequestUtils::requestMethod ( Http::OPTIONS );
+    return RequestUtils::isRequestMethod ( Http::OPTIONS );
   }
 
   /**
@@ -223,7 +233,7 @@ class Request extends BaseClass {
    */
   public function isPost () {
 
-    return RequestUtils::requestMethod ( Http::POST );
+    return RequestUtils::isRequestMethod ( Http::POST );
   }
 
   /**
@@ -233,7 +243,7 @@ class Request extends BaseClass {
    */
   public function isPut () {
 
-    return RequestUtils::requestMethod ( Http::PUT );
+    return RequestUtils::isRequestMethod ( Http::PUT );
   }
 
   /**
@@ -243,7 +253,7 @@ class Request extends BaseClass {
    */
   public function isTrace () {
 
-    return RequestUtils::requestMethod ( Http::TRACE );
+    return RequestUtils::isRequestMethod ( Http::TRACE );
   }
 
   /**
@@ -251,8 +261,18 @@ class Request extends BaseClass {
    *
    * @return boolean
    */
-  public static function isXmlHttpRequest () {
+  public function isXmlHttpRequest () {
 
     return !empty ( $_SERVER [ 'HTTP_X_REQUESTED_WITH' ] ) && \strtolower ( $_SERVER [ 'HTTP_X_REQUESTED_WITH' ] ) == 'xmlhttprequest';
+  }
+
+  /**
+   * Permite obtener cual es el método de la petición Request.
+   *
+   * @return string
+   */
+  public function requestMethod () {
+
+    return RequestUtils::requestMethod ();
   }
 }

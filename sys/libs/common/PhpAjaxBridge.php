@@ -5,8 +5,6 @@
 
 // PARA CACHEAR PETICIONES AJAX
 // https://www.genbeta.com/desarrollo/cacheando-peticiones-ajax
-// echo $_POST [ 'request_type' ];
-// use sys\core\Request;
 
 /**
  * Siempre que utilice peticiones vía Ajax debe definir desde el código
@@ -14,20 +12,20 @@
  * setRequestHeader( etiqueta, valor ), de la forma
  * setRequestHeader ( 'X-Requested-With', 'XMLHttpRequest');
  */
-echo $_SERVER [ 'REQUEST_METHOD' ];
+use sys\core\Request;
+use sys\core\http\Http;
 
-if ( !empty ( $_SERVER [ 'HTTP_X_REQUESTED_WITH' ] ) && \strtolower ( $_SERVER [ 'HTTP_X_REQUESTED_WITH' ] ) == 'xmlhttprequest' ) {
+define ( "AJAXREQUEST", TRUE );
+define ( "SITEROOT", \substr ( \dirname ( __FILE__ ), 0, -15 ) );
 
-  define ( "AJAXREQUEST", TRUE );
-  define ( "SITEROOT", \substr ( \dirname ( __FILE__ ), 0, -15 ) );
+require_once SITEROOT . 'sys/core/ClassLoader.php';
 
-  require_once SITEROOT . 'sys/core/ClassLoader.php';
-  require_once SITEROOT . 'sys/core/Request.php';
+$classloader = new sys\core\ClassLoader ();
+$classloader->register ();
 
-  $classloader = new sys\core\ClassLoader ();
-  $classloader->register ();
+$request = new Request ();
 
-  $request = new sys\core\Request ();
+if ( $request->isXmlHttpRequest () ) {
   /**
    * Aquí se debe definir la estrategia para procesar la petición realizada vía
    * Ajax como por ejemplo, saber que tipo de cabeceras han de ser usadas.
@@ -70,40 +68,138 @@ if ( !empty ( $_SERVER [ 'HTTP_X_REQUESTED_WITH' ] ) && \strtolower ( $_SERVER [
    * 2-. Hacer entrega de la data recibida a los controladores respectivos.
    * 3-. Lanzar el controlador respuesta de acuerdo al tipo de content-type solicitado.
    * 4-. Enviar el resultado obtenido de acuerdo con el content-type solicitado.
+   * 4.1-. procesar la solicitud.
+   * 4.2-. Obtener el content-type.
+   * 4.3-. Ajustar la respuesta de la solicitud al content-type.
    */
 
-  // use sys\libs\common\RequestUtils;
-
-  /*
-   * require_once 'sys/core/Request.php';
-   * require_once 'sys/libs/common/RequestUtils.php';
-   */
-
-  // Request::isXmlHttpRequest ();
   // header ( 'Content-type: text/plain; charset=UTF-8' );
   // header('Content-type: application/json');
-  header ( "Cache-Control: no-cache, must-revalidate" );
+  // header ( "Cache-Control: no-cache, must-revalidate" );
   header ( 'Content-type: text/plain' );
   // header ( 'Content-type: text/html' );
 
-  $method = '$_' . $_SERVER [ 'REQUEST_METHOD' ];
+  switch ( $request->requestMethod () ) {
 
-  // echo $method [ 'oculto' ];
-  // echo ${$method};
+    case Http::DELETE :
 
-  if ( $request->isPost () ) {
+      /**
+       * Que hacer en este caso?
+       */
+      echo "Hi. What did you expect? The request is DELETE ;P";
+      break;
 
-    echo "Hi. What did you expect? The request is POST ;P";
-  } else {
+    case Http::GET :
 
-    echo "Hi. What did you expect? The request is GET ;P";
+      /**
+       * Que hacer en este caso?
+       */
+      echo "Hi. What did you expect? The request is GET ;P";
+      break;
+
+    case Http::HEAD :
+
+      /**
+       * Que hacer en este caso?
+       */
+      echo "Hi. What did you expect? The request is HEAD ;P";
+      break;
+
+    case Http::OPTIONS :
+
+      /**
+       * Que hacer en este caso?
+       */
+      echo "Hi. What did you expect? The request is OPTION ;P";
+      break;
+
+    case Http::POST :
+
+      /**
+       * Que hacer en este caso?
+       */
+      echo "Hi. What did you expect? The request is POST ;P";
+      break;
+
+    case Http::PUT :
+
+      /**
+       * Que hacer en este caso?
+       */
+      echo "Hi. What did you expect? The request is PUT ;P";
+      break;
+
+    case Http::TRACE :
+
+      /**
+       * Que hacer en este caso?
+       */
+      echo "Hi. What did you expect? The request is TRACE ;P";
+      break;
+
+    default :
+
+      /**
+       * Que hacer en este caso?
+       */
+      break;
   }
 
-  // echo file_get_contents ( "PhpAjxBridge2.php" );
-  // exit ();
+  $headers = apache_request_headers ();
+  switch ( $headers [ 'Content-Type' ] ) {
+
+    case "application/atom+xml" :
+      ;
+      break;
+
+    case "text/css" :
+      ;
+      break;
+
+    case "text/javascript" :
+      ;
+      break;
+
+    case "image/jpeg" :
+      ;
+      break;
+
+    case "application/json" :
+      echo "El header es un json.";
+      break;
+
+    case "application/pdf" :
+      ;
+      break;
+
+    case "application/rss+xml; charset=ISO-8859-1" :
+      ;
+      break;
+
+    case "text/plain" :
+      echo "El header es texto plano.";
+      break;
+
+    case "text/xml" :
+      ;
+      break;
+
+    case "" :
+      ;
+      break;
+
+    default :
+      ;
+      break;
+  }
 } else {
 
+  /*
+   * AQUÍ ESTO NO ES UN ERROR SOLO QUE A PARTIR DE AQUÍ SE EJECUTAN LAS
+   * INSTRUCCIONES QUE NO VIENEN VÍA AJAX.
+   */
   echo "La peticion no es de tipo ajax";
 }
+
 
 ?>

@@ -1,7 +1,7 @@
 Validar que esxistan las extensiones en PHP
 
 1-. GMP
-2-. 
+2-. php_upload
 3-. 
 4-. 
 5-. 
