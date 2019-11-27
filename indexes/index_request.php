@@ -57,7 +57,8 @@ if ( $request->isGet () ) {
   <head>
     <meta charset="UTF-8">
     <title>Página de prueba de la clase Request</title>
-    <script type="text/javascript" src="http://localhost/ecomod/indexes/Ajax.js"></script>
+    <script type="module" src="http://localhost/ecomod/sys/libs/js/ajax/Ajax.js"></script>
+    <script type="module" src="http://localhost/ecomod/sys/libs/js/ajax/AjaxCtrl.js"></script>
     <link rel="stylesheet" href="http://localhost/ecomod/indexes/estilos.css" />
   </head>
   <body>
@@ -69,6 +70,6 @@ if ( $request->isGet () ) {
 		</form>
     <div id="responsephp"></div>
     <input type="hidden" id="oculto" name="oculto" value="1">
-    <button onclick="sendRequest(document);">Send Simple Ajax Request</button>
+    <button id="ajaxBtn" >Send Simple Ajax Request</button>
   </body>
 </html>

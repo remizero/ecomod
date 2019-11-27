@@ -203,13 +203,20 @@ class ErrorLog {
    */
   private static function validate () {
 
-    if ( \filesize ( "public/errors/error.log" ) > 1000000 ) {
+    if ( \defined ( 'AJAXREQUEST' ) ) {
+
+      $errorLogPath = SITEROOT . 'public/errors/error.log';
+    } else {
+
+      $errorLogPath = 'public/errors/error.log';
+    }
+    if ( \filesize ( $errorLogPath ) > 1000000 ) {
 
       // http://ecapy.com/anadir-tu-usuario-de-linux-al-grupo-www-data/index.html
       // http://flexiblewebs.net/como-configurar-los-permisos-para-el-directorio-raiz-de-un-sitio-web/
       // https://www.boscolopez.com/anadir-usuario-al-grupo-www-data/
       //
-      \rename ( "public/errors/error.log", "public/errors/error_" . \date ( "Y-m-d_H:i:s" ) . ".log" );
+      \rename ( $errorLogPath, SITEROOT . 'public/errors/error_' . \date ( "Y-m-d_H:i:s" ) . '.log' );
     }
   }
 
@@ -223,9 +230,16 @@ class ErrorLog {
    */
   public static function exception ( \Exception $exception ) {
 
+    if ( \defined ( 'AJAXREQUEST' ) ) {
+
+      $errorLogPath = SITEROOT . 'public/errors/error.log';
+    } else {
+
+      $errorLogPath = 'public/errors/error.log';
+    }
     self::validate ();
-    $filePointer = \fopen ( 'public/errors/error.log', 'a' );
-    \fwrite ( $filePointer, "[" . \date ( DATE_RFC2822 ) . "] EXCEPTION " . $exception->__toString () . PHP_EOL );
+    $filePointer = \fopen ( $errorLogPath, 'a' );
+    \fwrite ( $filePointer, '[' . \date ( DATE_RFC2822 ) . '] EXCEPTION ' . $exception->__toString () . PHP_EOL );
     \fclose ( $filePointer );
     // $this->sendMail ();
   }

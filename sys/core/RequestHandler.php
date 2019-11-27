@@ -3,6 +3,10 @@
 namespace sys\core;
 
 use sys\core\abstracts\BaseClass;
+use sys\core\http\Http;
+use sys\libs\common\ErrorLog;
+use sys\libs\common\Json;
+use sys\libs\exceptions\ErrorHandlerException;
 
 /**
  * <strong>RequestHandler</strong>
@@ -95,14 +99,146 @@ class RequestHandler extends BaseClass {
   public function __construct ( array $options ) {
 
     parent::__construct ( $options );
-    // TODO - Insert your code here
   }
 
   /**
    */
   function __destruct () {
 
-    // TODO - Insert your code here
+  }
+
+  public static function processRequestMethod ( Request $request ) {
+
+    switch ( $request->requestMethod () ) {
+
+      case Http::DELETE :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is DELETE ;P";
+        break;
+
+      case Http::GET :
+
+        /**
+         * Que hacer en este caso?
+         * 1-.
+         * Capturar
+         */
+        echo "Hi. What did you expect? The request is GET ;P";
+        self::processData ( $request );
+        break;
+
+      case Http::HEAD :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is HEAD ;P";
+        break;
+
+      case Http::OPTIONS :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is OPTION ;P";
+        break;
+
+      case Http::POST :
+
+        /**
+         * Que hacer en este caso?
+         * AQUÍ SE DEBE OBTENER EL CONTROLADOR, LOS PARÁMETROS, LA CLASE Y/O
+         * EL RECURSO SOLICITADO
+         */
+        // echo "Hi. What did you expect? The request is POST ;P";
+        self::processData ( $request );
+        break;
+
+      case Http::PUT :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is PUT ;P";
+        break;
+
+      case Http::TRACE :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is TRACE ;P";
+        break;
+
+      default :
+
+        /**
+         * Que hacer en este caso?
+         * Enviar un error indicando que la solicitud es una solicitud no permitida.
+         */
+        break;
+    }
+  }
+
+  public static function processData ( Request $request ) {
+
+    switch ( $request->getRequestData () ) {
+
+      case "application/atom+xml" :
+        ;
+        break;
+
+      case "text/css" :
+        ;
+        break;
+
+      case "text/javascript" :
+        ;
+        break;
+
+      case "image/jpeg" :
+        ;
+        break;
+
+      case "application/json" :
+        // echo "El header es un json.";
+        try {
+
+          // Json::convertTo ( "{'Bad JSON':\xB1\x31}" );
+          echo Json::convertTo ( '{"nombre": "Angelina", "apellido": "Jolie"}' );
+        } catch ( ErrorHandlerException $ehe ) {
+
+          ErrorLog::exception ( $ehe );
+        }
+        break;
+
+      case "application/pdf" :
+        ;
+        break;
+
+      case "application/rss+xml; charset=ISO-8859-1" :
+        ;
+        break;
+
+      case "text/plain" :
+        // echo "El header es texto plano.";
+        break;
+
+      case "text/xml" :
+        ;
+        break;
+
+      case "" :
+        ;
+        break;
+
+      default :
+        ;
+        break;
+    }
   }
 }
-
+?>

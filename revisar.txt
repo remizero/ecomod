@@ -9,9 +9,15 @@ PARA CARGAR Y DESCARGAR ARCHIVOS VÍA AJAX
 https://msdn.microsoft.com/es-es/silverlight/hh673569(v=vs.100)
 https://www.rephp.com/subir-barra-de-progreso-en-php.html
 https://evilnapsis.com/2019/05/17/mostrar-el-progreso-al-subir-imagenes-con-ajax-y-php/
+
+
+COMET
+http://qnimate.com/implementing-push-technology-in-web-sites/
  
 
 PARA EL OBJETO AJAX
+http://www.alexhadik.com/blog/2016/7/7/l8ztp8kr5lbctf5qns4l8t3646npqh
+https://www.arkaitzgarro.com/html5/capitulo-17.html (INTERESANTE)
 https://codeday.me/es/qa/20181212/995.html
 http://www.codexexempla.org/curso/curso_4_3_e.php
 https://www.aprenderaprogramar.com/index.php?option=com_content&view=article&id=841:addeventlistener-javascript-remove-attachevent-this-eventos-propagacion-bubbling-captura-cu01158e&catid=78&Itemid=206
@@ -27,3 +33,14 @@ https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
 PRECARGA DE PÁGINA Y MEJORA DE RENDIMIENTO
 https://geeks.ms/jalarcon/2016/06/14/precarga-y-renderizado-de-paginas-y-recursos-para-mejorar-el-rendimiento-de-navegacion/
+
+
+INTERESANTE
+https://atech.blog/atech/creating-a-simple-custom-event-system-in-javascript
+
+
+
+
+
+
+

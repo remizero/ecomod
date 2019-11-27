@@ -13,7 +13,7 @@
  * setRequestHeader ( 'X-Requested-With', 'XMLHttpRequest');
  */
 use sys\core\Request;
-use sys\core\http\Http;
+use sys\core\RequestHandler;
 
 define ( "AJAXREQUEST", TRUE );
 define ( "SITEROOT", \substr ( \dirname ( __FILE__ ), 0, -15 ) );
@@ -30,10 +30,6 @@ if ( $request->isXmlHttpRequest () ) {
    * Aquí se debe definir la estrategia para procesar la petición realizada vía
    * Ajax como por ejemplo, saber que tipo de cabeceras han de ser usadas.
    *
-   * header('Content-type: application/json');
-   * header ( 'Content-type: text/plain' );
-   * header ( 'Content-type: text/html' );
-   * header ( 'Content-type: text/xml' );
    * header ( "Cache-Control: no-cache, must-revalidate" );
    *
    * Atom
@@ -41,6 +37,9 @@ if ( $request->isXmlHttpRequest () ) {
    *
    * CSS
    * header('Content-Type: text/css');
+   *
+   * HTML
+   * header('Content-Type: text/html');
    *
    * Javascript
    * header('Content-Type: text/javascript');
@@ -74,124 +73,19 @@ if ( $request->isXmlHttpRequest () ) {
    */
 
   // header ( 'Content-type: text/plain; charset=UTF-8' );
-  // header('Content-type: application/json');
+  header ( 'Content-type: application/json' );
   // header ( "Cache-Control: no-cache, must-revalidate" );
-  header ( 'Content-type: text/plain' );
+  // header ( 'Content-type: text/plain' );
   // header ( 'Content-type: text/html' );
+  RequestHandler::processRequestMethod ( $request );
 
-  switch ( $request->requestMethod () ) {
-
-    case Http::DELETE :
-
-      /**
-       * Que hacer en este caso?
-       */
-      echo "Hi. What did you expect? The request is DELETE ;P";
-      break;
-
-    case Http::GET :
-
-      /**
-       * Que hacer en este caso?
-       */
-      echo "Hi. What did you expect? The request is GET ;P";
-      break;
-
-    case Http::HEAD :
-
-      /**
-       * Que hacer en este caso?
-       */
-      echo "Hi. What did you expect? The request is HEAD ;P";
-      break;
-
-    case Http::OPTIONS :
-
-      /**
-       * Que hacer en este caso?
-       */
-      echo "Hi. What did you expect? The request is OPTION ;P";
-      break;
-
-    case Http::POST :
-
-      /**
-       * Que hacer en este caso?
-       */
-      echo "Hi. What did you expect? The request is POST ;P";
-      break;
-
-    case Http::PUT :
-
-      /**
-       * Que hacer en este caso?
-       */
-      echo "Hi. What did you expect? The request is PUT ;P";
-      break;
-
-    case Http::TRACE :
-
-      /**
-       * Que hacer en este caso?
-       */
-      echo "Hi. What did you expect? The request is TRACE ;P";
-      break;
-
-    default :
-
-      /**
-       * Que hacer en este caso?
-       */
-      break;
-  }
-
-  $headers = apache_request_headers ();
-  switch ( $headers [ 'Content-Type' ] ) {
-
-    case "application/atom+xml" :
-      ;
-      break;
-
-    case "text/css" :
-      ;
-      break;
-
-    case "text/javascript" :
-      ;
-      break;
-
-    case "image/jpeg" :
-      ;
-      break;
-
-    case "application/json" :
-      echo "El header es un json.";
-      break;
-
-    case "application/pdf" :
-      ;
-      break;
-
-    case "application/rss+xml; charset=ISO-8859-1" :
-      ;
-      break;
-
-    case "text/plain" :
-      echo "El header es texto plano.";
-      break;
-
-    case "text/xml" :
-      ;
-      break;
-
-    case "" :
-      ;
-      break;
-
-    default :
-      ;
-      break;
-  }
+/**
+ * Esta forma permite obtener como vienen contenidos los datos desde el cliente.
+ *
+ * COMO OBTENER EL TIPO DE RESPUESTA ESPERADO POR EL CLIENTE?
+ */
+  // $headers = apache_request_headers ();
+  // var_dump ( $headers );
 } else {
 
   /*

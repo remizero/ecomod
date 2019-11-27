@@ -167,6 +167,17 @@ class Request extends BaseClass {
   }
 
   /**
+   * Permite obtener el valor de la variable HTTP_ACCEPT, utilizada por el
+   * sistema ECOMOD para indicar como debe ser devuelta la data solicitada.
+   *
+   * @return string
+   */
+  public function getRequestData () {
+
+    return RequestUtils::server ( 'HTTP_ACCEPT' );
+  }
+
+  /**
    * Permite obtener el valor de la variable REQUEST_METHOD.
    *
    * @return string
