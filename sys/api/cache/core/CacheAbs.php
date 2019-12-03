@@ -1,8 +1,8 @@
 <?php
+
 namespace sys\api\cache\core;
 
 use sys\core\abstracts\BaseClass;
-use sys\libs\types\Ip;
 
 /**
  * <strong>CacheAbs</strong>
@@ -27,16 +27,10 @@ use sys\libs\types\Ip;
  *       <li>.php</li>
  *       </ul>
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>https://diego.com.es/rendimiento-en-php.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
+ * @todo Para el rendimiento de PHP https://diego.com.es/rendimiento-en-php.
  */
 abstract class CacheAbs extends BaseClass {
-  
+
   /**
    * Indica si está conectado el servicio de cache.
    *
@@ -45,35 +39,33 @@ abstract class CacheAbs extends BaseClass {
    * @var boolean
    */
   protected $connected = false;
-  
+
   /**
    * Puerto del servidor de caché.
-   * 
+   *
    * @readwrite
-   * 
+   *
    * @var Ip
    */
   protected $host = "127.0.0.1";
-  
+
   /**
-   * 
-   * 
    * @readwrite
-   * 
+   *
    * @var int
    */
   protected $port = "11211";
-  
+
   /**
-   * Almacena el prefijo de una instancia para separarla de otra cuando se 
+   * Almacena el prefijo de una instancia para separarla de otra cuando se
    * trabaja diferentes aplicaciones desde un mismo servidor.
-   * 
+   *
    * @readwrite
-   *  
+   *
    * @var string
    */
   protected $prefix = "";
-  
+
   /**
    * Instancia del objeto puente con el servidor de caché.
    *
@@ -82,7 +74,7 @@ abstract class CacheAbs extends BaseClass {
    * @var CacheAbs
    */
   protected $service;
-  
+
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
    *
@@ -90,8 +82,8 @@ abstract class CacheAbs extends BaseClass {
    *
    * @return void
    */
-  public function __construct ( array $options = array () ) {
-    
+  public function __construct ( array $options = array ()) {
+
     parent::__construct ( $options );
   }
 
@@ -99,60 +91,59 @@ abstract class CacheAbs extends BaseClass {
    */
   public function __destruct () {
 
-    // TODO - Insert your code here
   }
-  
+
   /**
    * Conecta el servicio de caché.
-   * 
+   *
    * @return CacheAbs
    */
   public abstract function connect ();
-  
+
   /**
    * Desconecta el servicio de caché.
-   * 
+   *
    * @return CacheAbs
    */
   public abstract function disconnect ();
-  
+
   /**
    * Elimina un valor del servidor de caché.
-   * 
+   *
    * @param string $key La clave asociada al valor a eliminar.
-   * 
+   *
    * @return CacheAbs
    */
   public abstract function erase ( string $key );
-  
+
   /**
    * Obtener el valor de la clave dada del servidor de caché.
-   * 
+   *
    * @param string $key La clave asociada al valor a obtener.
-   * @param mixed $default Valor a retornar por omisión si no se consigue un 
+   * @param mixed $default Valor a retornar por omisión si no se consigue un
    *        valor válido en la clave dada.
-   * 
+   *
    * @return mixed
    */
-  public abstract function get ( string $key, $default = null );
+  public abstract function get ( string $key, $default = null);
 
   /**
    * Indica si es un servicio válido de caché.
-   * 
+   *
    * @return boolean
    */
   public abstract function isValidService ();
-  
+
   /**
    * Asigna un valor a la caché en la clave dada.
-   * 
+   *
    * @param string $key Clave del valor a guardar en la caché.
    * @param mixed $value Valor a guardar en la caché.
-   * @param int $duration Tiempo de expiración del valor. Si es iqual a cero, 
+   * @param int $duration Tiempo de expiración del valor. Si es iqual a cero,
    *        el valor nunca expirará.
-   * 
+   *
    * @return CacheAbs
    */
-  public abstract function set ( string $key, $value, $duration = 120 );
+  public abstract function set ( string $key, $value, $duration = 120);
 }
 

@@ -1,7 +1,7 @@
 <?php
+
 namespace sys\api\cache;
 
-use sys\api\cache\core\CacheAbs;
 use sys\api\cache\controller\Memcached;
 use sys\api\cache\controller\Memcachedb;
 use sys\api\cache\controller\Xcache;
@@ -31,37 +31,31 @@ use sys\patterns\creational\FactoryMethod;
  *       <li>.php</li>
  *       </ul>
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>https://diego.com.es/rendimiento-en-php.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
+ * @todo Para el rendimiento en phphttps://diego.com.es/rendimiento-en-php.
  */
 abstract class CacheFac implements FactoryMethod {
-  
+
   /**
    * Constante que define el tipo de controlador Memcached.
    *
    * @var string
    */
   const MEMCACHED = 'memcached';
-  
+
   /**
    * Constante que define el tipo de controlador Memcachedb.
    *
    * @var string
    */
   const MEMCACHEDB = 'memcachedb';
-  
+
   /**
    * Constante que define el tipo de controlador Xcache.
    *
    * @var string
    */
   const XCACHE = 'xcache';
-  
+
   /**
    * Función que permite crear clases de un tipo, determinado por la
    * implementación en la clase concreta.
@@ -70,31 +64,31 @@ abstract class CacheFac implements FactoryMethod {
    *
    * @throws ArgumentException
    *
-   * @return CacheAbs
+   * @return \sys\api\cache\core\CacheAbs
    *
    * @see \sys\patterns\creational\FactoryMethod::create()
    */
   public static function create ( string $className ) {
 
     switch ( \strtolower ( $className ) ) {
-      
+
       case self::MEMCACHED :
-        
+
         return new Memcached ();
         break;
-        
+
       case self::MEMCACHEDB :
-        
+
         return new Memcachedb ();
         break;
-        
+
       case self::XCACHE :
-        
+
         return new Xcache ();
         break;
-        
-      default:
-        
+
+      default :
+
         throw new ArgumentException ();
         break;
     }

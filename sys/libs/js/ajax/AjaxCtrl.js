@@ -35,8 +35,8 @@ function sendRequest ( document ) {
    * 
    * ESTA FUNCIÓN NO DEBE ESTAR EN EL MISMO ARCHIVO DE LA CLASE AJAX.
    */
-  let ajax = new Ajax ( document, Ajax.HEADERS.JSON, Ajax.RESPONSETYPEENUM.JSON, callback );
-  ajax.send ( "POST", null, "http://localhost/ecomod/sys/libs/common/PhpAjaxBridge.php" );
+  let ajax = new Ajax ( document, Ajax.HEADERS.JSON, Ajax.RESPONSETYPEENUM.ARRAYBUFFER, callback );
+  ajax.send ( "POST", "http://localhost/ecomod/sys/libs/common/PhpAjaxBridge.php" );
 }
 
 function showHideContainer ( id ) {

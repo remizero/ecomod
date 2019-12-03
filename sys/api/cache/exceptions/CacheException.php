@@ -1,4 +1,5 @@
 <?php
+
 namespace sys\api\cache\exceptions;
 
 use sys\libs\exceptions\Exception;
@@ -23,16 +24,9 @@ use sys\libs\exceptions\Exception;
  *       <li>.php</li>
  *       </ul>
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
  */
 class CacheException extends Exception {
-  
+
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
    *
@@ -47,7 +41,6 @@ class CacheException extends Exception {
    */
   function __destruct () {
 
-    // TODO - Insert your code here
   }
 }
 

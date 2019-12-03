@@ -1,4 +1,5 @@
 <?php
+
 namespace sys\api\cache\exceptions;
 
 use sys\libs\exceptions\Exception;
@@ -6,7 +7,7 @@ use sys\libs\exceptions\Exception;
 /**
  * <strong>CacheServiceException</strong>
  * Archivo creado el 24 de septiembre de 2018 a las 22:58:05 p.m.
- * <p>Clase que permite definir el tipo de excepcion de para los diferentes 
+ * <p>Clase que permite definir el tipo de excepcion de para los diferentes
  * servicios de cache.</p>
  *
  * @name CacheServiceException
@@ -24,23 +25,16 @@ use sys\libs\exceptions\Exception;
  *       <li>.php</li>
  *       </ul>
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
  */
 class CacheServiceException extends Exception {
-  
+
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
    *
    * @return void
    */
   public function __construct () {
-    
+
     parent::__construct ( "Unable to connect to a valid cache service.", 0, null );
   }
 
@@ -48,7 +42,6 @@ class CacheServiceException extends Exception {
    */
   function __destruct () {
 
-    // TODO - Insert your code here
   }
 }
 

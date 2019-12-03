@@ -13,7 +13,6 @@
  * setRequestHeader ( 'X-Requested-With', 'XMLHttpRequest');
  */
 use sys\core\Request;
-use sys\core\RequestHandler;
 
 define ( "AJAXREQUEST", TRUE );
 define ( "SITEROOT", \substr ( \dirname ( __FILE__ ), 0, -15 ) );
@@ -73,11 +72,17 @@ if ( $request->isXmlHttpRequest () ) {
    */
 
   // header ( 'Content-type: text/plain; charset=UTF-8' );
-  header ( 'Content-type: application/json' );
+  // header ( 'Content-type: application/json' );
+  header ( 'content-type: image/png' );
+  // header ( 'Content-Length: 123456' );
+  $fn = "avatar.png";
+  header ( 'Content-Length: ' . filesize ( $fn ) );
+  print file_get_contents ( $fn );
+  // header ( 'Content-Length: ' . filesize ( "PhpAjaxBridge.php" ) );
   // header ( "Cache-Control: no-cache, must-revalidate" );
   // header ( 'Content-type: text/plain' );
   // header ( 'Content-type: text/html' );
-  RequestHandler::processRequestMethod ( $request );
+  // RequestHandler::processRequestMethod ( $request );
 
 /**
  * Esta forma permite obtener como vienen contenidos los datos desde el cliente.

@@ -1,15 +1,4 @@
-https://www.rephp.com/permita-el-acceso-al-archivo-php-solo-a-traves-de-ajax-en-el-servidor-local.html
-https://www.rephp.com/como-verificar-si-la-solicitud-es-una-solicitud-de-ajax-con-php.html
 https://phpgr.blogspot.com/search/label/htaccess
-https://developer.mozilla.org/es/docs/Web/Guide/AJAX
-http://www.uco.es/~lr1maalm/manualdeajax.pdf (MANUAL DE AJAX)
-https://cybmeta.com/ajax-con-json-y-php-con-javascript-puro
-
-PARA CARGAR Y DESCARGAR ARCHIVOS VÍA AJAX
-https://msdn.microsoft.com/es-es/silverlight/hh673569(v=vs.100)
-https://www.rephp.com/subir-barra-de-progreso-en-php.html
-https://evilnapsis.com/2019/05/17/mostrar-el-progreso-al-subir-imagenes-con-ajax-y-php/
-
 
 COMET
 http://qnimate.com/implementing-push-technology-in-web-sites/

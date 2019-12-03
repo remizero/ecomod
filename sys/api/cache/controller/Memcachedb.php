@@ -1,4 +1,5 @@
 <?php
+
 namespace sys\api\cache\controller;
 
 use sys\api\cache\core\CacheAbs;
@@ -25,16 +26,10 @@ use sys\api\cache\core\CacheAbs;
  *       <li>.php</li>
  *       </ul>
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>https://diego.com.es/rendimiento-en-php.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
+ * @todo Para el rendimiento de PHP https://diego.com.es/rendimiento-en-php.
  */
 class Memcachedb extends CacheAbs {
-  
+
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
    *
@@ -42,8 +37,8 @@ class Memcachedb extends CacheAbs {
    *
    * @return void
    */
-  public function __construct ( array $options = array () ) {
-    
+  public function __construct ( array $options = array ()) {
+
     parent::__construct ( $options );
   }
 
@@ -54,7 +49,6 @@ class Memcachedb extends CacheAbs {
    */
   public function disconnect () {
 
-    // TODO - Insert your code here
   }
 
   /**
@@ -64,7 +58,6 @@ class Memcachedb extends CacheAbs {
    */
   public function erase ( $key ) {
 
-    // TODO - Insert your code here
   }
 
   /**
@@ -72,9 +65,8 @@ class Memcachedb extends CacheAbs {
    *
    * @see \sys\api\cache\core\CacheAbs::set()
    */
-  public function set ( $key, $value, $duration = 120 ) {
+  public function set ( $key, $value, $duration = 120) {
 
-    // TODO - Insert your code here
   }
 
   /**
@@ -82,9 +74,8 @@ class Memcachedb extends CacheAbs {
    *
    * @see \sys\api\cache\core\CacheAbs::get()
    */
-  public function get ( $key, $default = null ) {
+  public function get ( $key, $default = null) {
 
-    // TODO - Insert your code here
   }
 
   /**
@@ -94,7 +85,6 @@ class Memcachedb extends CacheAbs {
    */
   public function isValidService () {
 
-    // TODO - Insert your code here
   }
 
   /**
@@ -104,14 +94,12 @@ class Memcachedb extends CacheAbs {
    */
   public function connect () {
 
-    // TODO - Insert your code here
   }
 
   /**
    */
   function __destruct () {
 
-    // TODO - Insert your code here
   }
 }
 

@@ -1,5 +1,6 @@
 
 "use strict";
+import AjaxUtils from './AjaxUtils.js';
 
 /**
  * ATRIBUTOS DEL OBEJTO XMLHttpRequest 
@@ -49,41 +50,69 @@
  * OPENED : Number  readonly  value = 1
  * UNSENT : Number  readonly  value = 0
  * 
- * 
- * 
- * HACER USO DE ESTAS IDEAS
- * https://www.html5rocks.com/en/tutorials/file/xhr2/
- * 
- * 
- * 
  * https://material-ui.com/components/progress/
- *
  */
 
 /**
- * 
+ * <strong>Ajax</strong>
+ *
+ * Archivo creado el 26 de noviembre de 2019 a las 00:52:55 a.m.
+ * <p>Clase que permite realizar solicitudes (Request) vía ajax para el sistema 
+ * ECOMOD.</p>
+ *
+ * @name Ajax
+ * @namespace 
+ * @package ECOMOD/LIBS/JS/AJAX.
+ * @subpackage 
+ * @filesource Ajax.js
+ * @version 1.0
+ * @since 1.0
+ * @author Filiberto Zaá Avila ( remizero ) filizaa@gmail.com.
+ * @copyright Todos los derechos reservados 2019.
+ * @link http://www.ecosoftware.com.ve
+ * @license http://www.ecosoftware.com.ve/licencia
+ * @uses <ul>
+ *       <li>.php</li>
+ *       </ul>
+ * @see .php
+ * @todo <p>PARA CARGAR Y DESCARGAR ARCHIVOS VÍA AJAX</p>
+ * @todo <p>https://msdn.microsoft.com/es-es/silverlight/hh673569(v=vs.100)</p>
+ * @todo <p>https://www.rephp.com/subir-barra-de-progreso-en-php.html</p>
+ * @todo <p>https://evilnapsis.com/2019/05/17/mostrar-el-progreso-al-subir-imagenes-con-ajax-y-php/</p>
+ * @todo <p>https://www.rephp.com/permita-el-acceso-al-archivo-php-solo-a-traves-de-ajax-en-el-servidor-local.html</p>
+ * @todo <p>https://www.rephp.com/como-verificar-si-la-solicitud-es-una-solicitud-de-ajax-con-php.html</p>
+ * @todo <p>https://developer.mozilla.org/es/docs/Web/Guide/AJAX</p>
+ * @todo <p>http://www.uco.es/~lr1maalm/manualdeajax.pdf (MANUAL DE AJAX)</p>
+ * @todo <p>https://cybmeta.com/ajax-con-json-y-php-con-javascript-puro</p>
+ * @todo <p>https://www.html5rocks.com/en/tutorials/file/xhr2/</p>
  */
 export default class Ajax extends XMLHttpRequest {
-  
-  outputProcessed = null;
+
+  contentType = null;
   internalCallbackFunction = null;
+  internalDocument = null;
+  outputProcessed = null;
+  responseType = null;
 
   /**
    * Constructor de la clase Ajax.
    * 
-   * @param document
-   * @param contentType
+   * @param document Instancia del documento activo que realiza la petición.
+   * @param contentType Indica el tipo de dato que se está enviando.
    * @param responseType Indica el tipo de dato a recibir.
+   * @param callbackFunction Función a ser llamada para procesar la respuesta 
+   * recibida desde el servidor. Valor por omisión null, no hace nada con la 
+   * respuesta.
    * 
    * @return void
    */
-	constructor ( document, contentType, responseType, callbackFunction = null ) {
+	constructor ( document, contentType = Ajax.HEADERS.TEXTPLAIN, responseType = Ajax.RESPONSETYPEENUM.TEXT, callbackFunction = null ) {
 
 		super ();
+    this.contentType = contentType;
 		this.internalDocument = document;
-		this.contentType = contentType;
-		this.responseType = responseType;
 		this.internalCallbackFunction = callbackFunction;
+    this.responseType = responseType;
 		this.addEventListener ( "loadstart", this.onLoadStartEvent );
     this.addEventListener ( "progress", this.onProgressEvent );
     this.addEventListener ( "abort", this.onAbortEvent );
@@ -95,13 +124,17 @@ export default class Ajax extends XMLHttpRequest {
 	}
 	
 	/**
-	 * @param method
-   * @param event
-   * @param url
+	 * Método sobrecargado de la clase XMLHttpRequest que realiza configuraciones 
+	 * adicionales, que facilita la utilización del mismo.
+	 * 
+	 * @param method Tipo de solicitud a realizar al servidor. Puede tomar los 
+	 * valores GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH.
+   * @param url Representa la URL a la que se envia la solicitud.
+   * @param body
    * 
    * @returns void
 	 */
-	send ( method, event, url ) {
+	send ( method, url, body = null ) {
 
     //preparar el envio: método open
     this.open ( method, url, true );
@@ -116,7 +149,7 @@ export default class Ajax extends XMLHttpRequest {
     //this.setRequestHeader ( "Content-Type", "text/plain" );
     //this.onreadystatechange = this.readyStateChangeEvent ( this.output );
     this.onreadystatechange = this.readyStateChangeEvent ();
-    super.send ( event ); //enviar
+    super.send ( body ); //enviar
 	}
 
 	/**
@@ -137,38 +170,38 @@ export default class Ajax extends XMLHttpRequest {
   /**
    * 
    */
-  readyStateChangeEvent ( /*callback*/ ) {
+  readyStateChangeEvent () {
 
     console.log ( "El valor de readyState es: " + this.readyState );
     switch ( this.readyState ) {
-      
-      case 0 :// request not initialized 
+
+      case XMLHttpRequest.UNSENT :// request not initialized 
 
         console.log ( "Objeto no inicializado" );
         this.showHideContainer ( 'contenido' );
         this.showProgressMessage ( 'contenido', "Inicializando objeto." );
         break;
 
-      case 1 :// server connection established
+      case XMLHttpRequest.OPENED :// server connection established
 
         console.log ( "Estableciendo conexion" );
         this.showHideContainer ( 'contenido' );
         this.showProgressMessage ( 'contenido', "Estableciendo conexión." );
         break;
 
-      case 2 :// request received
+      case XMLHttpRequest.HEADERS_RECEIVED :// request received
 
         console.log ( "Request recibido" );
         this.showProgressMessage ( 'contenido', "Solicitud recibida." );
         break;
 
-      case 3 :// processing request
+      case XMLHttpRequest.LOADING :// processing request
 
         console.log ( "Procesando Request" );
         this.showProgressMessage ( 'contenido', "Procesando solicitud." );
         break;
 
-      case 4 :// request finished and response is ready
+      case XMLHttpRequest.DONE :// request finished and response is ready
 
         /**
          * el experimento rendicion
@@ -180,7 +213,38 @@ export default class Ajax extends XMLHttpRequest {
           let textoAjax;
           if ( this.responseType == Ajax.RESPONSETYPEENUM.ARRAYBUFFER ) {
             
-            //this.outputProcessed = JSON.parse ( this.response );
+            console.log ( "Es un ARRAYBUFFER." );
+            console.log ( "Procesando Request" );
+            
+         // Get the raw header string
+            /*var headers = this.getAllResponseHeaders ();
+
+            // Convert the header string into an array
+            // of individual headers
+            var arr = headers.trim ().split ( /[\r\n]+/ );
+
+            // Create a map of header names to values
+            var headerMap = {};
+            arr.forEach ( function ( line ) {
+              var parts = line.split ( ': ' );
+              var header = parts.shift ();
+              var value = parts.join ( ': ' );
+              headerMap [ header ] = value;
+            } );
+            var contentType = headerMap [ "content-type" ];
+            console.log ( contentType );
+            var contentLength = headerMap [ "Content-Length" ];
+            console.log ( contentLength );*/
+            
+            var contentType = this.getResponseHeader ( "Content-Type" );
+            console.log ( contentType );
+            var contentLength = this.getResponseHeader ( "Content-Length" );
+            console.log ( contentLength );
+            /*this.outputProcessed = JSON.parse ( this.response );
+            if ( this.internalCallbackFunction != null ) {
+              
+              this.internalCallbackFunction ( this.internalDocument, this.outputProcessed );
+            }*/
             
           } else if ( this.responseType == Ajax.RESPONSETYPEENUM.BLOB ) {
             
