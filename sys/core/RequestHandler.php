@@ -108,9 +108,33 @@ class RequestHandler extends BaseClass {
 
   }
 
+  /**
+   * Método que permite determinar la acción solicitada de acuerdo al método de
+   * solicitud realizado desde el cliente.
+   *
+   * @param Request $request
+   *
+   * @return mixed
+   */
   public static function processRequestMethod ( Request $request ) {
 
     switch ( $request->requestMethod () ) {
+
+      case Http::CONNECT :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is CONNECT ;P";
+        break;
+
+      case Http::COPY :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is COPY ;P";
+        break;
 
       case Http::DELETE :
 
@@ -139,12 +163,60 @@ class RequestHandler extends BaseClass {
         echo "Hi. What did you expect? The request is HEAD ;P";
         break;
 
+      case Http::LABEL :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is LABEL ;P";
+        break;
+
+      case Http::LOCK :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is LOCK ;P";
+        break;
+
+      case Http::MERGE :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is MERGE ;P";
+        break;
+
+      case Http::MKCOL :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is MKCOL ;P";
+        break;
+
+      case Http::MOVE :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is MOVE ;P";
+        break;
+
       case Http::OPTIONS :
 
         /**
          * Que hacer en este caso?
          */
         echo "Hi. What did you expect? The request is OPTION ;P";
+        break;
+
+      case Http::PATCH :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is PATCH ;P";
         break;
 
       case Http::POST :
@@ -158,12 +230,36 @@ class RequestHandler extends BaseClass {
         self::processData ( $request );
         break;
 
+      case Http::PROPFIND :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is PROPFIND ;P";
+        break;
+
+      case Http::PROPPATCH :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is PROPPATCH ;P";
+        break;
+
       case Http::PUT :
 
         /**
          * Que hacer en este caso?
          */
         echo "Hi. What did you expect? The request is PUT ;P";
+        break;
+
+      case Http::SEARCH :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is SEARCH ;P";
         break;
 
       case Http::TRACE :
@@ -174,11 +270,29 @@ class RequestHandler extends BaseClass {
         echo "Hi. What did you expect? The request is TRACE ;P";
         break;
 
+      case Http::UNLOCK :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is UNLOCK ;P";
+        break;
+
+      case Http::UPDATE :
+
+        /**
+         * Que hacer en este caso?
+         */
+        echo "Hi. What did you expect? The request is UPDATE ;P";
+        break;
+
       default :
 
         /**
          * Que hacer en este caso?
          * Enviar un error indicando que la solicitud es una solicitud no permitida.
+         * Definir una estructura de mensaje que indique que es un error y que
+         * error fue el sucedido.
          */
         break;
     }
