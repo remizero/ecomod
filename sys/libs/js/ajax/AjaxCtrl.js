@@ -16,6 +16,9 @@ function callback ( document, response ) {
    * VISTA DONDE Y CUANDO SE NECESITE.
    * 
    * ESTA FUNCIÓN NO DEBE ESTAR EN EL MISMO ARCHIVO DE LA CLASE AJAX.
+   * 
+   * COMO HACER CUANDO HAY QUE HACER VARIOS LLAMADOS AJAX Y EL COMPORTAMIENTO ES
+   * DIFERENTE EN CADA CASO?
    */
   console.log ( "Por lo visto si entró." );
   setTimeout ( showHideContainer ( "contenido" ), 10000 );
@@ -34,8 +37,11 @@ function sendRequest ( document ) {
    * RESPONSETYPEENUM.
    * 
    * ESTA FUNCIÓN NO DEBE ESTAR EN EL MISMO ARCHIVO DE LA CLASE AJAX.
+   * 
+   * COMO HACER CUANDO HAY QUE HACER VARIOS LLAMADOS AJAX Y EL COMPORTAMIENTO ES
+   * DIFERENTE EN CADA CASO?
    */
-  let ajax = new Ajax ( document, Ajax.HEADERS.JSON, Ajax.RESPONSETYPEENUM.ARRAYBUFFER, callback );
+  let ajax = new Ajax ( document, Ajax.HEADERS.JSON, Ajax.RESPONSETYPEENUM.JSON, callback );
   ajax.send ( "POST", "http://localhost/ecomod/sys/libs/common/PhpAjaxBridge.php" );
 }
 

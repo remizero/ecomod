@@ -4,6 +4,7 @@ namespace sys\core;
 
 use sys\core\abstracts\BaseClass;
 use sys\core\http\Http;
+use sys\libs\common\Ajax;
 use sys\libs\common\ErrorLog;
 use sys\libs\common\Json;
 use sys\libs\exceptions\ErrorHandlerException;
@@ -185,7 +186,11 @@ class RequestHandler extends BaseClass {
 
   public static function processData ( Request $request ) {
 
-    switch ( $request->getRequestData () ) {
+    $file = fopen ( "archivo.txt", "a" );
+    fwrite ( $file, "EL REQUEST DATA ES: " . $request->getRequestData () . PHP_EOL );
+    fclose ( $file );
+    switch ( $request->getContentResponse () ) {
+      // switch ( $request->getRequestData () ) {
 
       case "application/atom+xml" :
         ;
@@ -203,12 +208,13 @@ class RequestHandler extends BaseClass {
         ;
         break;
 
-      case "application/json" :
+      // case "application/json" :
+      case Ajax::JSON :
         // echo "El header es un json.";
         try {
 
-          // Json::convertTo ( "{'Bad JSON':\xB1\x31}" );
-          echo Json::convertTo ( '{"nombre": "Angelina", "apellido": "Jolie"}' );
+          $array = array ( "nombre" => "Scarlet", "apellido" => "johansson" );
+          echo Json::convertTo ( $array );
         } catch ( ErrorHandlerException $ehe ) {
 
           ErrorLog::exception ( $ehe );
@@ -236,7 +242,10 @@ class RequestHandler extends BaseClass {
         break;
 
       default :
-        ;
+
+        $file = fopen ( "archivo.txt", "a" );
+        fwrite ( $file, "ENTRÓ POR EL DEFAULT: " . PHP_EOL );
+        fclose ( $file );
         break;
     }
   }

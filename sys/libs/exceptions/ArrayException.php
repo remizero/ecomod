@@ -1,9 +1,10 @@
 <?php
+
 namespace sys\libs\exceptions;
 
 /**
  * <strong>ArrayException</strong>
- * 
+ *
  * Archivo creado el 05 de septiembre de 2018 a las 22:12:35 p.m.
  * <p>Clase que permite procesar las excepciones de tipo array.</p>
  *
@@ -18,17 +19,8 @@ namespace sys\libs\exceptions;
  * @copyright Todos los derechos reservados 2018.
  * @link http://www.ecosoftware.com.ve
  * @license http://www.ecosoftware.com.ve/licencia
- * @uses <ul>
- *       <li>.php</li>
- *       </ul>
+ * @uses .php
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
  */
 class ArrayException extends Exception {
 
@@ -38,7 +30,7 @@ class ArrayException extends Exception {
    * @return void
    */
   public function __construct () {
-    
+
     parent::__construct ( "Invalid Array value.", 0, null );
   }
 
@@ -46,7 +38,6 @@ class ArrayException extends Exception {
    */
   function __destruct () {
 
-    // TODO - Insert your code here
   }
 }
 

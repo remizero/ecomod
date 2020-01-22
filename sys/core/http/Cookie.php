@@ -1,4 +1,5 @@
 <?php
+
 namespace sys\core\http;
 
 /**
@@ -18,24 +19,16 @@ namespace sys\core\http;
  * @copyright Todos los derechos reservados 2018.
  * @link http://www.ecosoftware.com.ve
  * @license http://www.ecosoftware.com.ve/licencia
- * @uses <ul>
- *       <li>.php</li>
- *       </ul>
+ * @uses .php
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>https://diego.com.es/rendimiento-en-php.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
+ * @todo REVISAR https://diego.com.es/rendimiento-en-php.
  */
 class Cookie {
 
   /**
    * The name of the cookie which is also the key for future accesses via
    * $_COOKIE[...].
-   * 
+   *
    * @readwrite
    *
    * @var string
@@ -44,7 +37,7 @@ class Cookie {
 
   /**
    * The value of the cookie that will be stored on the client's machine.
-   * 
+   *
    * @readwrite
    *
    * @var mixed
@@ -54,7 +47,7 @@ class Cookie {
   /**
    * The Unix timestamp indicating the time that the cookie will expire at, i.e.
    * usually `time() + $seconds`.
-   * 
+   *
    * @readwrite
    *
    * @var int
@@ -63,9 +56,10 @@ class Cookie {
 
   /**
    * The path on the server that the cookie will be valid for (including all
-   * sub-directories), e.g. an empty string for the current directory or `/` 
+   * sub-directories), e.g.
+   * an empty string for the current directory or `/`
    * for the root directory.
-   * 
+   *
    * @readwrite
    *
    * @var string
@@ -75,7 +69,7 @@ class Cookie {
   /**
    * The domain that the cookie will be valid for (including subdomains) or
    * `null` for the current host (excluding subdomains).
-   * 
+   *
    * @readwrite
    *
    * @var string|null
@@ -85,7 +79,7 @@ class Cookie {
   /**
    * Indicates that the cookie should be accessible through the HTTP protocol
    * only and not through scripting languages.
-   * 
+   *
    * @readwrite
    *
    * @var bool
@@ -95,7 +89,7 @@ class Cookie {
   /**
    * Indicates that the cookie should be sent back by the client over secure
    * HTTPS connections only.
-   * 
+   *
    * @readwrite
    *
    * @var bool
@@ -105,7 +99,7 @@ class Cookie {
   /**
    * Indicates that the cookie should not be sent along with cross-site requests
    * (either `null`, `Lax` or `Strict`).
-   * 
+   *
    * @readwrite
    *
    * @var string|null
@@ -121,42 +115,37 @@ class Cookie {
 
     $numArgs = \func_num_args ();
     if ( $numArgs == 2 ) {
-      
+
       $this->name = \func_get_arg ( 0 );
       $this->value = \func_get_arg ( 1 );
-      
     } elseif ( $numArgs == 3 ) {
-      
+
       $this->name = \func_get_arg ( 0 );
       $this->value = \func_get_arg ( 1 );
       $this->expire = \func_get_arg ( 2 );
-      
     } elseif ( $numArgs == 4 ) {
-      
+
       $this->name = \func_get_arg ( 0 );
       $this->value = \func_get_arg ( 1 );
       $this->expire = \func_get_arg ( 2 );
       $this->path = \func_get_arg ( 3 );
-      
     } elseif ( $numArgs == 5 ) {
-      
+
       $this->name = \func_get_arg ( 0 );
       $this->value = \func_get_arg ( 1 );
       $this->expire = \func_get_arg ( 2 );
       $this->path = \func_get_arg ( 3 );
       $this->domain = \func_get_arg ( 4 );
-      
     } elseif ( $numArgs == 6 ) {
-      
+
       $this->name = \func_get_arg ( 0 );
       $this->value = \func_get_arg ( 1 );
       $this->expire = \func_get_arg ( 2 );
       $this->path = \func_get_arg ( 3 );
       $this->domain = \func_get_arg ( 4 );
       $this->secure = \func_get_arg ( 5 );
-      
     } elseif ( $numArgs == 7 ) {
-      
+
       $this->name = \func_get_arg ( 0 );
       $this->value = \func_get_arg ( 1 );
       $this->expire = \func_get_arg ( 2 );
@@ -164,15 +153,13 @@ class Cookie {
       $this->domain = \func_get_arg ( 4 );
       $this->secure = \func_get_arg ( 5 );
       $this->httpOnly = \func_get_arg ( 6 );
-      
     } else {
-      
+
       // Lanzar excepción
     }
   }
 
   /**
-   *
    * @return string
    */
   public function getName () {
@@ -181,7 +168,6 @@ class Cookie {
   }
 
   /**
-   *
    * @return mixed
    */
   public function getValue () {
@@ -190,7 +176,6 @@ class Cookie {
   }
 
   /**
-   *
    * @return number
    */
   public function getExpire () {
@@ -199,7 +184,6 @@ class Cookie {
   }
 
   /**
-   *
    * @return string
    */
   public function getPath () {
@@ -208,7 +192,6 @@ class Cookie {
   }
 
   /**
-   *
    * @return string
    */
   public function getDomain () {
@@ -217,7 +200,6 @@ class Cookie {
   }
 
   /**
-   *
    * @return boolean
    */
   public function isHttpOnly () {
@@ -226,7 +208,6 @@ class Cookie {
   }
 
   /**
-   *
    * @return boolean
    */
   public function isSecure () {
@@ -235,7 +216,6 @@ class Cookie {
   }
 
   /**
-   *
    * @return string
    */
   public function getSameSiteRestriction () {
@@ -244,7 +224,6 @@ class Cookie {
   }
 
   /**
-   *
    * @param string $name
    *
    * @return \sys\core\http\Cookie
@@ -256,7 +235,6 @@ class Cookie {
   }
 
   /**
-   *
    * @param mixed $value
    *
    * @return \sys\core\http\Cookie
@@ -268,7 +246,6 @@ class Cookie {
   }
 
   /**
-   *
    * @param integer $expire
    *
    * @return \sys\core\http\Cookie
@@ -280,7 +257,6 @@ class Cookie {
   }
 
   /**
-   *
    * @param string $path
    *
    * @return \sys\core\http\Cookie
@@ -292,7 +268,6 @@ class Cookie {
   }
 
   /**
-   *
    * @param string $domain
    *
    * @return \sys\core\http\Cookie
@@ -304,7 +279,6 @@ class Cookie {
   }
 
   /**
-   *
    * @param boolean $httpOnly
    *
    * @return \sys\core\http\Cookie
@@ -316,7 +290,6 @@ class Cookie {
   }
 
   /**
-   *
    * @param boolean $secure
    *
    * @return \sys\core\http\Cookie
@@ -328,7 +301,6 @@ class Cookie {
   }
 
   /**
-   *
    * @param string $sameSiteRestriction
    *
    * @return \sys\core\http\Cookie

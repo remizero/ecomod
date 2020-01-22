@@ -1,9 +1,10 @@
 <?php
+
 namespace sys\libs\exceptions;
 
 /**
  * <strong>DoubleException</strong>
- * 
+ *
  * Archivo creado el 05 de septiembre de 2018 a las 22:22:30 p.m.
  * <p>Clase que permite procesar las excepciones de tipo Double.</p>
  *
@@ -18,27 +19,18 @@ namespace sys\libs\exceptions;
  * @copyright Todos los derechos reservados 2018.
  * @link http://www.ecosoftware.com.ve
  * @license http://www.ecosoftware.com.ve/licencia
- * @uses <ul>
- *       <li>.php</li>
- *       </ul>
+ * @uses .php
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
  */
 class DoubleException extends Exception {
-  
+
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
-   * 
+   *
    * @return void
    */
   public function __construct () {
-    
+
     parent::__construct ( "Invalid Double value.", 0, null );
   }
 
@@ -46,7 +38,6 @@ class DoubleException extends Exception {
    */
   function __destruct () {
 
-    // TODO - Insert your code here
   }
 }
 

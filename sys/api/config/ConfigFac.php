@@ -1,4 +1,5 @@
 <?php
+
 namespace sys\api\config;
 
 use sys\api\config\controller\Ini;
@@ -7,7 +8,6 @@ use sys\api\config\controller\Php;
 use sys\api\config\controller\Toml;
 use sys\api\config\controller\Xml;
 use sys\api\config\controller\Yaml;
-use sys\api\config\core\ConfigAbs;
 use sys\libs\exceptions\ArgumentException;
 use sys\patterns\creational\FactoryMethod;
 
@@ -30,62 +30,54 @@ use sys\patterns\creational\FactoryMethod;
  * @copyright Todos los derechos reservados 2018.
  * @link http://www.ecosoftware.com.ve
  * @license http://www.ecosoftware.com.ve/licencia
- * @uses <ul>
- *       <li>.php</li>
- *       </ul>
+ * @uses .php
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>https://diego.com.es/rendimiento-en-php.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
+ * @todo REVISAR https://diego.com.es/rendimiento-en-php.
  */
 abstract class ConfigFac implements FactoryMethod {
-  
+
   /**
    * Constante que define el tipo de controlador Ini.
    *
    * @var string
    */
   const INI = 'ini';
-  
+
   /**
    * Constante que define el tipo de controlador Json.
    *
    * @var string
    */
   const JSON = 'json';
-  
+
   /**
    * Constante que define el tipo de controlador Php.
    *
    * @var string
    */
   const PHP = 'php';
-  
+
   /**
    * Constante que define el tipo de controlador Toml.
    *
    * @var string
    */
   const TOML = 'toml';
-  
+
   /**
    * Constante que define el tipo de controlador Xml.
    *
    * @var string
    */
   const XML = 'xml';
-  
+
   /**
    * Constante que define el tipo de controlador Yaml.
    *
    * @var string
    */
   const YAML = 'yaml';
-  
+
   /**
    * Función que permite crear clases de un tipo, determinado por la
    * implementación en la clase concreta.
@@ -99,41 +91,41 @@ abstract class ConfigFac implements FactoryMethod {
    * @see \sys\patterns\creational\FactoryMethod::create()
    */
   public static function create ( string $className ) {
-    
+
     switch ( \strtolower ( $className ) ) {
-      
-      case self::INI:
-        
+
+      case self::INI :
+
         return new Ini ();
         break;
-        
-      case self::JSON:
-        
+
+      case self::JSON :
+
         return new Json ();
         break;
-        
-      case self::PHP:
-        
+
+      case self::PHP :
+
         return new Php ();
         break;
-        
-      case self::TOML:
-        
+
+      case self::TOML :
+
         return new Toml ();
         break;
-        
-      case self::XML:
-        
+
+      case self::XML :
+
         return new Xml ();
         break;
-        
-      case self::YAML:
-        
+
+      case self::YAML :
+
         return new Yaml ();
         break;
-        
-      default:
-        
+
+      default :
+
         throw new ArgumentException ();
         break;
     }

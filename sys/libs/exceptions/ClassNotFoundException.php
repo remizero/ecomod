@@ -1,4 +1,5 @@
 <?php
+
 namespace sys\libs\exceptions;
 
 /**
@@ -19,21 +20,13 @@ namespace sys\libs\exceptions;
  * @copyright Todos los derechos reservados 2018.
  * @link http://www.ecosoftware.com.ve
  * @license http://www.ecosoftware.com.ve/licencia
- * @uses <ul>
- *       <li>.php</li>
- *       </ul>
+ * @uses .php
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>Inclusión de traza informativa en el sistema de log de errores para
- *       indicar que clase no pudo se encontrada.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
+ * @todo Inclusión de traza informativa en el sistema de log de errores para
+ *       indicar que clase no pudo se encontrada.
  */
 class ClassNotFoundException extends Exception {
-  
+
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
    *
@@ -42,7 +35,7 @@ class ClassNotFoundException extends Exception {
    * @return void
    */
   public function __construct ( string $className ) {
-    
+
     parent::__construct ( "The {$className} class can not be found.", 0, null );
   }
 
@@ -50,7 +43,6 @@ class ClassNotFoundException extends Exception {
    */
   function __destruct () {
 
-    // TODO - Insert your code here
   }
 }
 

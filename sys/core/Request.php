@@ -31,18 +31,11 @@ use sys\libs\common\RequestUtils;
  *       <li>.php</li>
  *       </ul>
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>https://diego.com.es/rendimiento-en-php.</li>
- *       <li>http://mialtoweb.es/como-saber-que-navegador-utiliza-un-usario-en-php/.</li>
- *       <li>https://gist.github.com/digitalhydra/7949601.</li>
- *       <li>https://artisansweb.net/detect-browser-php-javascript/.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
+ * @todo Que usar de esta clase https://github.com/geerlingguy/Request/blob/1.x/JJG/Request.php
+ * @todo https://diego.com.es/rendimiento-en-php
+ * @todo http://mialtoweb.es/como-saber-que-navegador-utiliza-un-usario-en-php/
+ * @todo https://gist.github.com/digitalhydra/7949601
+ * @todo https://artisansweb.net/detect-browser-php-javascript/
  */
 class Request extends BaseClass {
 
@@ -101,6 +94,34 @@ class Request extends BaseClass {
 
       $this->cookies = new Cookies ();
     }
+  }
+
+  /**
+   * Permite obtener el valor del Content-Response, una variable personalizada
+   * del sistema ECOMOD para determinar cual será el tipo de valor que espera
+   * recibir el cliente.
+   *
+   * @return string
+   */
+  public function getContentResponse () {
+
+    $headers = apache_request_headers ();
+    $exploded = \explode ( "Content-Response:", $headers [ 'Content-Type' ] );
+    return $exploded [ 1 ];
+  }
+
+  /**
+   * Permite obtener el valor de la cabecera Content-Type, la cual indica el
+   * tipo de dato que se está recibiendo en la petición(Request) HTTP en el
+   * servidor.
+   *
+   * @return string
+   */
+  public function getContentType () {
+
+    $headers = apache_request_headers ();
+    $exploded = \explode ( ", ", $headers [ 'Content-Type' ] );
+    return $exploded [ 0 ];
   }
 
   /**

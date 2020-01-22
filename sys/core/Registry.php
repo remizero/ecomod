@@ -1,4 +1,5 @@
 <?php
+
 namespace sys\core;
 
 use sys\patterns\creational\Singleton;
@@ -34,12 +35,12 @@ use sys\patterns\creational\Singleton;
  *       </ul>
  */
 class Registry {
-  
+
   use Singleton;
-  
+
   /**
    * Arreglo que almacena las instancias de las clases.
-   *  
+   *
    * @var array
    */
   private static $instances = array ();
@@ -51,22 +52,21 @@ class Registry {
    */
   private function __construct () {
 
-    // TODO - Insert your code here
   }
 
   /**
    * Método que permite obtener la instancia de una clase dado el índice $key.
-   * 
+   *
    * @param string $key Índice asociado a la instancia a buscar.
-   * @param mixed $default Valor a devolver por omisión en caso de no existir 
+   * @param mixed $default Valor a devolver por omisión en caso de no existir
    *        el índice $key.
-   * 
+   *
    * @return mixed
    */
-  public function get ( string $key, $default = null ) {
+  public function get ( string $key, $default = null) {
 
     if ( isset ( self::$instances [ $key ] ) ) {
-      
+
       return self::$instances [ $key ];
     }
     return $default;
@@ -74,37 +74,37 @@ class Registry {
 
   /**
    * Retorna un arreglo con todas las instancias almacenadas.
-   * 
+   *
    * @return array
    */
   public function getInstances () {
-    
+
     return Registry::$instances;
   }
 
   /**
    * Método que permite asignar la instancia de una clase al índice indicado $key.
-   * 
+   *
    * @param string $key Índice asociado a la instancia a almacenar.
    * @param mixed $instance Instancia del objeto a almacenar.
-   * 
+   *
    * @return void
    */
-  public function set ( string $key, $instance = null ) {
+  public function set ( string $key, $instance = null) {
 
     self::$instances [ $key ] = $instance;
   }
 
   /**
    * Método que permite eliminar la instancia de una clase dado su índice $key.
-   * 
+   *
    * @param string $key Índice asociado a la instancia a eliminar.
-   * 
+   *
    * @return void
    */
   public function erase ( string $key ) {
 
     unset ( self::$instances [ $key ] );
-    return !\array_key_exists ( $key , self::$instances );
+    return !\array_key_exists ( $key, self::$instances );
   }
 }

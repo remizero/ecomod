@@ -32,4 +32,10 @@ http://www.cristalab.com/tutoriales/introduccion-a-ajax-con-php-y-formularios-c1
 ATAQUES A UN SITIO WEB
 https://xsser.03c8.net/xsser/XSS_for_fun_and_profit_SCG09_(spanish).pdf
 
+PARA AGREGAR CABECERAS HTTP DE SEGURIDAD
+https://desarrollowp.com/blog/tutoriales/anadir-cabeceras-http-de-seguridad-en-wordpress/
+
+PARA HACER USO DE TÉCNICAS AVANZADAS CON AJAX(SOLO IDEAS PARA DESARROLLAR)
+http://losfectivos.blogspot.com/2013/04/tutorial-de-ajax.html
+
  

@@ -1,4 +1,5 @@
 <?php
+
 namespace sys\libs\common;
 
 /**
@@ -17,135 +18,120 @@ namespace sys\libs\common;
  * @copyright Todos los derechos reservados 2018.
  * @link http://www.ecosoftware.com.ve
  * @license http://www.ecosoftware.com.ve/licencia
- * @uses <ul>
- *       <li>.php</li>
- *       </ul>
+ * @uses .php
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>https://diego.com.es/rendimiento-en-php.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
+ * @todo REVISAR ESTO https://diego.com.es/rendimiento-en-php.
  */
 abstract class ArrayUtils {
 
   /**
-   * 
    * @param array $array
-   * 
+   *
    * @return array
    */
   public static function clean ( $array ) {
 
     return \array_filter ( $array, function ( $item ) {
-      
+
       return !empty ( $item );
     } );
   }
 
   /**
-   * 
    * @param array $array
-   * 
+   *
    * @return NULL|string
    */
   public static function first ( $array ) {
-    
+
     if ( \sizeof ( $array ) == 0 ) {
-      
+
       return null;
     }
     $keys = \array_keys ( $array );
     return $array [ $keys [ 0 ] ];
   }
-  
+
   /**
-   *
    * @param array $array
    *
    * @return NULL|string
    */
   public static function firstKey ( $array ) {
-    
+
     if ( \sizeof ( $array ) == 0 ) {
-      
+
       return null;
     }
     $keys = \array_keys ( $array );
     return $keys [ 0 ];
   }
-  
+
   /**
-   * 
    * @param array $array
    * @param array $return
-   * 
+   *
    * @return array
    */
-  public function flatten ( $array, $return = array() ) {
-    
+  public function flatten ( $array, $return = array()) {
+
     foreach ( $array as $key => $value ) {
-      
+
       if ( \is_array ( $value ) || \is_object ( $value ) ) {
-        
+
         $return = self::flatten ( $value, $return );
-        
       } else {
-        
+
         $return [] = $value;
       }
     }
     return $return;
   }
-  
+
   /**
-   * 
    * @param array $array
-   * 
+   *
    * @return NULL|string
    */
   public static function last ( $array ) {
-    
+
     if ( \sizeof ( $array ) == 0 ) {
-      
+
       return null;
     }
     $keys = \array_keys ( $array );
     return $array [ $keys [ \sizeof ( $keys ) - 1 ] ];
   }
-  
+
   /**
-   *
    * @param array $array
    *
    * @return NULL|string
    */
   public static function lastKey ( $array ) {
-    
+
     if ( \sizeof ( $array ) == 0 ) {
-      
+
       return null;
     }
     $keys = \array_keys ( $array );
     return $keys [ \sizeof ( $keys ) - 1 ];
   }
-  
+
   public static function uploadArray ( array $array ) {
 
     $result = array ();
     foreach ( $array as $key1 => $value1 ) {
-      
+
       $indexFile = 0;
       foreach ( $value1 as $key2 => $value2 ) {
-        
+
         $result [ "file" . $indexFile++ ] [ $key1 ] = $value2;
       }
     }
     return $result;
-  } 
-  
+  }
+
   /**
    * Metodo que permite convertir un array a string para ser guardado en un
    * archivo de configuracion.
@@ -155,13 +141,13 @@ abstract class ArrayUtils {
    * @return string
    */
   public static function toConfigFile ( array $array ) {
-    
+
     foreach ( $array as $section => $arrayValue ) {
-      
+
       $output .= '[' . $section . ']' . PHP_EOL;
-      
+
       foreach ( $arrayValue as $key => $value ) {
-        
+
         $output .= $key . ' = "' . $value . '"' . PHP_EOL;
       }
       $output .= PHP_EOL;
@@ -171,26 +157,25 @@ abstract class ArrayUtils {
 
   /**
    * Convierte un arreglo en un objeto de tipo stdClass.
-   *  
+   *
    * @param array $array Arreglo a convertir.
-   * 
+   *
    * @return \stdClass
    */
   public static function toObject ( array $array ) {
 
     $result = new \stdClass ();
     foreach ( $array as $key => $value ) {
-      
+
       if ( \is_array ( $value ) ) {
-        
+
         $result->{$key} = self::toObject ( $value );
-        
       } else {
-        
+
         $result->{$key} = $value;
       }
     }
-    
+
     return $result;
   }
 
@@ -198,11 +183,11 @@ abstract class ArrayUtils {
 
     return \http_build_query ( self::clean ( $array ) );
   }
-  
+
   public static function trim ( $array ) {
-    
+
     return \array_map ( function ( $item ) {
-      
+
       return \trim ( $item );
     }, $array );
   }

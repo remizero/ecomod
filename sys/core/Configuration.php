@@ -1,4 +1,5 @@
 <?php
+
 namespace sys\core;
 
 use sys\core\abstracts\BaseClass;
@@ -23,39 +24,28 @@ use sys\libs\exceptions\ArgumentException;
  * @copyright Todos los derechos reservados 2018.
  * @link http://www.ecosoftware.com.ve
  * @license http://www.ecosoftware.com.ve/licencia
- * @uses <ul>
- *       <li>.php</li>
- *       </ul>
+ * @uses .php
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>https://diego.com.es/rendimiento-en-php.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
+ * @todo REVISAR https://diego.com.es/rendimiento-en-php.
  */
 class Configuration extends BaseClass {
 
   /**
-   *
    * @readwrite
    */
   protected $_type;
 
   /**
-   *
    * @readwrite
    */
   protected $_options;
 
   /**
-   *
    * @param array $options
    *
    * @return void
    */
-  public function __construct ( array $options = array () ) {
+  public function __construct ( array $options = array ()) {
 
     parent::__construct ( $options );
   }
@@ -64,32 +54,25 @@ class Configuration extends BaseClass {
    */
   function __destruct () {
 
-    // TODO - Insert your code here
   }
 
   public function initialize () {
 
-    Events::fire ( "framework.configuration.initialize.before", array ( 
-      
-        $this->type,
-        $this->options 
-    ) );
-    
+    Events::fire ( "framework.configuration.initialize.before", array (
+    $this->type, $this->options ) );
+
     if ( !$this->type ) {
-      
+
       throw new ArgumentException ();
     }
-    
-    Events::fire ( "framework.configuration.initialize.after", array ( 
-      
-        $this->type,
-        $this->options 
-    ) );
-    
+
+    Events::fire ( "framework.configuration.initialize.after", array (
+    $this->type, $this->options ) );
+
     switch ( $this->type ) {
-      
+
       case "ini" :
-        
+
         return new Configuration\Driver\Ini ( $this->options );
         break;
 

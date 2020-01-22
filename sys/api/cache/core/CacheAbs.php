@@ -23,9 +23,7 @@ use sys\core\abstracts\BaseClass;
  * @copyright Todos los derechos reservados 2018.
  * @link http://www.ecosoftware.com.ve
  * @license http://www.ecosoftware.com.ve/licencia
- * @uses <ul>
- *       <li>.php</li>
- *       </ul>
+ * @uses .php
  * @see .php
  * @todo Para el rendimiento de PHP https://diego.com.es/rendimiento-en-php.
  */

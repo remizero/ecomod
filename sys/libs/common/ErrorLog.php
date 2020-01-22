@@ -36,19 +36,12 @@ use sys\libs\exceptions\WarningException;
  * @copyright Todos los derechos reservados 2018.
  * @link http://www.ecosoftware.com.ve
  * @license http://www.ecosoftware.com.ve/licencia
- * @uses <ul>
- *       <li>.php</li>
- *       </ul>
+ * @uses .php
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>Inclusión de traza informativa en el sistema de log de errores para
- *       indicar que clase no pudo se encontrada.</li>
- *       <li>Envío de mensajes de errores por pantalla.</li>
- *       <li>Envío de mensajes de errores vía correo.</li>
- *       <li>.</li>
- *       </ul>
+ * @todo Inclusión de traza informativa en el sistema de log de errores para
+ *       indicar que clase no pudo se encontrada.
+ * @todo Envío de mensajes de errores por pantalla.
+ * @todo Envío de mensajes de errores vía correo.
  */
 class ErrorLog {
 
@@ -67,7 +60,6 @@ class ErrorLog {
    */
   function __destruct () {
 
-    // TODO - Insert your code here
   }
 
   /**
@@ -190,7 +182,13 @@ class ErrorLog {
   public function catchException ( \Exception $exception ) {
 
     self::validate ();
-    $filePointer = \fopen ( 'public/errors/error.log', 'a' );
+    /*
+     * Este SITEROOT, viene desde una petición AJAX, debido a que al momento de
+     * de realizar la petición por esta vía no se encontraba el archivo error.log
+     * Si se llega a presentar algún problema desde una petición directa vía PHP
+     * ajustar para que funcione en ambas situaciones.
+     */
+    $filePointer = \fopen ( SITEROOT . 'public/errors/error.log', 'a' );
     \fwrite ( $filePointer, "[" . \date ( DATE_RFC2822 ) . "] EXCEPTION " . $exception->__toString () . PHP_EOL );
     \fclose ( $filePointer );
   }

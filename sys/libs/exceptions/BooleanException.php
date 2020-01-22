@@ -1,9 +1,10 @@
 <?php
+
 namespace sys\libs\exceptions;
 
 /**
  * <strong>BooleanException</strong>
- * 
+ *
  * Archivo creado el 05 de septiembre de 2018 a las 22:12:35 p.m.
  * <p>Clase que permite procesar las excepciones de tipo Boolean.</p>
  *
@@ -18,23 +19,14 @@ namespace sys\libs\exceptions;
  * @copyright Todos los derechos reservados 2018.
  * @link http://www.ecosoftware.com.ve
  * @license http://www.ecosoftware.com.ve/licencia
- * @uses <ul>
- *       <li>.php</li>
- *       </ul>
+ * @uses .php
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
  */
 class BooleanException extends Exception {
 
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
-   * 
+   *
    * @return void
    */
   public function __construct () {
@@ -46,7 +38,6 @@ class BooleanException extends Exception {
    */
   function __destruct () {
 
-    // TODO - Insert your code here
   }
 }
 

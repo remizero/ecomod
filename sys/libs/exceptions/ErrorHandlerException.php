@@ -1,4 +1,5 @@
 <?php
+
 namespace sys\libs\exceptions;
 
 /**
@@ -18,22 +19,13 @@ namespace sys\libs\exceptions;
  * @copyright Todos los derechos reservados 2018.
  * @link http://www.ecosoftware.com.ve
  * @license http://www.ecosoftware.com.ve/licencia
- * @uses <ul>
- *       <li>.php</li>
- *       </ul>
+ * @uses .php
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
  */
 class ErrorHandlerException extends Exception {
-  
+
   protected $severity;
-  
+
   /**
    * Constructor de la clase; inicializa los valores por omisión de la clase.
    *
@@ -44,8 +36,8 @@ class ErrorHandlerException extends Exception {
    *
    * @return void
    */
-  public function __construct ( string $code, string $error, string $file = NULL, string $line = NULL ) {
-    
+  public function __construct ( string $code, string $error, string $file = NULL, string $line = NULL) {
+
     $this->code = $code;
     $this->message = $error;
     $this->file = $file;
@@ -57,7 +49,6 @@ class ErrorHandlerException extends Exception {
    */
   function __destruct () {
 
-    // TODO - Insert your code here
   }
 }
 

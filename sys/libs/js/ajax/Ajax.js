@@ -140,10 +140,11 @@ export default class Ajax extends XMLHttpRequest {
     this.open ( method, url, true );
     this.setRequestHeader ( 'X-Requested-With', 'XMLHttpRequest');
     this.setRequestHeader ( "Content-Type", this.contentType );
-    if ( this.responseType == Ajax.RESPONSETYPEENUM.JSON ) {
+    this.setRequestHeader ( "Content-Type", "Content-Response:" + this.responseType );
+    /*if ( this.responseType == Ajax.RESPONSETYPEENUM.JSON ) {
       
-      this.setRequestHeader ( "ACCEPT", "application/json" );
-    }
+      this.setRequestHeader ( "Content-Type", "Content-Response:application/json" );
+    }*/
     //this.setRequestHeader ( "Content-Type", "application/json" );
     //this.setRequestHeader ( "Content-Type", "application/x-www-form-urlencoded" );
     //this.setRequestHeader ( "Content-Type", "text/plain" );
@@ -260,7 +261,8 @@ export default class Ajax extends XMLHttpRequest {
             
           } else if ( this.responseType == Ajax.RESPONSETYPEENUM.JSON ) {
             
-            this.outputProcessed = JSON.parse ( this.response );
+            console.log ( "Está entrando por el json" );
+            this.outputProcessed = JSON.parse ( this.responseText );
             if ( this.internalCallbackFunction != null ) {
               
               this.internalCallbackFunction ( this.internalDocument, this.outputProcessed );

@@ -1,4 +1,5 @@
 <?php
+
 namespace sys\core;
 
 use sys\core\abstracts\BaseClass;
@@ -22,22 +23,13 @@ use sys\libs\exceptions\LayoutException;
  * @copyright Todos los derechos reservados 2018.
  * @link http://www.ecosoftware.com.ve
  * @license http://www.ecosoftware.com.ve/licencia
- * @uses <ul>
- *       <li>.php</li>
- *       </ul>
+ * @uses .php
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>https://diego.com.es/rendimiento-en-php.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
+ * @todo REVISAR https://diego.com.es/rendimiento-en-php.
  */
 abstract class Controller extends BaseClass {
 
   /**
-   *
    * @read
    *
    * @var string
@@ -45,7 +37,6 @@ abstract class Controller extends BaseClass {
   protected $name;
 
   /**
-   *
    * @readwrite
    *
    * @var array
@@ -53,7 +44,6 @@ abstract class Controller extends BaseClass {
   protected $parameters;
 
   /**
-   *
    * @readwrite
    *
    * @var View
@@ -61,7 +51,6 @@ abstract class Controller extends BaseClass {
   protected $layoutView;
 
   /**
-   *
    * @readwrite
    *
    * @var View
@@ -69,7 +58,6 @@ abstract class Controller extends BaseClass {
   protected $actionView;
 
   /**
-   *
    * @readwrite
    *
    * @var boolean
@@ -77,7 +65,6 @@ abstract class Controller extends BaseClass {
   protected $willRenderLayoutView = true;
 
   /**
-   *
    * @readwrite
    *
    * @var boolean
@@ -85,7 +72,6 @@ abstract class Controller extends BaseClass {
   protected $willRenderActionView = true;
 
   /**
-   *
    * @readwrite
    *
    * @var string
@@ -93,7 +79,6 @@ abstract class Controller extends BaseClass {
   protected $defaultPath = "application/views";
 
   /**
-   *
    * @readwrite
    *
    * @var string
@@ -101,7 +86,6 @@ abstract class Controller extends BaseClass {
   protected $defaultLayout = "layouts/standard";
 
   /**
-   *
    * @readwrite
    *
    * @var string
@@ -109,14 +93,13 @@ abstract class Controller extends BaseClass {
   protected $defaultExtension = "html";
 
   /**
-   *
    * @readwrite
    *
    * @var string
    */
   protected $defaultContentType = "text/html";
 
-  public function __construct ( $options = array() ) {
+  public function __construct ( $options = array()) {
 
     parent::__construct ( $options );
     Events::fire ( "framework.controller.construct.before", array ( $this->name ) );
@@ -129,32 +112,32 @@ abstract class Controller extends BaseClass {
       $this->layoutView = $view;
     }
     if ( $this->willRenderActionView ) {
-      
-      \var_dump("paso por la linea 134 la clase controller");
+
+      \var_dump ( "paso por la linea 134 la clase controller" );
       $router = Registry::getInstance ()->get ( "router" );
-      \var_dump("paso por la linea 136 la clase controller");
+      \var_dump ( "paso por la linea 136 la clase controller" );
       $controller = $router->controller;
-      \var_dump("paso por la linea 138 la clase controller");
+      \var_dump ( "paso por la linea 138 la clase controller" );
       $action = $router->action;
-      \var_dump("paso por la linea 140 la clase controller");
+      \var_dump ( "paso por la linea 140 la clase controller" );
       $view = new View ( array ( "file" => APP_PATH . "/{$defaultPath}/{$controller}/{$action}.{$defaultExtension}" ) );
       $this->actionView = $view;
-      \var_dump("paso por la linea 143 la clase controller");
+      \var_dump ( "paso por la linea 143 la clase controller" );
     }
     Events::fire ( "framework.controller.construct.after", array ( $this->name ) );
   }
 
   public function __destruct () {
 
-    //Events::fire ( "framework.controller.destruct.before", array ( $this->name ) );
-    //$this->render ();
-    //Events::fire ( "framework.controller.destruct.after", array ( $this->name ) );
+    // Events::fire ( "framework.controller.destruct.before", array ( $this->name ) );
+    // $this->render ();
+    // Events::fire ( "framework.controller.destruct.after", array ( $this->name ) );
   }
 
   protected function getName () {
 
     if ( empty ( $this->name ) ) {
-      
+
       $this->name = \get_class ( $this );
     }
     return $this->name;
@@ -168,31 +151,32 @@ abstract class Controller extends BaseClass {
     $doAction = $this->willRenderActionView && $this->actionView;
     $doLayout = $this->willRenderLayoutView && $this->layoutView;
     try {
-      
+
       if ( $doAction ) {
-        
+
         $view = $this->actionView;
         $results = $view->render ();
-        \var_dump($results);
+        \var_dump ( $results );
         $this->actionView->template->implementation->set ( "action", $results );
         \var_dump ( "Pasó el actionView de ka ckase controller en la línea 178 -" );
       }
       if ( $doLayout ) {
-        
+
         $view = $this->layoutView;
         $results = $view->render ();
-        \var_dump($results);
+        \var_dump ( $results );
         \header ( "Content-type: {$defaultContentType}" );
         echo $results;
-      } else if ( $doAction ) {
-        
-        \header ( "Content-type: {$defaultContentType}" );
-        echo $results;
-      }
+      } else
+        if ( $doAction ) {
+
+          \header ( "Content-type: {$defaultContentType}" );
+          echo $results;
+        }
       $this->willRenderLayoutView = false;
       $this->willRenderActionView = false;
     } catch ( \Exception $e ) {
-      
+
       throw new LayoutException ();
     }
     Events::fire ( "framework.controller.render.after", array ( $this->name ) );

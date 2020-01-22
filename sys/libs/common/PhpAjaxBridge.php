@@ -13,6 +13,8 @@
  * setRequestHeader ( 'X-Requested-With', 'XMLHttpRequest');
  */
 use sys\core\Request;
+use sys\core\RequestHandler;
+use sys\libs\common\ErrorLog;
 
 define ( "AJAXREQUEST", TRUE );
 define ( "SITEROOT", \substr ( \dirname ( __FILE__ ), 0, -15 ) );
@@ -22,6 +24,7 @@ require_once SITEROOT . 'sys/core/ClassLoader.php';
 $classloader = new sys\core\ClassLoader ();
 $classloader->register ();
 
+new ErrorLog ();
 $request = new Request ();
 
 if ( $request->isXmlHttpRequest () ) {
@@ -65,35 +68,54 @@ if ( $request->isXmlHttpRequest () ) {
    * 1-. Identificar los recursos, controladores, métodos solicitados.
    * 2-. Hacer entrega de la data recibida a los controladores respectivos.
    * 3-. Lanzar el controlador respuesta de acuerdo al tipo de content-type solicitado.
-   * 4-. Enviar el resultado obtenido de acuerdo con el content-type solicitado.
+   * 4-. Enviar el resultado obtenido de acuerdo con el content-Response solicitado.
    * 4.1-. procesar la solicitud.
    * 4.2-. Obtener el content-type.
-   * 4.3-. Ajustar la respuesta de la solicitud al content-type.
+   * 4.3-. Ajustar la respuesta de la solicitud al content-Response.
    */
+  /**
+   * Esto es para saber como vienen los datos desde el cliente y como han de ser
+   * procesados.
+   */
+  // $request->getContentType ();
 
-  // header ( 'Content-type: text/plain; charset=UTF-8' );
-  // header ( 'Content-type: application/json' );
-  header ( 'content-type: image/png' );
-  // header ( 'Content-Length: 123456' );
-  $fn = "avatar.png";
-  header ( 'Content-Length: ' . filesize ( $fn ) );
-  print file_get_contents ( $fn );
-  // header ( 'Content-Length: ' . filesize ( "PhpAjaxBridge.php" ) );
-  // header ( "Cache-Control: no-cache, must-revalidate" );
-  // header ( 'Content-type: text/plain' );
-  // header ( 'Content-type: text/html' );
-  // RequestHandler::processRequestMethod ( $request );
+  /**
+   * Esta forma permite obtener como el cliente espera que sean enviados los
+   * datos solicitados.
+   */
+  // $request->getContentResponse ();
 
-/**
- * Esta forma permite obtener como vienen contenidos los datos desde el cliente.
- *
- * COMO OBTENER EL TIPO DE RESPUESTA ESPERADO POR EL CLIENTE?
- */
-  // $headers = apache_request_headers ();
-  // var_dump ( $headers );
+
+
+  /**
+   * Lo mas probable es que solo utilice este método para realizar las
+   * operaciones solicitadas y de ser así, no se necesitará hacer uso de
+   * $request->getContentType (); o de $request->getContentResponse ();
+   *
+   * ARRAYBUFFER : "arraybuffer",
+   * BLOB : "blob",
+   * DOCUMENT : "document",
+   * EMPTY : "",
+   * JSON : "json",
+   * MSSTREAM : "ms-stream",
+   * TEXT : "text"
+   */
+  RequestHandler::processRequestMethod ( $request );
+
+  // $file = fopen ( "archivo.txt", "a" );
+  // foreach ( $_SERVER as $key => $value ) {
+
+  // fwrite ( $file, $key . ': ' . $value . PHP_EOL );
+  // }
+  // fclose ( $file );
+
+  // header ( 'content-type: image/png' );
+  // $fn = "avatar.png";
+  // header ( 'Content-Length: ' . filesize ( $fn ) );
+  // print file_get_contents ( $fn );
 } else {
 
-  /*
+  /**
    * AQUÍ ESTO NO ES UN ERROR SOLO QUE A PARTIR DE AQUÍ SE EJECUTAN LAS
    * INSTRUCCIONES QUE NO VIENEN VÍA AJAX.
    */
