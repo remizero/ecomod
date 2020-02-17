@@ -32,18 +32,15 @@ use sys\libs\exceptions\ErrorHandlerException;
  *       <li>.php</li>
  *       </ul>
  * @see .php
- * @todo <p>En futuras versiones estarán disponibles los métodos para dar
- *       soporte a:</p>
- *       <ul>
- *       <li>https://diego.com.es/rendimiento-en-php.</li>
- *       <li>http://mialtoweb.es/como-saber-que-navegador-utiliza-un-usario-en-php/.</li>
- *       <li>https://gist.github.com/digitalhydra/7949601.</li>
- *       <li>https://artisansweb.net/detect-browser-php-javascript/.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       <li>.</li>
- *       </ul>
+ * @todo https://diego.com.es/rendimiento-en-php.
+ * @todo http://mialtoweb.es/como-saber-que-navegador-utiliza-un-usario-en-php/.
+ * @todo https://gist.github.com/digitalhydra/7949601.
+ * @todo https://artisansweb.net/detect-browser-php-javascript/.
+ * @todo Como obtener la acción a ejecutar.
+ * @todo Como obtener el método a ejecutar.
+ * @todo Como obtener el controlador a ejecutar.
+ * @todo Como obtener el módulo a ejecutar.
+ * @todo Como obtener los parámetros a ejecutar.
  */
 class RequestHandler extends BaseClass {
 
