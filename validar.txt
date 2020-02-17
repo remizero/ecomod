@@ -1,4 +1,4 @@
-Validar que esxistan las extensiones en PHP
+Validar que existan las extensiones en PHP
 
 1-. GMP
 2-. php_upload

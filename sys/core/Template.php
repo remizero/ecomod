@@ -1,10 +1,10 @@
 <?php
+
 namespace sys\core;
 
-use sys\api\template\core\TemplateAbs;
 use sys\core\abstracts\BaseClass;
-use sys\libs\common\StringUtils;
 use sys\libs\common\ArrayUtils;
+use sys\libs\common\StringUtils;
 use sys\libs\exceptions\ImplementationException;
 use sys\libs\exceptions\ParseTemplateException;
 
@@ -41,41 +41,36 @@ use sys\libs\exceptions\ParseTemplateException;
 class Template extends BaseClass {
 
   /**
-   *
    * @readwrite
-   * 
+   *
    * @var TemplateAbs
    */
   protected $implementation;
 
   /**
-   *
    * @readwrite
-   * 
+   *
    * @var string
    */
   protected $header = "if (is_array(\$_data) && sizeof(\$_data)) extract(\$_data); \$_text = array();";
 
   /**
-   *
    * @readwrite
-   * 
+   *
    * @var string
    */
   protected $footer = "return implode(\$_text);";
 
   /**
-   *
    * @read
-   * 
+   *
    * @var string
    */
   protected $code;
 
   /**
-   *
    * @read
-   * 
+   *
    * @var string
    */
   protected $function;
@@ -87,16 +82,15 @@ class Template extends BaseClass {
    *
    * @return void
    */
-  public function __construct ( array $options = array () ) {
+  public function __construct ( array $options = array ()) {
 
     parent::__construct ( $options );
   }
 
   /**
-   * 
    * @param string $source
    * @param string $expression
-   * 
+   *
    * @return array
    */
   protected function _arguments ( string $source, string $expression ) {
@@ -106,14 +100,15 @@ class Template extends BaseClass {
     $arguments = array ();
     $sanitized = StringUtils::sanitize ( $expression, "()[],.<>*$@" );
     foreach ( $tags as $i => $tag ) {
-      
+
       $sanitized = \str_replace ( $tag, "(.*)", $sanitized );
       $tags [ $i ] = \str_replace ( array ( "{", "}" ), "", $tag );
     }
+    $matches = array ();
     if ( \preg_match ( "#{$sanitized}#", $source, $matches ) ) {
-      
+
       foreach ( $tags as $i => $tag ) {
-        
+
         $arguments [ $tag ] = $matches [ $i + 1 ];
       }
     }
@@ -121,9 +116,8 @@ class Template extends BaseClass {
   }
 
   /**
-   * 
    * @param string $source
-   * 
+   *
    * @return array|boolean
    */
   protected function _tag ( string $source ) {
@@ -132,7 +126,7 @@ class Template extends BaseClass {
     $arguments = array ();
     $match = $this->implementation->match ( $source );
     if ( $match == null ) {
-      
+
       return false;
     }
     $delimiter = $match [ "delimiter" ];
@@ -141,37 +135,37 @@ class Template extends BaseClass {
     $end = \strpos ( $source, $type [ "closer" ] );
     $extract = \substr ( $source, $start, $end - $start );
     if ( isset ( $type [ "tags" ] ) ) {
-      
+
       $tags = \implode ( "|", \array_keys ( $type [ "tags" ] ) );
       $regex = "#^(/){0,1}({$tags})\s*(.*)$#";
-      
+
+      $matches = array ();
       if ( !\preg_match ( $regex, $extract, $matches ) ) {
-        
+
         return false;
       }
       $tag = $matches [ 2 ];
       $extract = $matches [ 3 ];
-      $closer = !!$matches [ 1 ];
+      $closer = $matches [ 1 ];
     }
     if ( $tag && $closer ) {
-      
+
       return array ( "tag" => $tag, "delimiter" => $delimiter, "closer" => true, "source" => false, "arguments" => false, "isolated" => $type [ "tags" ] [ $tag ] [ "isolated" ] );
     }
     if ( isset ( $type [ "arguments" ] ) ) {
-      
+
       $arguments = $this->_arguments ( $extract, $type [ "arguments" ] );
-      
-    } else if ( $tag && isset ( $type [ "tags" ] [ $tag ] [ "arguments" ] ) ) {
-      
-      $arguments = $this->_arguments ( $extract, $type [ "tags" ] [ $tag ] [ "arguments" ] );
-    }
+    } else
+      if ( $tag && isset ( $type [ "tags" ] [ $tag ] [ "arguments" ] ) ) {
+
+        $arguments = $this->_arguments ( $extract, $type [ "tags" ] [ $tag ] [ "arguments" ] );
+      }
     return array ( "tag" => $tag, "delimiter" => $delimiter, "closer" => false, "source" => $extract, "arguments" => $arguments, "isolated" => ( !empty ( $type [ "tags" ] ) ? $type [ "tags" ] [ $tag ] [ "isolated" ] : false ) );
   }
 
   /**
-   * 
    * @param string $source
-   * 
+   *
    * @return array
    */
   protected function _array ( string $source ) {
@@ -182,29 +176,28 @@ class Template extends BaseClass {
     $type = null;
     $delimiter = null;
     while ( $source ) {
-      
+
       $match = $this->implementation->match ( $source );
       $type = $match [ "type" ];
       $delimiter = $match [ "delimiter" ];
       $opener = \strpos ( $source, $type [ "opener" ] );
       $closer = \strpos ( $source, $type [ "closer" ] ) + \strlen ( $type [ "closer" ] );
       if ( $opener !== false ) {
-        
+
         $parts [] = \substr ( $source, 0, $opener );
         $tags [] = \substr ( $source, $opener, $closer - $opener );
         $source = \substr ( $source, $closer );
-        
       } else {
-        
+
         $parts [] = $source;
         $source = "";
       }
     }
     foreach ( $parts as $i => $part ) {
-      
+
       $all [] = $part;
       if ( isset ( $tags [ $i ] ) ) {
-        
+
         $all [] = $tags [ $i ];
       }
     }
@@ -212,9 +205,8 @@ class Template extends BaseClass {
   }
 
   /**
-   * 
    * @param array $array
-   * 
+   *
    * @return array
    */
   protected function _tree ( array $array ) {
@@ -224,35 +216,35 @@ class Template extends BaseClass {
     foreach ( $array as $i => $node ) {
       $result = $this->_tag ( $node );
       if ( $result ) {
-        
+
         $tag = isset ( $result [ "tag" ] ) ? $result [ "tag" ] : "";
         $arguments = isset ( $result [ "arguments" ] ) ? $result [ "arguments" ] : "";
         if ( $tag ) {
-          
+
           if ( !$result [ "closer" ] ) {
-            
+
             $last = ArrayUtils::last ( $current [ "children" ] );
             if ( $result [ "isolated" ] && \is_string ( $last ) ) {
-              
+
               \array_pop ( $current [ "children" ] );
             }
-            
+
             $current [ "children" ] [] = array ( "index" => $i, "parent" => &$current, "children" => array (), "raw" => $result [ "source" ], "tag" => $tag, "arguments" => $arguments, "delimiter" => $result [ "delimiter" ], "number" => \sizeof ( $current [ "children" ] ) );
             $current = & $current [ "children" ] [ \sizeof ( $current [ "children" ] ) - 1 ];
-            
-          } else if ( isset ( $current [ "tag" ] ) && $result [ "tag" ] == $current [ "tag" ] ) {
-            
-            $start = $current [ "index" ] + 1;
-            $length = $i - $start;
-            $current [ "source" ] = implode ( \array_slice ( $array, $start, $length ) );
-            $current = & $current [ "parent" ];
-          }
+          } else
+            if ( isset ( $current [ "tag" ] ) && $result [ "tag" ] == $current [ "tag" ] ) {
+
+              $start = $current [ "index" ] + 1;
+              $length = $i - $start;
+              $current [ "source" ] = implode ( \array_slice ( $array, $start, $length ) );
+              $current = & $current [ "parent" ];
+            }
         } else {
-          
+
           $current [ "children" ] [] = array ( "index" => $i, "parent" => &$current, "children" => array (), "raw" => $result [ "source" ], "tag" => $tag, "arguments" => $arguments, "delimiter" => $result [ "delimiter" ], "number" => \sizeof ( $current [ "children" ] ) );
         }
       } else {
-        
+
         $current [ "children" ] [] = $node;
       }
     }
@@ -260,45 +252,43 @@ class Template extends BaseClass {
   }
 
   /**
-   * 
    * @param array|string $tree
-   * 
+   *
    * @return string|mixed
    */
   protected function _script ( $tree ) {
 
     $content = array ();
     if ( \is_string ( $tree ) ) {
-      
+
       $tree = \addslashes ( $tree );
       return "\$_text[] = \"{$tree}\";";
     }
     if ( \sizeof ( $tree [ "children" ] ) > 0 ) {
-      
+
       foreach ( $tree [ "children" ] as $child ) {
-        
+
         $content [] = $this->_script ( $child );
       }
     }
     if ( isset ( $tree [ "parent" ] ) ) {
-      
+
       return $this->implementation->handle ( $tree, \implode ( $content ) );
     }
     return \implode ( $content );
   }
 
   /**
-   * 
    * @param string $template
-   * 
+   *
    * @throws ImplementationException
-   * 
+   *
    * @return \sys\core\Template
    */
   public function parse ( string $template ) {
 
     if ( !\is_a ( $this->implementation, "sys\api\template\core\TemplateAbs" ) ) {
-      
+
       throw new ImplementationException ();
     }
     $array = $this->_array ( $template );
@@ -309,26 +299,24 @@ class Template extends BaseClass {
   }
 
   /**
-   * 
    * @param array $data
-   * 
+   *
    * @throws ParseTemplateException
-   * 
+   *
    * @return string
    */
-  public function process ( array $data = array () ) {
+  public function process ( array $data = array ()) {
 
     if ( $this->function == null ) {
-      
+
       throw new ParseTemplateException ();
     }
     try {
-      
+
       $function = $this->function;
       return $function ( $data );
-      
     } catch ( \Exception $e ) {
-      
+
       throw new ParseTemplateException ( $e );
     }
   }

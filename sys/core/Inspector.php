@@ -199,18 +199,18 @@ class Inspector {
    */
   public function getClassMeta () {
 
-    if ( !isset ( $meta [ "class" ] ) ) {
+    if ( !isset ( $this->meta [ "class" ] ) ) {
 
       $comment = $this->_getClassComment ();
       if ( !empty ( $comment ) ) {
 
-        $meta [ "class" ] = $this->_parse ( $comment );
+        $this->meta [ "class" ] = $this->_parse ( $comment );
       } else {
 
-        $meta [ "class" ] = null;
+        $this->meta [ "class" ] = null;
       }
     }
-    return $meta [ "class" ];
+    return $this->meta [ "class" ];
   }
 
   /**
@@ -220,15 +220,15 @@ class Inspector {
    */
   public function getClassMethods () {
 
-    if ( !isset ( $methods ) ) {
+    if ( !isset ( $this->methods ) ) {
 
       $methods = $this->_getClassMethods ();
       foreach ( $methods as $method ) {
 
-        $methods [] = $method->getName ();
+        $this->methods [] = $method->getName ();
       }
     }
-    return $properties;
+    return $this->methods;
   }
 
   /**
@@ -238,15 +238,15 @@ class Inspector {
    */
   public function getClassProperties () {
 
-    if ( !isset ( $properties ) ) {
+    if ( !isset ( $this->properties ) ) {
 
       $properties = $this->_getClassProperties ();
       foreach ( $properties as $property ) {
 
-        $properties [] = $property->getName ();
+        $this->properties [] = $property->getName ();
       }
     }
-    return $properties;
+    return $this->properties;
   }
 
   /**
@@ -258,18 +258,20 @@ class Inspector {
    */
   public function getMethodMeta ( string $method ) {
 
-    if ( !isset ( $meta [ "actions" ] [ $method ] ) ) {
+    // Esta es la forma original, verificar si esto es correcto
+    // if ( !isset ( $this->meta [ "actions" ] [ $method ] ) ) {
+    if ( !isset ( $this->meta [ "methods" ] [ $method ] ) ) {
 
       $comment = $this->_getMethodComment ( $method );
       if ( !empty ( $comment ) ) {
 
-        $meta [ "methods" ] [ $method ] = $this->_parse ( $comment );
+        $this->meta [ "methods" ] [ $method ] = $this->_parse ( $comment );
       } else {
 
-        $meta [ "methods" ] [ $method ] = null;
+        $this->meta [ "methods" ] [ $method ] = null;
       }
     }
-    return $meta [ "methods" ] [ $method ];
+    return $this->meta [ "methods" ] [ $method ];
   }
 
   /**
@@ -282,18 +284,18 @@ class Inspector {
    */
   public function getPropertyMeta ( string $property ) {
 
-    if ( !isset ( $meta [ "properties" ] [ $property ] ) ) {
+    if ( !isset ( $this->meta [ "properties" ] [ $property ] ) ) {
 
       $comment = $this->_getPropertyComment ( $property );
       if ( !empty ( $comment ) ) {
 
-        $meta [ "properties" ] [ $property ] = $this->_parse ( $comment );
+        $this->meta [ "properties" ] [ $property ] = $this->_parse ( $comment );
       } else {
 
-        $meta [ "properties" ] [ $property ] = null;
+        $this->meta [ "properties" ] [ $property ] = null;
       }
     }
-    return $meta [ "properties" ] [ $property ];
+    return $this->meta [ "properties" ] [ $property ];
   }
 
   /**
@@ -414,29 +416,30 @@ class Inspector {
   public function setTypeValidation ( array $meta, $argument ) {
 
     /**
-     * El punto aqui es, si $arguments cumple con el tipo indicado por la
-     * metaetiqueta $meta [ "@var" ] [ 0 ] == "___" ] entonces $arguments es valido y se retorna,
-     * en caso contrario se retorna null.
-     * Hacer uso de las siguientes funciones:
+     * @todo Terminar este método, por lo visto está sin terminar
+     *       El punto aqui es, si $arguments cumple con el tipo indicado por la
+     *       metaetiqueta $meta [ "@var" ] [ 0 ] == "___" ] entonces $arguments es valido y se retorna,
+     *       en caso contrario se retorna null.
+     *       Hacer uso de las siguientes funciones:
      *
-     * \is_callable($var);
-     * \is_​countable
-     * \is_dir($filename);
-     * \is_executable($filename);
-     * \is_file($filename);
-     * \is_finite($val);
-     * \is_infinite($val);
-     * \is_iterable($var);
-     * \is_link($filename);
-     * \is_nan($val);
-     * \is_readable($filename);
-     * \is_resource($var);
-     * \is_scalar($var);
-     * \is_soap_fault($object);
-     * \is_subclass_of($object, $class_name);
-     * \is_uploaded_file($filename);
-     * \is_writable($filename);
-     * \is_writeable($filename);
+     *       \is_callable($var);
+     *       \is_​countable
+     *       \is_dir($filename);
+     *       \is_executable($filename);
+     *       \is_file($filename);
+     *       \is_finite($val);
+     *       \is_infinite($val);
+     *       \is_iterable($var);
+     *       \is_link($filename);
+     *       \is_nan($val);
+     *       \is_readable($filename);
+     *       \is_resource($var);
+     *       \is_scalar($var);
+     *       \is_soap_fault($object);
+     *       \is_subclass_of($object, $class_name);
+     *       \is_uploaded_file($filename);
+     *       \is_writable($filename);
+     *       \is_writeable($filename);
      */
     $auxMeta = "";
     if ( isset ( $meta [ "@var" ] ) ) {
@@ -467,7 +470,9 @@ class Inspector {
       }
     } elseif ( $auxMeta == "binary" ) {
 
-      $property = ( string ) $property;
+      // Esta es la forma original, verificar si es correcto
+      // $property = ( string ) $property;
+      $validatedType = $argument;
     } elseif ( ( $auxMeta == "bool" ) || ( $auxMeta == "boolean" ) ) {
 
       if ( !\is_​bool ( $argument ) && ( ( $validatedType = \filter_var ( $argument, FILTER_VALIDATE_BOOLEAN ) ) === FALSE ) ) {
