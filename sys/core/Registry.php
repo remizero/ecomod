@@ -47,6 +47,32 @@ class Registry {
   }
 
   /**
+   * Método que permite asignar la instancia de una clase al índice indicado $key.
+   *
+   * @param string $key Índice asociado a la instancia a almacenar.
+   * @param mixed $instance Instancia del objeto a almacenar.
+   *
+   * @return void
+   */
+  public function add ( string $key, $instance = null) {
+
+    self::$instances [ $key ] = $instance;
+  }
+
+  /**
+   * Método que permite eliminar la instancia de una clase dado su índice $key.
+   *
+   * @param string $key Índice asociado a la instancia a eliminar.
+   *
+   * @return void
+   */
+  public function erase ( string $key ) {
+
+    unset ( self::$instances [ $key ] );
+    return !\array_key_exists ( $key, self::$instances );
+  }
+
+  /**
    * Método que permite obtener la instancia de una clase dado el índice $key.
    *
    * @param string $key Índice asociado a la instancia a buscar.
@@ -72,31 +98,5 @@ class Registry {
   public function getInstances () {
 
     return Registry::$instances;
-  }
-
-  /**
-   * Método que permite asignar la instancia de una clase al índice indicado $key.
-   *
-   * @param string $key Índice asociado a la instancia a almacenar.
-   * @param mixed $instance Instancia del objeto a almacenar.
-   *
-   * @return void
-   */
-  public function set ( string $key, $instance = null) {
-
-    self::$instances [ $key ] = $instance;
-  }
-
-  /**
-   * Método que permite eliminar la instancia de una clase dado su índice $key.
-   *
-   * @param string $key Índice asociado a la instancia a eliminar.
-   *
-   * @return void
-   */
-  public function erase ( string $key ) {
-
-    unset ( self::$instances [ $key ] );
-    return !\array_key_exists ( $key, self::$instances );
   }
 }

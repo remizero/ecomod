@@ -179,7 +179,7 @@ class ClassLoader {
         return $dir . DIRECTORY_SEPARATOR . $classPath;
       }
     }
-    // Previene errores al realizar autocarga desde peticioones ajax
+    // Previene errores al realizar autocarga desde peticiones ajax
     if ( \defined ( "AJAXREQUEST" ) && AJAXREQUEST ) {
 
       $classPath = SITEROOT . $classPath;

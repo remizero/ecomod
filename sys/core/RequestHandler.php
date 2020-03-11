@@ -45,6 +45,18 @@ use sys\libs\exceptions\ErrorHandlerException;
 class RequestHandler extends BaseClass {
 
   /**
+   * @readwrite
+   * @deprecated
+   */
+  protected $url;
+
+  /**
+   * @readwrite
+   * @deprecated
+   */
+  protected $extension;
+
+  /**
    * Acción a ejecutar según la solicitud al servidor.
    *
    * @readwrite

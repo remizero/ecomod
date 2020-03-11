@@ -1,18 +1,13 @@
 <?php
 // phpinfo ();
-require_once SITEROOT . 'sys/core/ClassLoader.php';
-
-$classloader = new sys\core\ClassLoader ();
-$classloader->register ();
-
-use sys\core\Registry;
 use sys\core\Request;
-use sys\libs\common\ErrorLog;
-
-$registry = Registry::getInstance ();
-new ErrorLog ();
 
 $request = new Request ();
+var_dump ( $request->getUrl ()->toString () );
+$registry->add ( "request", $request );
+
+var_dump ( $_SERVER [ 'SERVER_NAME' ] );
+var_dump ( SITEROOT );
 
 /*
  * <script type="text/javascript" src="http://localhost/ecomod/indexes/EnviarAjax.js"></script>
@@ -38,5 +33,10 @@ $request = new Request ();
     <div id="responsephp"></div>
     <input type="hidden" id="oculto" name="oculto" value="1">
     <button id="ajaxBtn" >Send Simple Ajax Request</button>
+    <a href="inicio.php">Inicio</a>
+    <a href="portafolio.php">Portafolio</a>
+    <a href="galeria.php">Galería</a>
+    <a href="contacto.php">Contacto</a>
+    
   </body>
 </html>

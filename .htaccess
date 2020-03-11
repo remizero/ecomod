@@ -1,8 +1,34 @@
 RewriteEngine on
+# Se indica a Apache2 para que habilite la reescritura de URL's para este directorio.
+
 # Redireccionar todas las url a index
+
+# Se ignoran todas las solicitudes hechas a directorios reales dentro de este directorio.
 RewriteCond %{REQUEST_FILENAME} !-d
+
+# Se ignoran todas las solicitudes hechas a archivos reales dentro de este directorio.
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule . index.php [L]
+
+# Retransmite todas las solicitudes de direcciones al archivo index.php
+RewriteRule ^.*$ /ecomod/index.php [L]
+# RewriteRule ^.*$ /ecomod/index.php [L,QSA]
+# RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]
+
+# Indica que ignore todas las solicitudes a este archivo
+# RewriteCond %{REQUEST_URI} !=/favicon.ico
+
+# hace coincidir todas las direcciones que contienen los caracteres a-zA-Z0-9/-_ 
+# (todos los caracteres alfanuméricos en mayúsculas y minúsculas), y los retransmite 
+# al archivo index.php, como un parámetro querystring. También le dice a Apache2 que 
+# envíe cualquier extensión de archivo mencionada como un parámetro querystring al archivo index.php.
+# RewriteRule ^([a-zA-Z0-9\/\-_]+)\.?([a-zA-Z]+)?$ index.php?URL = $1&extension = $2 [QSA,L]
+
 # indicar que se detalle la url como parámetro para el index.php, 
 # así poder obtener el query string y saber desde el index.php hacia donde ir.
 # RewriteRule ^(.*)$ index.php?q=$1 [L,QSA
+
+
+# RewriteEngine on
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]

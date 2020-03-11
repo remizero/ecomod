@@ -31,6 +31,18 @@ use sys\libs\exceptions\ArgumentException;
  */
 abstract class ConfigAbs extends BaseClass {
 
+  const INI = "ini";
+
+  const JSON = "json";
+
+  const PHP = "php";
+
+  const TOML = "toml";
+
+  const Xml = "xml";
+
+  const YAML = "yaml";
+
   /**
    * @var array
    */

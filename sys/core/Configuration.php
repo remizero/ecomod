@@ -2,6 +2,13 @@
 
 namespace sys\core;
 
+use sys\api\config\controller\Ini;
+use sys\api\config\controller\Json;
+use sys\api\config\controller\Php;
+use sys\api\config\controller\Toml;
+use sys\api\config\controller\Xml;
+use sys\api\config\controller\Yaml;
+use sys\api\config\core\ConfigAbs;
 use sys\core\abstracts\BaseClass;
 use sys\libs\exceptions\ArgumentException;
 
@@ -58,22 +65,45 @@ class Configuration extends BaseClass {
 
   public function initialize () {
 
-    Events::fire ( "framework.configuration.initialize.before", array (
-    $this->type, $this->options ) );
+    Events::fire ( "framework.configuration.initialize.before", array ( $this->type, $this->options ) );
 
     if ( !$this->type ) {
 
       throw new ArgumentException ();
     }
 
-    Events::fire ( "framework.configuration.initialize.after", array (
-    $this->type, $this->options ) );
+    Events::fire ( "framework.configuration.initialize.after", array ( $this->type, $this->options ) );
 
     switch ( $this->type ) {
 
-      case "ini" :
+      case ConfigAbs::INI :
 
-        return new Configuration\Driver\Ini ( $this->options );
+        return new Ini ( $this->options );
+        break;
+
+      case ConfigAbs::JSON :
+
+        return new Json ( $this->options );
+        break;
+
+      case ConfigAbs::PHP :
+
+        return new Php ( $this->options );
+        break;
+
+      case ConfigAbs::TOML :
+
+        return new Toml ( $this->options );
+        break;
+
+      case ConfigAbs::XML :
+
+        return new Xml ( $this->options );
+        break;
+
+      case ConfigAbs::YAML :
+
+        return new Yaml ( $this->options );
         break;
 
       default :
